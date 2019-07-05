@@ -1,0 +1,258 @@
+<div class="menu-button"><div id="open-menu"></div></div>
+<div class="menu-left custom_scrollbar" id="menu-left" style="overflow: visible;">
+
+    <img class="logo mCS_img_loaded" src="assets/img/logo.png" alt="AdMove.com">
+
+    <div class="list-group">
+        <a href="/" data-page-home class="list-group-item">Home page</a>
+        <div class="menu-sep"></div>
+        <a href="#" data-page-loginout class="list-group-item">Login</a>
+        <a href="account" data-security-isadmin data-navigo class="list-group-item">Profilo</a>
+        <div class="menu-sep"></div>
+    </div>
+
+    <footer class="text-center">
+        <a href="privacy" target="_blank" class="footer-link">Privacy policy</a>
+        <p class="footer-copyright">© @DateTime.Now.Year - AdMove.com - All rights reserved</p>
+    </footer>
+</div>
+
+<div id="page">
+
+    <article data-page-html></article>
+
+    <div class="sidebar-button"><div id="open-sidebar"></div></div>
+    <div class="sidebar-dashboard" id="sidebar-dashboard" data-mcs-theme="minimal-dark">
+
+        <div class="col-md-12">
+
+            <div id="owl-dashboard" class="owl-carousel">
+                <div class="row item">
+                    <div class="col-md-12 p-15">
+                        <div class="media">
+                            <img class="media-object" style="width: 137px;" src="assets/img/img-profumerie.jpg" alt="1 - Limoni Profumerie Srl">
+                            <div class="color-orange mt10"><span class="pdi-number">1</span> - <span class="pdi-title">Limoni Profumerie Srl</span></div>
+                            <div><span class="pdi-address">Via Marittima, 257, 03100 Frosinone FR</span></div>
+                            <div><span class="pdi-phone">0775 123456789</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="insights">
+                <div class="row" id="editAddress">
+                    <div class="col-md-12 p-15">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Centro di pianificazione</b></span>
+                            <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Inserisci l'indirizzo da utilizzare come centro della pianificazione o trascina la circonferenza sulla mappa"></span>
+                        </div>
+                        <form method="post" id="update_pdi">
+                            <div class="input-group input-group-lg mt-35 mb-10">
+
+                                <span class="input-group-addon"><span class="input-ico ico-gps"></span></span>
+
+                                <input type="text" class="form-control" id="locationAddress" name="address" placeholder style="border:0">
+                                <input type="hidden" name="pdi" value="new">
+                                <input type="hidden" name="id">
+
+                                <span class="input-group-addon bg-white b-radius-right-2"><button class="btn p-0 bg-white" id="submit" data-toggle="tooltip" data-placement="top" title="Aggiorna"><div class="update"><span><img src="assets/img/maps/map-update.png"></span><span></span></button></span>
+                                <label class="placeholder light active">Indirizzo del centro campagna</label>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 p-15 bt-1 bg-grad">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Utenti mobile nel tuo territorio</b></span>
+                            <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Gli utenti mobile presenti nell’area d’azione"></span>
+                        </div>
+
+                        <div class="media">
+                            <div class="media-left media-middle" href="#">
+                                <img class="media-object" src="assets/img/ico-smartphone.png" alt="">
+                            </div>
+                            <div class="media-body">
+                                <span class="lh fs-32" data-insight-PotentialUsers="">49.210</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 p-15 bt-1 br-1 bg-men">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Uomini</b></span>
+                        </div>
+
+                        <div class="media">
+                            <div class="media-left media-middle" href="#">
+                                <img class="media-object" src="assets/img/ico-men.png" alt="">
+                            </div>
+                            <div class="media-body">
+                                <span class="lh fs-32" data-insight-MaleStats="">26.250</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-6 p-15 bt-1 bg-women">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Donne</b></span>
+                        </div>
+
+                        <div class="media">
+                            <div class="media-left media-middle" href="#">
+                                <img class="media-object" src="assets/img/ico-women.png" alt="">
+                            </div>
+                            <div class="media-body">
+                                <span class="lh fs-32" data-insight-FemaleStats="">23.515</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row bg-city-map">
+                    <div class="col-md-12 p-15 bt-1 bg-opacity-dark-blue" id="competitors_div">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>I competitor</b></span>
+                            <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Attività affini a quella indicata che si collocano nell'area d'azione"></span>
+                        </div>
+
+                        <div class="div-competitors">
+                            <ol class="competitors" data-steps="3" id="competitors_container">
+                                <li class="done">
+                                    <span class="ico-step people-1"></span>
+                                    <span class="step"></span>
+                                    <span class="name" data-competitors-low="">&lt; 3</span>
+                                </li>
+                                <li class="active">
+                                    <span class="ico-step people-2"></span>
+                                    <span class="step"></span>
+                                    <span class="name" data-competitors-medium="">4 - 6</span>
+                                </li>
+                                <li class="">
+                                    <span class="ico-step people-3"></span>
+                                    <span class="step"></span>
+                                    <span class="name" data-competitors-high="">&gt; 7</span>
+                                </li>
+                            </ol>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12 p-15 bt-1 bg-opacity-blue">
+
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Luoghi di aggregazione</b></span>
+                            <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Uffici, aree o spazi ad alta affluenza di persone. Centri direzionali – Uffici pubblici – Attrazioni turistiche – Cinema – Scuole – Banche – Ospedali – Stazioni dei treni, autobus, metro, ..."></span>
+                        </div>
+
+                        <div>
+                            <div class="interest">
+                                <span class="interest-ico public" data-toggle="tooltip" data-placement="right" title="Musei, Università, Tribunali, Municipi"></span>
+                                <span data-insight-PublicOfficesNumber="">37</span>
+                            </div>
+
+                            <div class="interest-sep"></div>
+
+                            <div class="interest">
+                                <span class="interest-ico private" data-toggle="tooltip" data-placement="top" title="Cinema, Teatri, Stadi"></span>
+                                <span data-insight-PrivatesNumber="">20</span>
+                            </div>
+
+                            <div class="interest-sep"></div>
+
+                            <div class="interest">
+                                <span class="interest-ico transport" data-toggle="tooltip" data-placement="left" title="Stazioni metropolitane e ferroviarie, Aereoporti"></span>
+                                <span data-insight-PublicTransportNumber="">7</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <environment names="Development">
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="~/assets/bootstrap/js/bootstrap-dialog.js"></script>
+        <script src="~/assets/js/app.js"></script>
+        <!-- mCustomScroolbar -->
+        <script src="~/assets/mCustomScroolbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- owlCarousel2 -->
+        <script src="~/assets/owlCarousel2/owl.carousel.min.js"></script>
+        <!-- pickadate -->
+        <script src="~/assets/datepicker/pickerDate.js"></script>
+        <!-- lightbox -->
+        <script src="~/assets/lightbox-master/ekko-lightbox.min.js"></script>
+        <!-- dropzone -->
+        <script src="~/assets/dropzone/dropzone.js"></script>
+        <!-- typeahead.js -->
+        <script src="~/assets/typeahead.js-master/bloodhound.js"></script>
+        <script src="~/assets/typeahead.js-master/typeahead.bundle.js"></script>
+        <!-- bootstrap-tagsinput -->
+        <script src="~/assets/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+        <!-- Bootstrap Validator http://1000hz.github.io/bootstrap-validator/ -->
+        <script src="assets/bootstrap-validator/validator.min.js"></script>
+        <!-- bootstrap-select -->
+        <script src="~/assets/bootstrap-select/js/bootstrap-select.js"></script>
+        <script src="~/assets/js/jquery.cms.js"></script>
+        <script src="~/node_modules/navigo/lib/navigo.min.js"></script>
+        <script src="~/node_modules/handlebars/dist/handlebars.min.js"></script>
+        <script src="~/node_modules/linq4js/dist/linq4js.min.js"></script>
+        <script src="~/node_modules/moment/min/moment-with-locales.js"></script>
+        <script src="~/node_modules/jwt-decode/build/jwt-decode.min.js"></script>
+        <script src="~/node_modules/jquery.cookie/jquery.cookie.js"></script>
+        <script src="~/dist/typescript.js"></script>
+        <script src="~/node_modules/powerbi-client/dist/powerbi.js"></script>
+        <script src="~/node_modules/powerbi-client/dist/powerbi.min.js"></script>
+        <!-- DataTable -->
+        <script src="~/assets/js/jquery.dataTables.min.js"></script>
+        <script src="~/assets/js/dataTables.bootstrap.min.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/dist/site.min.js" asp-append-version="true"></script>
+        <script src="~/dist/typescript.min.js" asp-append-version="true"></script>
+    </environment>
+    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyBk_OD93nBonF_lvpyu-9LHVkaIxjx151U&libraries=places"></script>
+    <script>
+        $(document).ready(function () {
+            // inizializzo il framework
+            CMS.init();
+
+            /* owlCarousel2 */
+            $('#owl-dashboard').owlCarousel({
+                loop: false,
+                nav: true,
+                margin: 30,
+                items: 1,
+                navText: ['', '']
+            });
+        });
+
+        // plugin scrollbar
+        $(window).on("load", function () {
+            $("#sidebar-dashboard").mCustomScrollbar();
+        });
+    </script>
+}

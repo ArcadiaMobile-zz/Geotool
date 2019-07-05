@@ -1,0 +1,596 @@
+<style>
+    #container-map {position: relative;min-height: 400px;}
+    #container-map .info{padding-top:0}
+    #container-map .info .buttons{border-top:1px solid #eee;padding-top:10px}
+    #container-map .info .buttons a{padding-left:10px !important;background:#e89c2a;border-radius:4px}
+    #container-map .info .buttons a img{filter: brightness(270%);}
+    #container-map .info .color-grey{color:#aaa}
+    /*#container-map .info .buttons a.no-bg{background:none !important;border:1px solid #5cc2e8;border-radius:3px}*/
+    #map {margin-left: 10px;height: 400px;}
+    .info h2.title {color: #e89c2a;padding: 0;margin: 5px 0 15px 0;font-size: 16px}
+    .info p {font-size: 14px;color: #2e3e40}
+    #grid_filter {float:right;}
+
+    .select.ib{display:inline-block;position:relative;margin:0 5px}
+    .select.ib:before{content:'';position:absolute;right:2px;width:14px;height:100%;background: url(/assets/img/arrow-small-dx-on.png) no-repeat center center;transform:rotate(90deg);pointer-events: none;}
+
+    .select.ib select{padding:3px 15px 3px 5px;min-width:60px;margin:0;border-radius:4px;background:#fff;border: 0;outline:none;display:inline-block;-webkit-appearance:none;-moz-appearance:none;appearance:none;cursor:pointer}
+    
+    .nav-tabs{border-color:#1a4c5d !important}
+    .nav-tabs > li{margin-bottom:-4px !important}
+    .nav-tabs > li a{padding:5px 40px;border:none !important;color:#fff}
+    .nav-tabs > li.active > a{border-bottom:2px solid #ea9d2b !important;color:#ea9d2b !important}
+    .mt-120-minus{margin-top:-120px}
+    .p-2{padding:2px}
+    .va-t{vertical-align:top !important}
+    .w100p{width:100% !important}
+    .bulk .interest,
+    .plan .interest{line-height:40px;text-align:left;font-size:15px;height:auto !important;min-height:40px;margin:10px 0}
+    .plan .interest{width:43%;padding-bottom:0;margin-bottom:0;}
+    .plan .interest span:last-child,
+    .bulk .interest span:last-child{margin-left:10px}
+    .bulk h2.small{font-size:10px;font-weight: bold}
+    .decimals{margin:0 !important}
+
+    .dataTables_wrapper{margin-top:20px}
+    .dataTables_length,.dataTables_info{float:left}
+    .dataTables_length select,.dataTables_filter input{color:#071a21}
+    .dataTables_paginate{/*border-top:1px solid #0d3340;*/padding-top:5px;margin-top:10px;}
+    .dataTables_paginate a{line-height:20px;padding:0 10px;color:#fff}
+    .copertura .dataTables_filter input{padding:4px;border-radius:3px;border:none;margin-left:10px}
+    .copertura label{font-weight:normal}
+    .copertura #grid{float:left;}
+    .copertura #grid thead tr{border-bottom:1px solid #1a4c5d;background:#082731;}
+    .copertura #grid th{padding: 10px !important;cursor:pointer;position:relative;padding-right:12px !important;font-size:13px;border-right:0px solid #1a4c5d !important}
+    .copertura #grid th.sorting:before,
+    .copertura #grid th.sorting_asc:before,
+    .copertura #grid th.sorting_desc:before{content:'';position:absolute;top:10px;right:0;width:15px;height:15px;background:url(/assets/img/arrow-small-dx-off.png) center center no-repeat;opacity:.7;transform:rotate(90deg)}
+    .copertura #grid th.sorting:before{opacity:.2}
+    .copertura #grid th.sorting_desc:before{transform:rotate(-90deg)}
+    .copertura #grid th,.copertura #grid td,.copertura #grid{border-collapse:collapse;border:1px solid #1a4c5d;padding:10px;font-size:12px;vertical-align:top}
+    .copertura #grid td{border-bottom:0;border-top:0}
+    .copertura #grid td.blue{background:#082731;font-weight:bold;text-align:center}
+    
+    .copertura table#grid th.sorting:last-child:before{background:none}
+    
+    .copertura #grid tr:nth-child(odd) td:not(.blue){background:rgba(0,0,0,.1)}
+    
+    .copertura .dataTables_paginate a:hover{text-decoration:none;opacity:.8}
+    .copertura .dataTables_paginate span a.paginate_button{display:inline-block;min-width:20px;line-height:20px;border-radius:20px;text-align:center;background:#0d3340;padding:0 2px;margin:0 5px}
+    .copertura .dataTables_paginate span a.paginate_button.current{background:#ea9d2b;color:#071a21}
+    
+    tr.selected, tr.selected td.blue, #grid tbody tr:hover td, #grid tbody tr:hover td.blue{ background-color: #ea9d2b !important; border-color: #d98c1a !important;cursor: pointer; color:#071a21 }
+    tr.selected img, tr:hover img{filter:brightness(500%)}
+    .plan .interest-sep{margin: 10px 0}
+
+    .round {display:inline-block; border-radius: 50%; width: 30px; height: 30px; line-height: 30px; text-align: center; background-color:blue}
+    
+    /** gender/dendity index **/
+    .copertura .fl-content{clear:both;margin-bottom:25px}
+    .copertura .fl-content .ico{width:30px;text-align:center;min-height:40px;float:left}
+    .copertura .fl-content .desc{margin-left:30px}
+    .copertura .screw-content{height:12px;border-radius:12px;overflow:hidden}
+    .copertura .tooltip .screw-content{height:6px;margin-bottom:5px}
+    .copertura .tooltip .di-number{font-size:10px;margin-top:-3px}
+    .copertura .part{background:#ebebeb;box-sizing:border-box}
+
+    .copertura .tooltip-inner{min-width: 250px;}
+    .copertura .di0 .part.active,.copertura .di1 .part.active,.copertura .di2 .part.active,.copertura .di3 .part.active,.copertura .di4 .part.active{background:#de4340}
+    .copertura .di5 .part.active,.copertura .di6 .part.active,.copertura .di7 .part.active,.copertura .di8 .part.active{background:#e69d37}  
+    .copertura .di9 .part.active,.copertura .di10 .part.active,.copertura .di11 .part.active,.copertura .di12 .part.active{background:#fcdb00}  
+    .copertura .di13 .part.active,.copertura .di14 .part.active,.copertura .di15 .part.active,.copertura .di16 .part.active{background:#3ba182}
+    .copertura td .part.td{margin-top:3px;border:1px solid #133440;height:7px;width:20px;margin:0 auto;border-radius:5px}
+    .copertura .di .part{min-width:12px;width:calc(100%/16);float:left;border-right:1px solid #fff}
+    .copertura .di-number{padding-left:3px;margin-bottom:5px} 
+    .copertura .screw:first-child{border-radius:10px 0 0 10px}
+    .copertura .screw:last-child{border-radius:0 10px 10px 0}
+    .copertura .screw{transform:skewX(-20deg);height:100%}
+    .copertura .gender.male{background:#133440;border-radius:10px 0 0 10px}
+    .copertura .text.male{color:#133440}
+    .copertura .gender.female{background:#e04441;border-radius:0 10px 10px 0}
+    .copertura .text.female{color:#e04441}
+</style>
+
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container"> 
+            <div class="new-title uppercase mb-20 mb-160">DETTAGLIO DELLA CAMPAGNA</div>
+        </div>
+    </div>
+</div>
+
+<div class="container fluid">
+    <div class="col-md-12 mt-120-minus p-0">
+        <div class="panel panel-default shadow">
+            <!--div class="panel-heading">
+                <span class="text-uppercase">Dettagli campagna</span>
+            </div-->
+            <div class="panel-body">
+                <div class="media">
+                    <!--div class="media-left pr-10">
+                        <div class="bg-white b-radius-50p p-2 mt-5">
+                            <img class="media-object" src="assets/img/info-dark-img.png" alt="">
+                        </div>
+                    </div-->
+                    <div class="media-body media-middle">
+                        <p class="mb-5 fs-16 color-orange">
+                            Il nostro algoritmo ha individuato la pianificazione ideale per questo tipo di campagna, ottimizzando il budget in funzione delle tue impostazioni. <span data-area></span> 
+                        </p>
+                        <p class="m-0 fs-16">
+                            Naviga nella mappa per avere una visione d’insieme dei PdV e delle aree di pianfiicazione oppure scegli la vista tabellare per vedere una situazione dettagliata.
+                        </p>
+                        
+                        <script id="plan-bulk" type="text/x-handlebars-template">
+                            <div class="plan clearfix">
+                                <div class="interest w45p">
+                                    <span class="interest-ico user" data-toggle="tooltip" data-placement="bottom" title=""></span>
+                                    <span>Target {{TargetName}} totali: <b class="color-orange">{{Target}}</b></span>
+                                </div>
+                                <div class="interest-sep w45p"></div>
+                                <div class="interest">
+                                    <span class="interest-ico price" data-toggle="tooltip" data-placement="bottom" title="Budget"></span>
+                                    <span>Budget: <b class="color-orange">€ <span class="value">{{Budget.[0]}}</span>,<span class="decimals">{{Budget.[1]}}</span></b></span>
+                                </div>
+                            </div>
+                            <!-- ## NUOVI PARAMETRI: I dati {{MobUsers}} e {{Genders}} sono ripetuti in dashboard -->
+                            <div class="plan clearfix">
+                                <div class="interest w45p">
+                                    <span class="interest-ico mobile" data-toggle="tooltip" data-placement="bottom" title="Mob users"></span>
+                                    <span class="info-badge pull-right m-10" data-toggle="tooltip" data-placement="top" title="La stima degli Utenti Mobile è calcolata al lordo delle potenziali aree di sovrapposizione"></span>
+                                    <span>Stima mobile users: <b class="color-orange">{{MobUsers}}</b></span>
+                                </div>
+                                <div class="interest-sep w45p"></div>
+                                <div class="interest">
+                                    <span class="interest-ico percentage" data-toggle="tooltip" data-placement="bottom" title="Split gender"></span>
+                                    <span>Split Genere Uomini/Donne: <b class="color-orange">{{MalePercentage}} - {{FemalePercentage}}</b></span>
+                                </div>
+                            </div>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="grid-pdv" type="text/x-handlebars-template">
+    <div class="row m-0 mt-25">
+        <div class="container fluid">
+            <ul class="nav nav-tabs uppercase"> 
+                <li class="active"><a data-toggle="tab" href="#mappa">Mappa</a></li>
+                <li class=""><a data-toggle="tab" href="#tabella">Tabella</a></li> 
+            </ul>
+        </div>
+        <div class="tab-content copertura">
+        
+            <div id="mappa" class="tab-pane fade in active">
+                <div id="container-map">
+                    <div id="map"></div>    
+                </div>
+            </div>
+            <div id="tabella" class="tab-pane fade">
+                <div class="container copertura fluid">
+                    <!--div class="col-sm-12"-->
+                        <div>
+                            <table id="grid" class="table flat mt-25 fs-16 no-footer" role="grid" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="id">#</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="region">Regione</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="province">PV</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="address">Indirizzo PDV</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="cityPDV">Città PDV</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="addressCDE">Indirizzo di pianificazione</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="cityCDE">Città di pianificazione</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="target">{{TargetName}}</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="density">A.D.I.</th>
+                                        <th class="text-uppercase color-sky-blue fs-12" data-field="level">Livello</th>
+                                        <!--<th class="text-uppercase color-sky-blue fs-12 sorting_disabled" data-field="price">Budget</th>-->
+                                        <!--th class="text-uppercase color-sky-blue fs-12 sorting_disabled" data-field="cluster">Cluster</th-->
+                                        <!--th class="text-uppercase color-sky-blue fs-12 sorting_disabled" data-field="densityMobUsers">Densità MobUsers</th-->
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each Pdvs}}
+                                    <tr data-id="{{id}}">
+                                        <td>{{id}}</td>
+                                        <td>{{geocodeAddressCDE.Region}}</td>
+                                        <td>{{geocodeAddressCDE.Province}}</td>
+                                        <td>{{geocodeAddressPDV.Address}}</td>
+                                        <td>{{geocodeAddressPDV.City}}</td>
+                                        <td>{{geocodeAddressCDE.Address}}</td>
+                                        <td>{{geocodeAddressCDE.City}}</td>
+                                        <td class="blue">{{selectedProduct.item.Value}}</td>
+                                        <td class="blue di{{mapItem.insights.data.DensityPotentialUsersNumber}}" data-order="{{mapItem.insights.data.DensityPotentialUsersNumber}}">
+                                            <div data-toggle="tooltip" data-placement="left" data-html="true" title="{{tooltip mapItem.insights.data.DensityPotentialUsersNumber}}">
+                                                {{mapItem.insights.data.DensityPotentialUsersNumber}}
+                                                <div class="part td active"></div>
+                                            </div>
+                                        </td>
+                                        <td class="blue">
+                                            <div class="round">{{level}}</div>
+                                        </td>
+                                        <!--td>{{mapItem.insights.data.Cluster}}</td-->
+                                        <!--td>{{mapItem.insights.data.DensityPotentialUsers}}</td-->
+                                        <td class="text-center"><a class="change-tab" title="Evidenzia in mappa"><img src="/assets/img/ico-mappa.png"></a></td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!--div class="col-md-12 p-0">
+                            <a type="button" class="btn btn-adm alternative text-uppercase mt-15 mr-15">Esporta PDF</a>
+                            <a type="button" class="btn btn-adm alternative text-uppercase mt-15">Stampa tabella</a>
+                        </div-->
+                    <!--/div-->
+                </div>
+            </div>
+            
+        </div><!-- end tab-content-->
+    </div>
+</script>
+
+<!-- sidebar -->
+<div class="sidebar-button bulk _open"><div id="open-sidebar"></div></div>
+<div class="sidebar-dashboard bulk _open" id="sidebar-dashboard" data-mcs-theme="minimal-dark">
+    <script id="sidebar-bulk" type="text/x-handlebars-template">
+        <div class="col-md-12">
+            <div class="step">
+                <div class="color-orange fs-20 mt-15" data-name>{{BusinessName}}</div>
+                <div class="row p-0 mb-20">
+                    <div class="col-md-4">
+                        <h2 class="small uppercase color-light-blue">PdV</h2>
+                        <div>
+                            <img src="/assets/img/pdv-sidebar.png" class="mr-10"><span data-pdv>{{CountPdv}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="small uppercase color-light-blue">Punti di pianificazione</h2>
+                        <img src="/assets/img/punti-di-pianificazione-sidebar.png" class="mr-10"><span data-points>{{CountCde}}</span>
+                    </div>
+                </div>
+                <div class="clearfix mt-50">
+                    <span class="text-uppercase color-light-blue pull-left mr-10"><b>Dettagli del piano</b></span>
+                    <!--span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="I dettagli del tuo piano"></span-->
+                </div>
+                <div class="mt-10"><img src="/assets/img/prodotto-sidebar.png" class="mr-10">Prodotto: <b class="color-orange" data-product>{{ProductDesc}}</b></div>
+                <!--div class="mt-10"><img src="/assets/img/ico-euro.png" class="mr-10">Budget massimo: <b class="color-orange" data-budget>€ <span class="value">{{MaxBudget.[0]}}</span>,<span class="decimals">{{MaxBudget.[1]}}</span></b></div-->
+                <div class="mt-10"><img src="/assets/img/ico-date.png" class="mr-10">Partenza: <b class="color-orange" data-start>{{StartDate}}</b></div>
+                <div class="mt-10 mb-20"><img src="/assets/img/ico-date.png" class="mr-10">Fine: <b class="color-orange" data-start>{{EndDate}}</b></div>
+            </div>
+            <div class="step" id="insights">
+                <div class="row">
+                    <div class="col-md-12 p-15 bt-1 bg-grad">
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>PLANNING PROPOSAL</b></span>
+                            <!--span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="I dettagli del tuo piano"></span-->
+                        </div>
+                        <div class="interest w100p">
+                            <span class="interest-ico user" data-toggle="tooltip" data-placement="bottom" title="Mobile Users"></span>
+                            <span>Target {{TargetName}} totali: <b class="color-orange">{{Target}}</b></span>
+                        </div>
+
+                        <div class="interest w100p m-0">
+                            <span class="interest-ico price" data-toggle="tooltip" data-placement="bottom" title="Budget investito"></span>
+                            <span>Budget: <b class="color-orange">€ <span class="value">{{Budget.[0]}}</span>,<span class="decimals">{{Budget.[1]}}</span></b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step" id="insights">
+                <div class="row">
+                    <div class="col-sm-6 p-15 bt-1 br-1 bg-men">
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Uomini</b></span>
+                        </div>
+                        <div class="media">
+                            <div class="media-left media-middle" href="#">
+                                <img class="media-object" src="assets/img/ico-men.png" alt="">
+                            </div>
+                            <div class="media-body">
+                                <span class="lh fs-32" data-insight-MaleStats="">{{MalePercentage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 p-15 bt-1 bg-women">
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Donne</b></span>
+                        </div>
+                        <div class="media">
+                            <div class="media-left media-middle" href="#">
+                                <img class="media-object" src="assets/img/ico-women.png" alt="">
+                            </div>
+                            <div class="media-body">
+                                <span class="lh fs-32" data-insight-FemaleStats="">{{FemalePercentage}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="row bg-city-map">
+                    <div class="col-md-12 p-15 bt-1 bg-opacity-blue">
+                        <div class="clearfix">
+                            <span class="text-uppercase color-light-blue pull-left mr-10"><b>Coinvolgimento</b></span>
+                            <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Coinvolgimento"></span>
+                        </div>
+                        <div class="interest w100p">
+                            <span class="interest-ico city" data-toggle="tooltip" data-placement="bottom" title="Città"></span>
+                            <span>N° di città coinvolte: <b class="color-orange">{{CountCity}}</b></span>
+                        </div>
+                        <div class="interest w100p m-0">
+                            <span class="interest-ico province" data-toggle="tooltip" data-placement="bottom" title="Provincia"></span>
+                            <span>N° di province coinvolte: <b class="color-orange">{{CountProvince}}</b></span>
+                        </div>
+                        <div class="interest w100p m-0">
+                            <span class="interest-ico region" data-toggle="tooltip" data-placement="bottom" title="Regione"></span>
+                            <span>N° di regioni coinvolte: <b class="color-orange">{{CountRegion}}</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+<!-- end sidebar -->
+
+<div class="container">
+    <div class="row mb-35 mt-10">
+        <div class="col-xs-12 text-center">
+            <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+            <a href="bulk-creativita" data-navigo class="btn btn-adm text-uppercase">Carica la creatività</a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var currentPage;
+    
+    $(document).ready(function () {
+    
+        currentPage = navigationService.currentPage;
+        
+        var container = currentPage.html.find(".container.fluid"),
+            sidebar = $("#sidebar-dashboard"),
+            flow = currentPage.getFlow(),
+            order = currentPage.getOrderBy();
+            
+        container.find("[data-toggle=tooltip]").tooltip();
+        
+        var table = currentPage.html.find("#grid").DataTable({
+            "language": {
+                "lengthMenu": "Mostra <label class=\"select ib\">_MENU_</label> elementi per pagina",
+                "zeroRecords": "Spiacente, non è stato trovato nulla",
+                "info": "Pagina _PAGE_ di _PAGES_",
+                "infoEmpty": "Nessun elemento disponibile",
+                "infoFiltered": "(filtrato da _MAX_ elementi totali)",
+                "search": "Cerca",
+                "oPaginate": {
+                    "sFirst": "Inizio",
+                    "sPrevious": "«",
+                    "sNext": "»",
+                    "sLast": "Fine"
+                },
+            },
+            "dom": "<'row'<'col-sm-6'l><'col-sm-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'bottom'ip>",
+            "columnDefs": [
+                    {
+                        "targets": [7],
+                        "visible": flow == "0" ? false : true,
+                    },
+                    {
+                        "targets": [8],
+                        "visible": flow == "2" && order == "MobUsers" ? true : false,
+                    },
+                    {
+                        "targets": [9],
+                        "visible": flow == "2" && order == "Level" ? true: false,
+                    },
+            ],
+            "createdRow": function (row, data, index) {
+                if (flow == "2") {
+                    var cell = row.cells[8].children[0];
+                    cell.style.backgroundColor = order == "MobUsers" ?  getDensityColor(cell.innerText) : getClusterColor(cell.innerText);
+                }
+            }
+        }).on("click", "tbody tr", function (e) {
+
+            var data = table.row(this).data();
+
+            $("tbody tr.selected").removeClass("selected").filter($(this)).addClass("selected");
+            
+            var plugin = navigationService.currentPage._plugin;
+
+            //plugin.actions("select", data[0], null);
+            
+            plugin.centerMap(plugin.getPoint(data[0])); 
+            
+            setTimeout(function(){
+            
+                plugin.actions("select", data[0], null);
+                   
+            },500);
+
+        });
+
+        //table.on('page.dt', function () {
+        //    $("td .round").trigger("click");
+        //})
+
+        
+        //$("td .round").on("click", function (e) {
+        //    e.preventDefault();
+        //    e.stopPropagation();
+        //    e.target.style.backgroundColor = getColor(e.target.innerText);
+        //})
+
+        //$("td .round").trigger("click");
+        
+        currentPage.html.on('click','.change-tab',function(){
+        
+            currentPage.html.find('.nav-tabs li:not(.active) a').trigger('click');    
+        
+        });
+        
+        function fluid(){
+            var width = $(window).width();
+            var cwidth = container.outerWidth();
+            var mr = (width - cwidth)/2;
+
+            if(width > 800 && sidebar.hasClass('open')){
+                var pr = 0;
+                if(mr < 360){
+                    pr = (360-mr);
+                }
+                container.css('padding-right',pr);
+            }else{
+                container.removeAttr('style');
+            }
+
+            container.find('.owl-carousel').trigger('refresh.owl.carousel');
+        }
+
+        container.closest('body').on('click','.sidebar-button',function(){
+            fluid();
+        });
+
+        function mapSize($target) {
+            var h = (($(window).height() / 4) * 3); // - $('.container-fluid').height(); // ottengo i 3/4 della window per assegnarla alla mappa
+            if (h <= 400) { // verifica che l'altezza ottenuta non sia inferiore a un determinato valore (in questo caso 400)
+                return;
+            }
+            $target.css('height', h);
+        }
+
+        $(window).on('resize', function () {
+            mapSize($("#map"));
+            fluid();
+        }).trigger('resize');
+        
+
+        CMS.loadPlugin("../assets/js/plugin/maps_bulk", function (plugin) {
+            
+            if (!plugin) return BootstrapDialog.alert('Impossibile caricare il plugin'); // errore nel caricamento
+            plugin.icons = '../assets/img/maps/';
+            plugin.flow = navigationService._userSession.bulkData.flow;
+            plugin.level = navigationService._userSession.bulkData.orderBy; 
+            // inizializzo il plugin
+            // la funzione di callback è sempre richiamata per ogni genere di evento propagato
+            plugin.init("map", { lat: 45.4637307, lng: 9.1910625, zoom: 11 }, function (evt, pdi, data) { // callback eventi
+                if (!pdi && evt != 'add-pdi')
+                    return false;
+                if (evt == 'add-pdi') {
+                    modal = $('#add-pdi').modal('show');
+                    return false;
+                } else if (evt == 'update') {
+                    //navigationService.currentPage.updatePdi(pdi.id);
+                    //return false;
+                } else if (evt == 'added' || evt == 'duplicated') { // punto aggiunto. Aggiorno slider
+                    // clono il template di base per lo slider e assegno l'id del punto
+                    //var item = carousel_pdi_template.clone().attr('data-id', pdi.id);
+                    //carousel_pdis.trigger('add.owl.carousel', item).trigger('refresh.owl.carousel');
+                    //// aggiorno il carosello
+                    //updateCarousel(pdi);
+                    if (evt == 'duplicated') {
+                        //navigationService.currentPage.pdiDuplicated(pdi.originalId, pdi);
+                    }
+                } else if (evt == 'dragend') {
+                    //navigationService.currentPage.pdiMoved(pdi.id, { lat: pdi.circle.lat, lng: pdi.circle.lng });
+                    //plugin.actions('updated_list', pdi, null);
+                } else if (evt == 'removed') {
+                    // punto rimosso. Aggiorno lo slider
+                    //var index = pdis.find('.item').index($('[data-id=' + pdi + ']'));
+                    //carousel_pdis.trigger('remove.owl.carousel', index).trigger('refresh.owl.carousel');
+                    //navigationService.currentPage.pdiRemoved(pdi);
+                } else if (evt == 'updated' || evt == 'resetted') { // punto aggiornato/ripristinato. invio richiesta
+                    if (evt == 'resetted') {
+                        //navigationService.currentPage.pdiReset(pdi.id);
+                    } else {
+                        //pdi.setUpdated(true); // disabilito update sulla infoWindow
+                    }
+                } else if (evt == 'selected') { // elemento selezionato
+                    var row = table.$('tr').removeClass('selected').filter('[data-id='+pdi.id+']').addClass('selected');
+                    //console.log(row);
+                    table.search("").draw();
+                    //table.fnGetPageOfRow();
+                } else if (evt == 'clear') { // nessun elemento selezionato
+                } else if (evt == 'updated_list') {
+                    //navigationService.currentPage.html.find("[data-navigo]").addClass("disabled");
+                }
+            });
+            navigationService.currentPage.preparePlugin(plugin);
+        });
+
+        $("#sidebar-dashboard").mCustomScrollbar({ scrollInertia: 200 });
+    });
+
+    function getDensityColor(number) {
+        switch (number) {
+            case "1":
+                return "#ffebcc";
+                break;
+            case "2":
+                return "#ffe0b3";
+                break;
+            case "3":
+                return "#ffd699";
+                break;
+            case "4":
+                return "#ffcc80";
+                break;
+            case "5":
+                return "#ffc266";
+                break;
+            case "6":
+                return "#ffb84d";
+                break;
+            case "7":
+                return "#ffad33";
+                break;
+            case "8":
+                return "#ffa31a";
+                break;
+            case "9":
+                return "#ff9900";
+                break;
+            case "10":
+                return "#e68a00";
+                break;
+            case "11":
+                return "#cc7a00";
+                break;
+            case "12":
+                return "#b36b00";
+                break;
+            case "13":
+                return "#995c00";
+                break;
+            case "14":
+                return "#804d00";
+                break;
+            case "15":
+                return "#663d00";
+                break;
+            case "16":
+                return "#4d2e00";
+                break;
+        }
+    }
+
+    function getClusterColor(number) {
+        switch (number) {
+            case "1":
+                return "#de4340";
+                break;
+            case "2":
+                return "#e69d37";
+                break;
+            case "3":
+                return "#3ba182"
+                break;
+        }
+    }
+
+</script>

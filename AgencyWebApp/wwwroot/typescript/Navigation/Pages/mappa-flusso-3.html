@@ -1,0 +1,745 @@
+<style>
+    /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+    #container-map {
+        position: relative;
+        min-height: 400px;
+    }
+
+    #map {
+        margin-left: 10px;
+        height: 400px;
+    }
+
+    .ib {
+        display: inline-block
+    }
+
+    .fl-left {
+        float: left
+    }
+
+    .a-right {
+        text-align: right
+    }
+
+    .info h2.title {
+        color: #e89c2a;
+        padding: 0;
+        margin: 5px 0;
+        font-size: 16px
+    }
+
+    .info p {
+        font-size: 14px;
+        color: #2e3e40
+    }
+
+
+    .modal-header {
+        background-color: #082731;
+    }
+
+    .modal-footer {
+        padding: 15px
+    }
+
+    a.type-place {
+        position: relative;
+    }
+
+    #places-available p {
+        margin-top: 0
+    }
+
+    a.type-place .next {
+        position: absolute;
+        right: 0;
+        top: 4px;
+        height: 22px;
+        z-index: 1;
+        display: none;
+        width: 22px;
+        text-align: center;
+        color: #fff;
+        font-size: 30px;
+        line-height: 20px;
+        background: #ea9d2b;
+        border-radius: 10px;
+        content: "+"
+    }
+
+        a.type-place .next:hover {
+            opacity: .7
+        }
+
+    a.type-place.hasnext.active .next {
+        display: block
+    }
+
+    a.type-place.loading .next {
+        opacity: .5
+    }
+
+    .map-update {
+        display: none
+    }
+
+    .panel {
+        margin-bottom: 0 !important
+    }
+
+    .pdfcontainer {
+        padding: 50px;
+        width: 1200px;
+        background: #fff;
+        position: relative
+    }
+
+        .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading {
+            background-color: #fff;
+            border: 1px solid #071a21 !important;
+            border-radius: 3px;
+            border-collapse: collapse
+        }
+
+        .pdfcontainer .panel-default > .panel-heading {
+            border: 0 !important;
+            background: #eee
+        }
+
+        .pdfcontainer #current-templateOut span {
+            font-weight: bold
+        }
+
+        .pdfcontainer .charts-advm, .pdfcontainer .charts-smartphone, .pdfcontainer .charts-android {
+            background-color: rgba(0,0,0,.15);
+            border-radius: 100%
+        }
+
+        .pdfcontainer * {
+            color: #071a21 !important;
+        }
+
+        .pdfcontainer .nav-pills {
+            border: none
+        }
+
+        .pdfcontainer .not-available span {
+            top: 90%
+        }
+
+        .pdfcontainer #choice-templateOut button {
+            border: none !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0 !important
+        }
+
+            .pdfcontainer #choice-templateOut button span {
+                font-size: 24px !important;
+                position: relative;
+                display: block;
+                text-align: center
+            }
+
+        .pdfcontainer #choice-templateOut span.bs-caret {
+            display: none
+        }
+
+        .pdfcontainer #insights-details-templateOut .col-md-12 {
+            padding: 0 !important
+        }
+
+        .pdfcontainer .mt-50, .pdfcontainer .mt-75 {
+            margin-top: 0
+        }
+
+        .pdfcontainer .nav-justified > li {
+            display: table-cell;
+            width: 1%;
+        }
+
+        .pdfcontainer .col-md-5 {
+            width: 41.666;
+            float: left
+        }
+
+        .pdfcontainer .col-md-offset-1 {
+            margin-left: 8.33333333%;
+        }
+
+        .pdfcontainer .col-md-6 {
+            width: 50%;
+            float: left
+        }
+
+        .pdfcontainer .col-md-12 {
+            width: 100%
+        }
+
+        .pdfcontainer .progress {
+            padding: 1px
+        }
+
+        .pdfcontainer .pdfpage.hide {
+            display: block !important
+        }
+
+        .pdfcontainer .owl-stage[style] {
+            width: auto !important;
+            -webkit-transform: none !important;
+            transform: none !important;
+        }
+
+        .pdfcontainer .owl-item .printnoscroll, .pdfcontainer .owl-item .col-md-12 {
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+            .pdfcontainer .owl-item .printnoscroll p, .pdfcontainer .owl-item .col-md-12 p {
+                margin: 30px 0;
+                text-align: center
+            }
+
+        .pdfcontainer .owl-item, .pdfcontainer .owl-item[style] {
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            float: none !important;
+            margin-bottom: 50px !important
+        }
+
+        .pdfcontainer .owl-dots, .pdfcontainer .owl-dots, .pdfcontainer .owl-nav {
+            display: none !important
+        }
+
+        .pdfcontainer .circles-wrp {
+            border: 10px solid rgba(0,0,0,.1);
+            border-radius: 100%
+        }
+
+        .pdfcontainer .nopl {
+            padding-left: 15px !important
+        }
+
+        .pdfcontainer .inizio .col-md-5, .pdfcontainer .inizio .col-md-6 {
+            float: none;
+            clear: both;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto
+        }
+
+            .pdfcontainer .inizio .col-md-6.pba {
+                margin-top: 300px;
+                text-align: left
+            }
+
+        .pdfcontainer .inizio #group-selectpicker {
+            margin: 0 !important
+        }
+
+        .pdfcontainer p.pdfcenter {
+            text-align: center
+        }
+
+            .pdfcontainer p.pdfcenter span {
+                font-size: 20px !important
+            }
+
+        .pdfcontainer .inizio .col-md-6.pba p {
+            text-align: left !important
+        }
+
+        .pdfcontainer .container {
+            width: 100% !important;
+            padding: 10px !important;
+            margin: 0 !important
+        }
+
+        .pdfcontainer .well {
+            background: #fafafa
+        }
+
+        .pdfcontainer #map.with-sidebar {
+            margin-right: 0 !important
+        }
+
+        .pdfcontainer #places-available {
+            background: rgba(255,255,255,.5);
+            box-shadow: none !important
+        }
+
+            .pdfcontainer #places-available p {
+                display: none
+            }
+
+            .pdfcontainer #places-available .panel {
+                background: transparent;
+                border: none !important
+            }
+
+        .pdfcontainer .type-place img {
+            opacity: 1 !important
+        }
+
+    a.map-update[data-maps="update"],
+    a.map-reset[data-maps="update"] {
+        display: none !important
+    }
+</style>
+
+<div class="container-fluid bg-light-gray hide">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="media py-10">
+                    <div class="media-left media-middle br-light-1" href="#">
+                        <img class="media-object" src="assets/img/logo-text.png" alt="AdMove">
+                    </div>
+                    <div class="media-body">
+                        <p class="m-0 px-10 color-dark-blue"><span class="badge bg-gray pull-left mr-10"><i>i</i></span>La circonferenza può essere diversa dall'area considerata efficace per la pianificazione</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pdfpage">
+
+    <div id="container-map">
+        <div id="map" class="with-sidebar"></div>
+        <div id="places-available" data-mcs-theme="minimal-dark">
+            <p class="text-uppercase color-white my-15 fs-15 pdfignore">Seleziona le categorie:</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <p class="text-uppercase color-white my-15 fs-15">INFORMAZIONI SUL TERRITORIO E I POTENZIALI CLIENTI:</p>
+
+        <div class="row">
+            <script id="business-template" type="text/x-handlebars-template">
+                <div class="col-md-12 col-lg-6">
+                    <div class="well">
+                        <div class="media">
+                            <div class="media-left media-middle pr-15 br-blue-light-1">
+                                <img class="media-object" style="max-width: 137px; max-height: 76px" src="{{image}}" alt="{{businessName}}">
+                            </div>
+                            <div class="media-body media-middle pl-15">
+
+                                <h3 class="color-orange fs-18 m-0 mb-10">{{businessName}}</h3>
+
+                                <div class="media m-0">
+                                    <div class="media-left">
+                                        <span class="pdi-image"><img class="media-object" src="assets/img/ico-pin.png" alt=""></span>
+                                    </div>
+                                    <p class="media-body"><span class="pdi-address">{{address}}</span></p>
+                                </div>
+
+                                <div class="media m-0">
+                                    <div class="media-left">
+                                        <span class="media-object color-light-blue"><b>T:</b></span>
+                                    </div>
+                                    <p class="media-body"><span class="pdi-phone">{{phoneNumber}}</span></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+
+            <div class="col-md-12 col-lg-6">
+                <div class="well pt-0 pb-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12 p-15">
+
+                                    <div class="clearfix">
+                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Utenti mobile nel tuo territorio</b></span>
+                                        <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></span>
+                                    </div>
+
+                                    <div class="media">
+                                        <div class="media-left media-middle" href="#">
+                                            <img class="media-object" src="assets/img/ico-smartphone.png" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="fs-24" data-insight-PotentialUsers="">26.250</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-sm-6 col-xs-12 p-15 br-1 bg-men">
+
+                                    <div class="clearfix">
+                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Uomini</b></span>
+                                    </div>
+
+                                    <div class="media">
+                                        <div class="media-left media-middle" href="#">
+                                            <img class="media-object" src="assets/img/ico-men.png" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="fs-24" data-insight-MaleStats="">49.210</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 p-15 bg-women">
+
+                                    <div class="clearfix">
+                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Donne</b></span>
+                                    </div>
+
+                                    <div class="media">
+                                        <div class="media-left media-middle" href="#">
+                                            <img class="media-object" src="assets/img/ico-women.png" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="fs-24" data-insight-FemaleStats="">23.515</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-35 mt-10 pdfignore">
+            <div class="col-xs-12 text-center">
+                <button class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+                <a class="btn btn-adm text-uppercase pdf"><img src="assets/img/ico-print.png" class="mr-15">Stampa pagina</a>
+            </div>
+        </div>
+
+    </div>
+
+</div> <!-- end pdfpage -->
+
+<script src="assets/js/pdf/dist/jspdf.debug.js"></script>
+<script src="assets/js/pdf/html2pdf.js"></script>
+<script>
+
+    var currentPage;
+    $(document).ready(function () {
+
+        currentPage = navigationService.currentPage;
+
+        function mapSize($target) {
+            var h = (($(window).height() / 4) * 3);
+            if (h <= 480) {
+                return;
+            }
+            $target.css("height", h);
+        };
+
+        $(window).on("resize", function () {
+            mapSize($("#map"));
+        }).trigger("resize");
+
+        // imposto le variabili
+        var body = currentPage.html,
+            pdis = $("#owl-dashboard .owl-stage"), // slider
+            pdiArea = $("#insights"), // insights
+            pdiBudget = $("#prices"), // budget
+            carousel_pdi_template = $("#owl-dashboard .row.item:first").removeClass("hide").remove(),
+            ignore_trigger = false,
+            modal = null;
+
+        // tooltip di bootstrap
+        $("[data-toggle=tooltip]").tooltip();
+
+        // carousel del budget
+        var carousel_prices = $("#owl-price");
+        carousel_prices.owlCarousel({
+            loop: true,
+            mouseDrag: false,
+            nav: true,
+            margin: 30,
+            items: 1,
+            navText: ["", ""]
+        });
+
+        CMS.loadPlugin("../assets/js/plugin/pdf", function (plugin) {
+
+            if (!plugin) return $("a.pdf").addClass("disabled");
+
+            plugin.init();
+
+        });
+
+        CMS.loadPlugin("../assets/js/plugin/maps", function (plugin) {
+
+            if (!plugin) return BootstrapDialog.alert("Impossibile caricare il plugin"); // errore nel caricamento
+
+            plugin.icons = "../assets/img/maps/";
+
+            var service = null;
+
+            var types = {
+                "movie_theater": { "name": "Cinema", "path": "cinema-teatro.png" },
+                "stadium": { "name": "Stadi", "path": "stadio.png" },
+                "airport": { "name": "Aeroporti", "path": "aeroporto.png" },
+                "gym": { "name": "Palestre", "path": "palestra.png" },
+                "book_store": { "name": "Librerie", "path": "libreria.png" },
+                "hair_care": { "name": "Parrucchieri", "path": "parrucchiere.png" },
+                "department_store": { "name": "Centri commerciali", "path": "centro-commerciale.png" },
+                "beauty_salon": { "name": "Centri estetici", "path": "salone-bellezza.png" },
+                "restaurant": { "name": "Ristoranti", "path": "ristorante.png" },
+                "bar": { "name": "Bar", "path": "caffe.png", types: ["bar", "cafe"] }
+            }, _get_type = function (t) {
+                if (types[t] && types[t].types) return types[t].types;
+                return [t];
+            }, _get_path = function (t) {
+                if (t == "cafe") t = "bar";
+                if (types[t]) return "../assets/img/maps/place/" + types[t].path;
+                return "404_" + t;
+            }, _set_zoom = function (radius) {
+                radius = parseInt(radius);
+                if (radius <= 500) {
+                    return 17;
+                } else if (radius > 500 && radius < 1500) {
+                    return 16;
+                } else {
+                    return 15;
+                }
+            };
+
+
+            var _markers = {}, _clearMarkers = function (type) {
+
+                if (type) {
+                    var _types = _get_type(type);
+                    for (var tt = 0; tt < _types.length; tt++) {
+                        if (_markers[_types[tt]]) {
+                            for (var m = 0; m < _markers[_types[tt]].length; m++) _markers[_types[tt]][m].setMap(null);
+                            _markers[_types[tt]] = [];
+                        }
+                        $(".panel [data-type=" + type + "]").removeClass("active").removeClass("loading").addClass("nomore");
+                    }
+                    return false;
+                }
+
+                $(".panel .active").removeClass("active").removeClass("loading").addClass("nomore");
+
+                for (var t in _markers) {
+                    for (var m = 0; m < _markers[t].length; m++) _markers[t][m].setMap(null);
+                    _markers[t] = [];
+                }
+
+            }, _addMarker = function (latLng, type, map, icon, title) {
+
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    icon: {
+                        url: _get_path(type),
+                        scaledSize: new google.maps.Size(30, 30),
+                        anchor: new google.maps.Point(15, 15)
+                    },
+                    title: title,
+                    map: map
+                });
+                //console.log("DONE MARK");
+                if (!_markers[type]) _markers[type] = [];
+                _markers[type].push(marker);
+                //console.log(_markers);
+
+            }, _search = function (lat, lng, radius, type, callback, pagetoken) {
+
+                if (!service) return;
+
+                service.nearbySearch({
+                    location: { lat: lat, lng: lng },
+                    radius: radius,
+                    type: type
+                }, function (results, status, pagination) {
+                    callback(results, status, type, pagination);
+                });
+
+            };
+
+
+            var panel = $('<div class="panel"><div class="row pdfignore"><div class="col-xs-6 mt-15"><a data-type="clear" title="Disattiva tutte le categorie" class="btn btn-adm clear ctrl">Cancella</a></div> <div class="col-xs-6 mt-15"><a data-type="all" title="Attiva tutte le categorie" class="btn btn-adm light all ctrl">Attiva</a></div></div></div>');
+
+            for (var t in types) panel.prepend('<a data-type="' + t + '" class="text-uppercase type-place" title="Attiva ' + types[t].name + '"><img src="' + _get_path(t) + '" class="mr-10">' + types[t].name + '<span class="status"></span></a>'); //<span class="next" data-toggle="tooltip" data-placement="left" title="Aggiungi i prossimi risultati">+</span>
+
+            panel.find("[data-toggle=tooltip]").tooltip();
+
+            $("#places-available").append(panel).on("click", "[data-type]", function () {
+                var t = $(this).removeClass("nomore"), type = t.data("type");
+            });
+            $("#places-available").append(panel).on("click", "[data-type]", function () {
+                var t = $(this), type = t.data("type");
+                if (t.hasClass("loading")) return false;
+                if (t.hasClass("active")) {
+
+                    return _clearMarkers(type);
+                }
+
+                var pdi = plugin.getSelected();
+
+                if (type == "all") {
+                    $(".panel [data-type]").removeClass("hasnext");
+                    $(".panel [data-type]:not(.ctrl):not(.active)").each(function (i, e) {
+                        var _t = $(this), _type = _t.data("type"), _types = _get_type(_type);
+
+                        for (var tt = 0; tt < _types.length; tt++) {
+                            var type_ = _types[tt];
+                            setTimeout(function () {
+                                _search(pdi.circle.lat, pdi.circle.lng, pdi.circle.radius, type_, function (results, status, type_, pagination) {
+                                    _t.removeClass("loading").addClass("active").removeClass("hasnext");
+                                    if (status != "OK") return;
+
+                                    if (_t.hasClass("nomore")) return _t.removeClass("nomore").removeClass("active");
+
+                                    for (var r = 0; r < results.length; r++) _addMarker(results[r].geometry.location, type_, plugin.map, results[r].icon, results[r].name + " " + results[r].vicinity);
+
+                                    if (pagination.hasNextPage) {
+
+                                        pagination.nextPage();
+
+                                    }
+
+                                });
+                            }, 100 * i);
+                        }
+
+                    }).addClass("loading");
+
+                    return false;
+
+                } else if (type == "clear") {
+                    return _clearMarkers();
+                }
+
+                t.addClass("loading");
+
+                _search(pdi.circle.lat, pdi.circle.lng, pdi.circle.radius, type, function (results, status, type, pagination) {
+                    t.removeClass("loading").addClass("active").removeClass("hasnext");
+                    if (status != "OK") return;
+                    if (t.hasClass("nomore")) return t.removeClass("nomore").removeClass("active");
+                    for (var r = 0; r < results.length; r++) _addMarker(results[r].geometry.location, type, plugin.map, results[r].icon, results[r].name + " " + results[r].vicinity);
+                    //console.log(pagination);
+                    if (pagination.hasNextPage) {
+
+                        pagination.nextPage();
+
+                    }
+                });
+            });
+
+            $("#places-available").mCustomScrollbar();
+
+            currentPage.onUpdatePdv = function (res) {
+                var pdi = plugin.getPoint(res.id);
+                if (!pdi) return BootstrapDialog.alert("Il punto non è stato trovato");
+
+                // aggiorno i dati
+                pdi.insights.data = res.insights.data;
+                pdi.title = res.title;
+
+                if (plugin.getSelected().id === res.id) {
+                    // aggiorno tutti i dati di insights
+                    updateInsights(pdi);
+                }
+
+                try {
+                    pdi.changeLocation(res.lat, res.lng, pdi.circle.radius);
+                } catch (e) {
+                    BootstrapDialog.alert("Impossibile aggiornare il punto: " + e.message);
+                }
+            }
+
+            function updateInsights(pdi) {
+                if (!pdi.insights.data || $.isEmptyObject(pdi.insights.data)) pdi.insights.data = { PotentialUsers: "-", MaleStats: "-", FemaleStats: "-", PublicOfficesNumber: 0, PrivatesNumber: 0, PublicTransportNumber: 0, Ranking: [3, 6, 7] };
+                $("[data-insight-PotentialUsers]").text(pdi.insights.data.PotentialUsers);
+                $("[data-insight-MaleStats]").text(pdi.insights.data.MaleStats);
+                $("[data-insight-FemaleStats]").text(pdi.insights.data.FemaleStats);
+            }
+
+            // inizializzo il plugin
+            // la funzione di callback è sempre richiamata per ogni genere di evento propagato
+            plugin.init("map", { lat: 45.4637307, lng: 9.1910625, zoom: 15 }, function (evt, pdi) { // callback eventi
+                if (!service) {
+                    service = new google.maps.places.PlacesService(plugin.map);
+                }
+
+                if (!pdi && evt != "add-pdi") return false;
+
+                if (evt == "update") {
+                    currentPage.updatePdi(pdi.id);
+                    return false;
+                } else if (evt == "added") { // punto aggiunto. Aggiorno slider
+                    //cambio zoom mappa
+                    setTimeout(function () {
+                        plugin.map.setZoom(_set_zoom(pdi.circle.radius));
+                    }, 100);
+                } else if (evt == "updated") { // punto aggiornato/ripristinato. invio richiesta
+                    // chiamata di aggiornamento dei dati di insights
+                    updateInsights(pdi);
+                    setTimeout(function () {
+                        plugin.map.setZoom(_set_zoom(pdi.circle.radius));
+                    }, 100);
+                } else if (evt == "resetted") {
+                    _clearMarkers();
+                    currentPage.pdiReset(pdi.id);
+                    setTimeout(function () {
+                        plugin.map.setZoom(_set_zoom(pdi.circle.radius));
+                    }, 100);
+                } else if (evt == "selected") { // elemento selezionato
+                    // imposto l"id del punto in caso di aggiornamento dell"indirizzo
+                    pdiArea.find("[name=id]").val(pdi.id);
+
+                    // aggiorno tutti i dati di insights
+                    updateInsights(pdi);
+                } else if (evt == "dragend") {
+                    currentPage.pdiMoved(pdi.id, { lat: pdi.circle.lat, lng: pdi.circle.lng });
+                    _clearMarkers();
+                }
+            });
+
+            var pdi = currentPage.userSession.pdvs[0].mapItem;
+            pdi.duplicable = false;
+            pdi.cancelable = false;
+            pdi.resettable = false;
+            pdi.mouseDrag = false;
+            pdi.selected = true;
+            pdi.circle = { radius: currentPage.userSession.flow3.radius };
+            plugin.actions("add", false, pdi);
+
+
+            // imposto un listener per i bottoni dei punti (quello di aggiunta e quelli della finestra del punto)
+            // le azioni saranno dirottate verso la callback dell'inizializzazione
+            body.on("click", "a[data-maps]:not(.disable)", function (evt) {
+
+                var b = $(this), evt = b.data("maps"), id = b.data("id");
+
+                plugin.actions(evt, id, null);
+
+            });
+
+        });
+
+    });
+
+    // plugin scrollbar
+    $(window).on("load", function () {
+        $("#sidebar-dashboard").mCustomScrollbar();
+    });
+
+    console.log('no script');
+</script>

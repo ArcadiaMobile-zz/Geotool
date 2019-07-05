@@ -1,0 +1,370 @@
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container"> 
+            <div class="new-title uppercase mb-45">Visualizza il tuo profilo</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mt-50 mb-15">
+
+        <script id="account-header-template" type="text/x-handlebars-template">
+            <div class="col-sm-8">
+                <span class="title-sky-blue text-uppercase fs-20">{{account.AgencyDescription}}</span>
+                <p class="fs-16">
+                    Livello
+                    <span class="color-orange">Amministrazione</span>
+                </p>
+                <div class="bg-bubble mt-30 p-15 b-radius-right-2">
+                    <p class="fs-16 lh-1-5 m-0 px-10 text-justify">
+                        In questa sezione sono raccolti i dati che riguardano il tuo Account.<br>
+Puoi facilmente controllare i dati societari e di fatturazione, e hai inoltre a tua disposizione uno storico degli acquisti effettuati.
+Per qualunque ulteriore informazione, ti invitiamo a contattarci tramite e-mail all'indirizzo <a href="mailto:info@admove.com">info@admove.com</a>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-sm-4 hidden-xs text-right">
+                <img src="assets/img/logo-admove-big.png" alt="AdMove">
+            </div>
+        </script>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mt-50">
+            <ul class="nav nav-pills nav-justified tab-no-border mt-25">
+                <li role="presentation" class="active"><a data-action-account>Informazioni generali</a></li>
+                <li role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Pagamenti <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu tab-menu">
+                        <li><a data-action-invoice>Dati di Fatturazione</a></li>
+                        <li><a data-action-credit>Credito residuo</a></li>
+                        <li><a data-action-history>Storico acquisti e Fatture</a></li>
+                        <li><a data-action-historytransactions>Storico transazioni</a></li>
+                    </ul>
+                </li>
+                <!--<li role="presentation">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Impostazioni <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu tab-menu">
+                        <li><a href="#">Impostazioni 1</a></li>
+                        <li><a href="#">Impostazioni 2</a></li>
+                        <li><a href="#">Impostazioni 3</a></li>
+                    </ul>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-50" data-page-div-account data-page-section>
+        <div class="col-md-6">
+            <p class="fs-16 mt-50"><span class="text-uppercase">Account</span></p>
+            <script id="account-template" type="text/x-handlebars-template">
+                <table class="table flat mt-25 fs-16">
+                    <tbody>
+                        <tr>
+                            <td class="color-green-water">Ragione Sociale Azienda</td>
+                            <td>{{account.AgencyDescription}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyDescription}}" class="form-control b-radius-right-2" name="description" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Nome Referente</td>
+                            <td>{{account.AgencyReferralFirstName}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyReferralFirstName}}" class="form-control b-radius-right-2" name="firstName" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Cognome Referente</td>
+                            <td>{{account.AgencyReferralLastName}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyReferralLastName}}" class="form-control b-radius-right-2" name="lastName" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Email Referente</td>
+                            <td>{{account.AgencyReferralEmail}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyReferralEmail}}" class="form-control b-radius-right-2" name="email" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Recapito Telefonico Azienda</td>
+                            <td>{{account.AgencyReferralPhoneNumber}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyReferralPhoneNumber}}" class="form-control b-radius-right-2" name="phoneNumber" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </script>
+            <div class="mt-25" data-page-div-buttons>
+                <button type="button" data-page-edit class="btn btn-adm secondary text-uppercase">Modifica dati</button>
+                <button type="button" data-page-edit-cancel class="btn btn-adm secondary text-uppercase" style="display:none;">Annulla</button>
+                <button type="button" data-page-edit-save class="btn btn-adm text-uppercase" style="display:none;">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-50 mb-160" data-page-div-invoice data-page-section>
+        <div class="col-md-6">
+            <p class="fs-16 mt-50"><span class="text-uppercase">Dati di fatturazione</span></p>
+            <script id="invoice-data-template" type="text/x-handlebars-template">
+                <table class="table flat mt-25 fs-16">
+                    <tbody>
+                        <tr>
+                            <td class="color-green-water">Ragione Sociale Azienda</td>
+                            <td>{{account.AgencyDescription}}</td>
+                            <td style="display:none;"><input type="text" value="{{account.AgencyDescription}}" class="form-control b-radius-right-2" name="description" required="" data-error="Campo obbligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Indirizzo di fatturazione</td>
+                            <td>{{account.AgencyAddress}} - {{account.AgencyPostalCode}} {{account.AgencyCity}}</td>
+                            <td style="display:none;">
+                                <input type="text" value="{{account.AgencyAddress}}" class="form-control b-radius-right-2" name="address" required="" data-error="Campo obbligatorio" />
+                                <input type="text" value="{{account.AgencyPostalCode}}" class="form-control b-radius-right-2" name="postalCode" required="" data-error="Campo obbligatorio" />
+                                <input type="text" value="{{account.AgencyCity}}" class="form-control b-radius-right-2" name="city" required="" data-error="Campo obbligatorio" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="color-green-water">Partita IVA</td>
+                            <td>{{account.AgencyVATCode}}</td>
+                            <td style="display:none;">{{account.AgencyVATCode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </script>
+            <div class="mt-25" data-page-div-buttons>
+                <button type="button" data-page-edit class="btn btn-adm secondary text-uppercase">Modifica dati</button>
+                <button type="button" data-page-edit-cancel class="btn btn-adm secondary text-uppercase" style="display:none;">Annulla</button>
+                <button type="button" data-page-edit-save class="btn btn-adm text-uppercase" style="display:none;">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-50" data-page-div-credit data-page-section>
+        <div class="col-md-6">
+            <p class="fs-16 mt-50"><span class="text-uppercase">Credito residuo</span></p>
+
+            <script id="credit-template" type="text/x-handlebars-template">
+                <table class="table flat mt-25 fs-16">
+                    <tbody>
+                        <tr>
+                            <td class="color-green-water">Il tuo portafoglio</td>
+                            <td class="fs-26 lh">€ {{userSession.formattedBalance.[0]}}<small>,{{userSession.formattedBalance.[1]}}</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </script>
+
+        </div>
+    </div>
+    <!--<div class="row mt-50 mb-160" data-page-div-credit data-page-section>
+        <div class="col-md-6">
+            <p class="fs-16"><span class="text-uppercase">Richiedi anticipo crediti</span></p>
+
+            <table class="table flat mt-25 fs-16">
+                <tbody>
+                    <tr>
+                        <td class="color-orange fs-18 v-align-middle">Budget insufficiente? Nessun problema</td>
+                        <td class="text-right"><button class="btn bg-orange color-white text-uppercase fs-16" data-toggle="modal" data-action-request-credits>Richiedi</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>-->
+    <!--<div class="modal fade" id="credit" tabindex="-1" role="dialog" aria-labelledby="credit" style="display: none;">
+        <div class="modal-dialog mt-50" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark-blue">
+                    <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a>
+                    <h4 class="modal-title text-uppercase" id="myLargeModalLabel">Richiedi anticipo crediti</h4>
+                </div>
+                <div class="modal-body bg-blue">
+                    <p class="fs-16">
+                        <b>Ricordati di saldare l'importo mancante prima della data di partenza della campagna.</b><br>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+
+                    <div class="row">
+                        <div class="hidden-xs col-sm-6">
+                            <button type="button" class="btn btn-adm light text-uppercase my-35" data-dismiss="modal">Chiudi</button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="submit" id="creditsRequest" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Attendere..." class="btn btn-adm text-uppercase my-35 pull-right-sm">Richiedi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Storico acquisti e fatture -->
+    <div class="row mt-50 mb-160" data-page-div-history data-page-section>
+        <div class="col-md-12">
+            <p class="fs-16 mt-50 mb-35"><span class="text-uppercase">Storico acquisti e fatture</span></p>
+
+            <div>
+                <div id="invoices-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_length" id="invoices-table_length">
+                                <label>
+                                    Show
+                                    <select id="pageSizeHistory" name="invoices-table_length" aria-controls="invoices-table" class="form-control input-sm">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> entries
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <script id="history-template" type="text/x-handlebars-template">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="invoices-table" class="table flat mt-25 fs-16 dataTable no-footer" role="grid" aria-describedby="invoices-table_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 547px;">Titolo campagna</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Data di inizio</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Data di fine</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 text-center sorting_disabled" rowspan="1" colspan="1" style="width: 121px;">Importo (IVA Esclusa)</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 text-center sorting_disabled" rowspan="1" colspan="1" style="width: 152px;">Azioni</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each campaigns}}
+                                        <tr role="row" class="odd">
+                                            <td class="color-orange fs-17">{{Name}}</td>
+                                            <td>{{formatDate StartDate "DD/MM/YYYY"}}</td>
+                                            <td>{{formatDate EndDate "DD/MM/YYYY"}}</td>
+                                            <td class="text-right fs-26 lh">€ {{formattedAmount.[0]}}<small>,{{formattedAmount.[1]}}</small></td>
+                                            {{#if InvoiceUri}}
+                                            <td class="text-right"><a href="{{InvoiceUri}}" class="btn btn-adm secondary text-uppercase fs-16">Vedi fattura</a></td>
+                                            {{/if}}
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="invoices-table_info" role="status" aria-live="polite">Showing {{startIndex}} to {{endIndex}} of {{totalCampaigns}} entries</div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="invoices-table_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous" id="invoices-table_previous">
+                                            <a href="#" aria-controls="invoices-table" data-page-previous-history tabindex="0">Previous</a>
+                                        </li>
+                                        {{#each pages}}
+                                        <li class="paginate_button {{#if isCurrent}}active{{/if}}">
+                                            <a href="#" aria-controls="invoices-table" data-page-history="{{ value }}" tabindex="0">{{ value }}</a>
+                                        </li>
+                                        {{/each}}
+                                        <li class="paginate_button next" id="invoices-table_next">
+                                            <a href="#" aria-controls="invoices-table" data-page-next-history tabindex="0">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- storico transazioni da implementare-->
+    <div class="row mt-50 mb-160" data-page-div-historytransactions data-page-section>
+        <div class="col-md-12">
+            <p class="fs-16 mt-50 mb-35"><span class="text-uppercase">Storico transazioni</span></p>
+            <div>
+                <div id="transaction-table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_length" id="transaction-table_length">
+                                <label>
+                                    Show
+                                    <select id="pageSizeTransaction" name="transaction-table_length" aria-controls="transaction-table" class="form-control input-sm">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select> entries
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                    <script id="transaction-template" type="text/x-handlebars-template">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="transaction-table" class="table flat mt-25 fs-16 dataTable no-footer" role="grid" aria-describedby="transaction-table_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Descrizione</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Data transazione</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 text-center sorting_disabled" rowspan="1" colspan="1" style="width: 121px;">Importo (IVA inclusa)</th>
+                                            <th class="text-uppercase color-sky-blue fs-12 sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each transactions}}
+                                        <tr role="row" class="odd">
+                                            <td class="color-orange">{{description}}</td>
+                                            <td>{{formatDate AgencyTransactionDateTime "DD/MM/YYYY"}}</td>
+                                            <td class="text-center fs-26 lh">€ {{formattedAmount.[0]}}<small>,{{formattedAmount.[1]}}</small></td>
+                                            <td>{{AgencyTransactionReason}}</td>
+                                            <!--{{#if InvoiceUri}}
+                                            <td class="text-right"><a href="{{InvoiceUri}}" class="btn btn-adm secondary text-uppercase fs-16">Vedi fattura</a></td>
+                                            {{/if}}-->
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="transaction-table_info" role="status" aria-live="polite">Showing {{startIndexTransaction}} to {{endIndexTransaction}} of {{totalTransactions}} entries</div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="transaction-table_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous" id="transaction-table_previous">
+                                            <a href="#" aria-controls="transaction-table" data-page-previous-transaction tabindex="0">Previous</a>
+                                        </li>
+                                        {{#each pagesTransaction}}
+                                        <li class="paginate_button {{#if isCurrent}}active{{/if}}">
+                                            <a href="#" aria-controls="transaction-table" data-page-transaction="{{ value }}" tabindex="0">{{ value }}</a>
+                                        </li>
+                                        {{/each}}
+                                        <li class="paginate_button next" id="invoices-table_next">
+                                            <a href="#" aria-controls="transaction-table" data-page-next-transaction tabindex="0">Next</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        /* Bootstrap Tooltip */
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    });
+
+</script>

@@ -1,0 +1,20 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "amd",
+    "moduleResolution": "node",
+    "sourceMap": false,
+    "target": "es5",
+    "outFile": "typescript.js",
+    "baseUrl": ".",
+    "lib": [ "dom", "es5", "scripthost", "es2015", "es2015.promise" ]
+  },
+  "include": ["wwwroot"]
+}

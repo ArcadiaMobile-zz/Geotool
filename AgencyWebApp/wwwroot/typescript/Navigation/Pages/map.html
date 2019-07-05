@@ -1,0 +1,592 @@
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #container-map {
+        position: relative;
+        min-height: 400px;
+    }
+
+    #map {
+        margin-left: 10px;
+        height: 400px;
+    }
+
+    .ib {
+        display: inline-block
+    }
+
+    .fl-left {
+        float: left
+    }
+
+    .a-right {
+        text-align: right
+    }
+
+    
+
+        .info h2.title {
+            color: #e89c2a;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 16px
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #2e3e40
+        }
+
+
+        
+
+    .modal-header {
+        background-color: #082731;
+    }
+
+    .modal-footer {
+        padding: 15px
+    }
+    .fs-26{font-size:24px}
+    
+    #gender{margin:10px 0 30px 0}
+    #gender .col-md-4{margin-top:10px;background-blend-mode: multiply;}
+    #gender h2{font-size:16px}
+    #gender label{display:block;padding:20px 30px 20px 10px;background-color:#0d3340;border-left:3px solid transparent;background-repeat:no-repeat;background-size:auto 100%}
+    #gender label img{margin-right:10px}
+    #gender .male label{background-image:url(/assets/img/img-men-2.png);background-position:center right 50px}
+    #gender .female label{background-image:url(/assets/img/img-women-2.png);background-position:center right 50px}
+    #gender .malefemale label{background-image:url(/assets/img/img-women-2.png), url(/assets/img/img-men-2.png);background-position:center right 0px, center right 60px}
+    i.male,i.female{display:inline-block;width:24px;height:24px;}
+    i.male{background:url(assets/img/ico-men.png) center bottom no-repeat}
+    i.female{background:url(assets/img/ico-women.png) center bottom no-repeat}
+    #prices [type="radio"]:checked + label::after,
+    #prices [type="radio"] + label::after,
+    #prices [type="radio"]:checked + label::before,
+    #prices [type="radio"] + label::before{left: auto !important;right:10px !important;border:0 !important;width:30px !important}
+    #prices [type="radio"]:checked + label::after{background:url(/assets/img/check-big.png) center center no-repeat !important}
+    #prices [type="radio"]:checked + label{background-color:#fff !important;border-color:#ea9d2b !important;color:#071a21}
+    #prices .well i.gender{position:absolute;right:10px;top:5px;font-style:normal}
+    #prices .well img{display:inline !important;vertical-align:text-top;margin:auto 3px !important}
+    #prices [type="radio"]:checked + label img,
+    #prices .well.selected img{filter:invert(100%) brightness(250%)}
+    #prices .well{border-left:3px solid transparent}
+    #prices .well.selected{border-color:#ea9d2b}
+    #prices .well .bg-check{padding-right:50px !important}
+    #prices .well .tx-price{padding-right: 0 !important}
+    #prices .well{max-height:86px;overflow:hidden}
+</style>
+
+
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="_container" data-fluid>
+            <div class="new-title uppercase mb-20">CONFIGURA AREA DI PIANIFICAZIONE E PUNTI VENDITA AGGIUNTIVI</div>
+        </div>
+    </div>
+</div>
+
+<div id="container-map">
+    <div id="map"></div>
+    <div class="box-plus-maps transition" id="add-pdv">
+        <a class="shadow add-pdv animated" data-maps="add-pdi"><div class="btn btn-plus bpulse"></div><b class="uppercase">Aggiungi PDV</b></a>
+    </div>
+</div>
+
+<!-- MODALE INSERIMENTO PUNTO -->
+<div class="modal fade" id="add-pdi" tabindex="-1" role="dialog">
+    <div class="modal-dialog mt-50" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark-blue">
+                <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a>
+                <h4 class="modal-title text-uppercase" id="myLargeModalLabel">Aggiungi un punto vendita</h4>
+            </div>
+            <div class="modal-body bg-blue">
+                <form id="add-pdi-form">
+                    <input type="hidden" name="pdi" value="new">
+                    <p class="fs-16">Inserisci l'indirizzo di un altro punto vendita dell'insegna <span data-business-name></span> da promuovere.</p>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group input-group-lg mt-35 mb-35">
+                                <span class="input-group-addon"><span class="input-ico ico-location"></span></span>
+                                <input type="text" class="form-control b-radius-right-2" name="address">
+                                <label class="placeholder">Indirizzo della tua attività</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <button type="submit" class="btn btn-adm text-uppercase my-15-auto">CARICA IL NUOVO PUNTO VENDITA</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" data-fluid>
+    <div id="prices" class="hide">
+        <h2 class="new-title uppercase mb-20 mt-10 gender hide">SPECIFICA IL TARGET PER LE CAMPAGNE</h2>
+        <fieldset id="gender" class="gender hide uppercase">
+            <div class="row">
+                <div class="col-md-4 malefemale">
+                    <input type="radio" id="both" name="gender" value="both">
+                    <label for="both"><img src="assets/img/ico-women.png" alt="Donna"><img src="assets/img/ico-men.png" alt="Uomo">Target Uomo/Donna</label>
+                </div>
+                <div class="col-md-4 male">
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male"><img src="assets/img/ico-men.png" alt="Uomini">Target Uomini</label>
+                </div>
+                <div class="col-md-4 female">
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female"><img src="assets/img/ico-women.png" alt="Donna">Target Donne</label>
+                </div>
+            </div>
+        </fieldset>
+        <h2 class="new-title uppercase mb-35">SELEZIONA REACH E BUDGET <b class="color-orange" data-pdi_num>(Punto <span class="pdi-number">1</span>)</b></h2>
+        <script id="products-template" type="text/x-handlebars-template">
+            <div id="owl-price" class="owl-carousel mt-10">
+                {{#each .}}
+                <div class="row item">
+                    {{#each .}}
+                    <div class="col-md-6">
+                        <a href="#" class="a-box">
+                            <div class="well {{#if isSelected}}selected{{/if}}" data-id="{{item.Id}}" data-value="{{item.Price}}" data-altro="">
+                                <div class="row">
+                                    <div class="col-xs-7 tx-price">
+                                        <span class="title-sky-blue fs-25"><b>{{item.Value}}</b></span>
+                                        <span class="text-uppercase fs-18">{{reachWording}}</span>
+                                    </div>
+                                    {{#if showPrice}}
+                                    <div class="col-xs-5 sep-left bg-check text-right">
+                                        <span class="fs-26">€ {{formattedPrice.[0]}}<small>,{{formattedPrice.[1]}} + IVA</small></span>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/each}}
+            </div>
+            <script>
+                // carousel del budget
+                var carousel_prices = $('#owl-price');
+                carousel_prices.owlCarousel({
+                    loop: true,
+                    mouseDrag: false,
+                    nav: true,
+                    margin: 30,
+                    items: 1,
+                    navText: ['', '']
+                });
+            </script>
+        </script>
+    </div>
+    <div class="row mb-35 mt-10">
+        <div class="col-xs-12 text-center">
+            <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+            <a href="riepilogo-pdv" data-navigo class="btn btn-adm text-uppercase">Avanti</a>
+            <!--<button type="button" class="btn btn-adm text-uppercase">Avanti</button>-->
+        </div>
+        
+        <div class="p-20 mt-20 color-light-gray text-center"><b>DURATA CAMPAGNA</b>: la campagna durerà orientativamente <span data-duration>due settimane</span> e una volta live potrai monitorare le performance sulla tua Dashboard</div>
+        
+    </div>
+    <div class="modal fade" id="mpopup-multi" role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-lg mt-50" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark-blue">
+                    <!-- <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title text-uppercase">Seleziona la tua attività e continua</h4>
+                </div>
+                <div class="modal-body bg-blue">
+                    <form data-toggle="validator" role="form">
+                        <div class="row slogan-list" id="slogan-content">
+                            <script id="mslogan-list-template" type="text/x-handlebars-template">
+                                {{#each .}}
+                                <div class="col-md-12 slogan" data-id="{{ID}}">
+                                    <span rel="name">{{Name}}</span>
+                                    <span rel="address">{{Address}}</span>
+                                </div>
+                                {{/each}}
+                            </script>
+                        </div>
+                        <div class="row mt-15">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-50">
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
+                                                <input type="text" class="form-control b-radius-right-2" name="slogan" readonly="readonly" required data-error="Campo obbligatorio">
+                                                <label class="placeholder sky-blue">Come si chiama la tua attività</label>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-50">
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-addon"><span class="input-ico ico-location"></span></span>
+                                                <input type="text" class="form-control b-radius-right-2" name="address" readonly="readonly" required data-error="Campo obbligatorio">
+                                                <label class="placeholder sky-blue">Dove si trova?</label>
+                                            </div>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
+                                <button type="submit" class="btn btn-adm text-uppercase my-15-auto">Vai</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var container = navigationService.currentPage.html.find('[data-fluid]');
+        var sidebar = $('#sidebar-dashboard');
+        
+        //console.log('session',navigationService.currentPage.userSession,navigationService.currentPage);
+        
+        if(navigationService.currentPage.userSession.advertisementType == 4) container.find('[data-duration]').text('90 giorni');
+
+        function mapSize($target){
+            var h = (($( window ).height() / 4) * 3); // - $('.container-fluid').height(); // ottengo i 3/4 della window per assegnarla alla mappa
+            if (h <= 400) { // verifica che l'altezza ottenuta non sia inferiore a un determinato valore (in questo caso 400)
+                return;
+            }
+            $target.css('height', h);
+        }
+
+        function fluid(){
+            var width = $(window).width();
+            
+            container.each(function(){
+            
+                var cwidth = $(this).outerWidth();
+                var mr = (width - cwidth)/2;
+    
+                if(width > 800 && sidebar.hasClass('open')){
+                    var pr = 0;
+                    if(mr < 340){
+                        pr = (340-mr);
+                    }
+                    $(this).css('padding-right',pr);
+                }else{
+                    $(this).removeAttr('style');
+                }
+            
+            });
+            
+
+            container.find('.owl-carousel').trigger('refresh.owl.carousel');
+        }
+
+        container.closest('body').on('click','.sidebar-button',function(){
+            fluid();
+        });
+
+        $( window ).on('resize',function() {
+            mapSize($("#map"));
+            fluid();
+        }).trigger('resize');
+
+        // imposto le variabili d'ambiente
+        var body = navigationService.currentPage.html,
+            pdis = navigationService.currentPage.html.find("#owl-dashboard .owl-stage"), // slider
+            pdiArea = navigationService.currentPage.html.find("#insights"), // insights
+            pdiBudget = navigationService.currentPage.html.find("#prices"), // budget
+            carousel_pdi_template = navigationService.currentPage.sidebar.carouselPdiTemplate,
+            ignore_trigger = false,
+            modal = null;
+
+        var sidebar_update = navigationService.currentPage.html.closest('#page').find('#update_pdi #submit').addClass('disable').attr('disabled','disabled');
+
+        navigationService.currentPage.html.closest('#page')
+            .on('keyup', 'input#locationAddress', function () {
+                sidebar_update.removeClass('disable').removeAttr('disabled');
+            })
+            .on('click', '#update_pdi #submit', function (e) {
+                sidebar_update.addClass('disable').attr('disabled','disabled');
+                $(this).tooltip('hide');
+                navigationService.currentPage.onInsightsForm(e);
+        });
+
+        // tooltip di bootstrap
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // carousel dei punti di interesse
+        var carousel_pdis = $('#owl-dashboard');
+        // Svuoto il carosello
+        carousel_pdis.find('.owl-item').each(function () {
+            carousel_pdis.trigger('remove.owl.carousel', 0).trigger('refresh.owl.carousel');
+        });
+        //carousel_pdis.trigger('refresh.owl.carousel');
+        carousel_pdis.owlCarousel({
+            loop: false,
+            nav: true,
+            margin: 30,
+            items: 1,
+            navText: ['', '']
+        });
+        
+        var pdi_len = function(){
+        
+            if(navigationService.currentPage.userSession.pdvs && navigationService.currentPage.userSession.pdvs.length <= 1){
+                body.find('[data-pdi_num]').addClass('hide');
+            }else{
+                body.find('[data-pdi_num]').removeClass('hide');
+            }
+            
+        };
+
+        CMS.loadPlugin("../assets/js/plugin/maps", function (plugin) {
+            plugin.icons = '../assets/img/maps/';
+
+            if (!plugin) return BootstrapDialog.alert('Impossibile caricare il plugin'); // errore nel caricamento
+            
+            navigationService.currentPage.onNewPdv = function (pdv) {
+                var add_pdi = function (p) {
+                    plugin.actions("add", false, p);
+
+                    // aggiorno il carosello
+                    updateCarousel(p);
+                };
+                var res = pdv.mapItem;
+                var exists = plugin.checkExists(res.lat, res.lng);
+                if (exists) {
+                    CMS.showAlert(plugin.text.alert_pdi_exists, null, [{
+                        label: 'Aggiungi',
+                        action: function (d) {
+                            navigationService.currentPage.userSession.pdvs.push(pdv);
+                            add_pdi(res);
+                            d.close();
+                        }
+                    }, {
+                        label: 'Non aggiungere',
+                        action: function (d) {
+                            d.close();
+                        }
+                    }]);
+                } else {
+                    navigationService.currentPage.userSession.pdvs.push(pdv);
+                    add_pdi(res);
+                }
+
+                modal.modal('hide');
+            };
+
+            navigationService.currentPage.onUpdatePdv = function (res) {
+                var pdi = plugin.getPoint(res.id);
+                if (!pdi)
+                    return BootstrapDialog.alert('Il punto non è stato trovato');
+
+                // aggiorno i dati
+                pdi.insights.data = res.insights.data;
+                pdi.title = res.title;
+
+                // aggiorno il carosello
+                updateCarousel(pdi);
+
+                if (plugin.getSelected().id === res.id) {
+                    updateInsights(pdi);
+                }
+
+                try {
+                    pdi.changeLocation(res.lat, res.lng, res.radius);
+                    navigationService.currentPage.html.find("[data-navigo]").removeClass("disabled");
+                } catch (e) {
+                    BootstrapDialog.alert("Impossibile aggiornare il punto: " + e.message);
+                }
+                
+                pdi_len();
+            }
+
+            function updateCarousel(pdi) {
+                // aggiorno i dati da elemento già presente
+                var item = carousel_pdis.find('[data-id=' + pdi.id + ']');
+                item.find('.pdi-number').text(pdi.number);
+                item.find('.pdi-title').text(pdi.title);
+                item.find('.pdi-address').text(pdi.address);
+                item.find('.pdi-phone').text(pdi.phoneNumber);
+                item.find('img.media-object:first').attr('src', pdi.image);
+                carousel_pdis.trigger('refresh.owl.carousel');
+            }
+
+            function updateInsights(pdi) {
+                if (!pdi.insights.data || $.isEmptyObject(pdi.insights.data)) pdi.insights.data = { PotentialUsers: "-", MaleStats: "-", FemaleStats: "-", PublicOfficesNumber: 0, PrivatesNumber: 0, PublicTransportNumber: 0, Ranking: [3, 6, 7], Cluster: "" };
+                $('[data-insight-PotentialUsers]').text((+pdi.insights.data.PotentialUsers).toLocaleString());
+                $('[data-insight-MaleStats]').text((+pdi.insights.data.MaleStats).toLocaleString());
+                $('[data-insight-FemaleStats]').text((+pdi.insights.data.FemaleStats).toLocaleString());
+                $('[data-insight-PublicOfficesNumber]').text(pdi.insights.data.PublicOfficesNumber);
+                $('[data-insight-PrivatesNumber]').text(pdi.insights.data.PrivatesNumber);
+                $('[data-insight-PublicTransportNumber]').text(pdi.insights.data.PublicTransportNumber);
+                
+                if (navigationService.currentPage.userSession.businessCategoryId != "No cat" && navigationService.currentPage.userSession.businessCategoryId != undefined) {
+                    $('#competitors_div').show();
+
+                    $('[data-competitors-low]').text('< ' + pdi.insights.data.Ranking[0]);
+                    $('[data-competitors-medium]').text((pdi.insights.data.Ranking[0] + 1) + ' - ' + pdi.insights.data.Ranking[1]);
+                    $('[data-competitors-high]').text('> ' + pdi.insights.data.Ranking[2]);
+
+                    var cc = $('#competitors_container li').removeClass('done active');
+
+                    if (pdi.insights.data.Competitors <= pdi.insights.data.Ranking[0]) {
+                        cc.filter(':first').addClass('active');
+                    } else if (pdi.insights.data.Competitors > pdi.insights.data.Ranking[0] && pdi.insights.data.Competitors <= pdi.insights.data.Ranking[1]) {
+                        cc.filter(':first').addClass('done');
+                        cc.filter(':eq(1)').addClass('active');
+                    } else if (pdi.insights.data.Competitors > pdi.insights.data.Ranking[2]) {
+                        cc.filter(':first').addClass('done');
+                        cc.filter(':eq(1)').addClass('done');
+                        cc.filter(':last').addClass('active');
+                    }
+                }
+                else {
+                    $('#competitors_div').hide();
+                }
+                
+                pdi_len();
+            }
+
+            // inizializzo il plugin
+            // la funzione di callback è sempre richiamata per ogni genere di evento propagato
+            plugin.init("map", { lat: 45.4637307, lng: 9.1910625, zoom: 11 }, function (evt, pdi, data) { // callback eventi
+                if (!pdi && evt != 'add-pdi')
+                    return false;
+
+                if (evt == 'add-pdi') {
+
+                    modal = $('#add-pdi').modal('show');
+                    return false;
+
+                } else if (evt == 'update') {
+
+                    navigationService.currentPage.updatePdi(pdi.id);
+                    return false;
+
+                } else if (evt == 'added' || evt == 'duplicated') { // punto aggiunto. Aggiorno slider
+                    // clono il template di base per lo slider e assegno l'id del punto
+                    var item = carousel_pdi_template.clone().attr('data-id', pdi.id);
+                    carousel_pdis.trigger('add.owl.carousel', item).trigger('refresh.owl.carousel');
+
+                    // aggiorno il carosello
+                    updateCarousel(pdi);
+
+                    if (evt == 'duplicated') {
+                        navigationService.currentPage.pdiDuplicated(pdi.originalId, pdi);
+                        setTimeout(function(){
+                            container.find('#owl-price .owl-item.active .well:first').trigger('click');
+                        },500);
+                    }
+                } else if (evt == 'dragend') {
+                    navigationService.currentPage.pdiMoved(pdi.id, { lat: pdi.circle.lat, lng: pdi.circle.lng });
+                    plugin.actions('updated_list', pdi, null);
+                } else if (evt == 'removed') {
+                    // punto rimosso. Aggiorno lo slider
+                    var index = pdis.find('.item').index($('[data-id=' + pdi + ']'));
+                    carousel_pdis.trigger('remove.owl.carousel', index).trigger('refresh.owl.carousel');
+
+                    navigationService.currentPage.pdiRemoved(pdi);
+                } else if (evt == 'updated' || evt == 'resetted') { // punto aggiornato/ripristinato. invio richiesta
+                    if (evt == 'resetted') {
+                        navigationService.currentPage.pdiReset(pdi.id);
+                    }else{
+                        pdi.setUpdated(true); // disabilito update sulla infoWindow
+                    }
+                } else if (evt == 'selected') { // elemento selezionato
+                    // imposto l'id del punto in caso di aggiornamento dell'indirizzo
+                    pdiArea.find('[name=id]').val(pdi.id);
+                    pdiBudget.find('.pdi-number').text(pdi.number);
+                    // mostro area insights e budget
+                    pdiArea.removeClass('hide');
+                    pdiBudget.removeClass('hide');
+                    // imposto lo slider
+                    ignore_trigger = true;
+                    carousel_pdis.trigger('to.owl.carousel', pdi.number - 1);
+                    ignore_trigger = false;
+                    // seleziono il prezzo scelto per il punto, se esiste
+                    var index = body.find('#prices .well').removeClass('selected').filter('[data-id=' + $.escapeSelector(pdi.budget.id) + ']').addClass('selected').index();
+                    // aggiorno tutti i dati di insights
+                    updateInsights(pdi);
+                    // aggiorno l'indirizzo nell'input di aggiornamento
+                    pdiArea.find('[name=address]').val(pdi.address);
+
+                    navigationService.currentPage.pdiSelected(pdi.id);
+                } else if (evt == 'clear') { // nessun elemento selezionato
+
+                } else if(evt == 'updated_list'){
+                    navigationService.currentPage.html.find("[data-navigo]").addClass("disabled");
+                }
+            });
+
+            carousel_pdis.on('changed.owl.carousel', function (event) {
+                if (ignore_trigger) return ignore_trigger = false;
+                var pdi = plugin.getPointByNumber(event.page.index + 1);
+                if (pdi && !pdi.selected) plugin.actions('select', pdi.id);
+            });
+
+            // imposto il listener per il budget
+            body.on("click", "#prices .well", function (event) {
+                event.preventDefault();
+                var t = $(this), data = t.data();
+                body.find('#prices .well').removeClass('selected');
+                t.addClass('selected');
+                plugin.getSelected().setBudget(data);
+
+                navigationService.currentPage.budgetSelected(data.id);
+            });
+
+            // imposto un listener per i bottoni dei punti (quello di aggiunta e quelli della finestra del punto)
+            // le azioni saranno dirottate verso la callback dell'inizializzazione
+            body.on("click", "#container-map a[data-maps]:not(.disable)", function (evt) {
+                var b = $(this), evt = b.data("maps"), id = b.data("id");
+                plugin.actions(evt, id, null);
+            });
+
+            navigationService.currentPage.preparePlugin(plugin);
+
+            // Change radio button gender
+            body.on("change", "[name=gender]", function (e) {
+                navigationService.currentPage.onChangeGender(e);
+
+                $('#owl-price .well').html(function(index,html){
+                    return html.replace('Uomo','<i class="gender">(<img src="assets/img/ico-men.png">)</i>').replace('Donna','<i class="gender">(<img src="assets/img/ico-women.png">)</i>');
+                });
+            });
+
+        });
+    });
+
+    // plugin scrollbar
+    $(window).on("load", function () {
+        $("#sidebar-dashboard").mCustomScrollbar();
+    });
+
+    var b = $('#mpopup-multi');
+    var sloganList = b.find('.slogan-list').on('click', '.slogan', function (evt) {
+        var t = $(this);
+        b.find('[name=slogan]').val(t.find('[rel=name]').text()).trigger('change');
+        b.find('[name=address]').val(t.find('[rel=address]').text()).trigger('change');
+        t.closest('.slogan-list').find('.slogan').removeClass('selected');
+        b.find('[name=locationId]').val(t.data('id'));
+        t.addClass('selected');
+        $('form').validator('update');
+    });
+</script>

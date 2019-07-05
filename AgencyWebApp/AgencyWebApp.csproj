@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Remove="wwwroot\typescript\Models\Campaign\MoreProductsBulkRequest.ts" />
+    <Content Remove="wwwroot\typescript\Models\Report\ReportCampaignsModerationBinding.ts" />
+    <Content Remove="wwwroot\typescript\Models\Report\ReportPowerBI.ts" />
+    <Content Remove="wwwroot\typescript\Models\SemanticWeb\BulkImportBindingResult.ts" />
+    <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_configurazione.html.ts" />
+    <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_copertura.html.ts" />
+    <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_creativita.html.ts" />
+    <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_pianificazione.html.ts" />
+    <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_riepilogo.html.ts" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\Common\AssemblyBuildVersion.cs" Link="AssemblyBuildVersion.cs" />
+    <Compile Include="..\Common\BuildVersionAttribute.cs" Link="BuildVersionAttribute.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KendoUICore" Version="2018.1.117" />
+    <PackageReference Include="MailKit" Version="1.16.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Home\privacy.cshtml" />
+    <None Include="Views\Home\terms.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\typescript\Models\Campaign\MoreProductsBulkRequest.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\Campaign\PointBulk.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\Report\ReportCampaignsModerationBinding.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\Report\ReportPowerBI.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\SemanticWeb\BaseGeocodeLocationBindingResult.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\SemanticWeb\BulkImportBindingResult.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-configurazione.html.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-copertura.html.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-creativita.html.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-pianificazione.html.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-riepilogo.html.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\MapItem.ts" />
+  </ItemGroup>
+
+</Project>

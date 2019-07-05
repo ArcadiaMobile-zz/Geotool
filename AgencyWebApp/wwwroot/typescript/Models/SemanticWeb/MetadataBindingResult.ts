@@ -1,0 +1,3 @@
+﻿interface MetadataBindingResult {
+    Metadata: string[];
+}

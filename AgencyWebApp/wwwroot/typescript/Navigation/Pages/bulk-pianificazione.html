@@ -1,0 +1,233 @@
+<style>
+
+    .errors .o-auto{max-height:320px;overflow:auto;padding-right:10px}
+    .errors input{width:100%;padding:0 5px;line-height:40px;box-sizing:border-box;color:#0d3340;border:0;border-radius:4px;font-size:16px}
+    .errors .error{padding:10px 0 0 0;border-bottom:1px solid #082731;}
+    .errors a.link:hover{color:#5a787f}
+    .errors .error .rel{position:relative;padding:0}
+    .errors .error i{width:20px;height:20px;background:url(/assets/img/ico-errore.png) center center no-repeat;display:block;float:left;margin:1px 5px 0 0}
+    .errors .error a.update{position:absolute;z-index:1;right:7px;top:7px;width:26px;height:26px;background:#ea9d2b url(/assets/img/maps/map-update.png) center center no-repeat;border-radius:2px}
+    .errors .error a:hover{opacity:.9}
+    .errors .error .note{color:#5CC2E8;font-size:14px;font-weight:500}
+    .errors .error.done .note{font-size:0}
+    .errors .error.done input{pointer-events:none;opacity:.9}
+    .errors .error.done i{background-image:url(/assets/img/ico-esatto.png)}
+    .errors .error.done a.update{display:none}
+    .errors .error.done .note:before{content:"Indirizzo corretto";color:#0a0;font-size:12px}
+    .row-eq-height-responsive .h100p{min-height:100%}
+    ul li{list-style:none;padding-bottom:3px;opacity:.9}
+    
+    label.dz{height:50px;line-height:46px;border:1px solid rgba(0,0,0,.4);background:#5cc2e8;min-width:60%;border-radius:2px;margin:0 0 0 20px;cursor:pointer;box-sizing:border-box;border-radius:3px;color:#fff}
+    label.dz:hover{opacity:.9}
+    label.dz.done{border-color:#0b0;background:#365860}
+    label.dz.done:after{content:''}
+    label.dz:after{content:'SELEZIONA UN FILE';opacity:.5}
+    label.dz input{display:none}
+    
+    .selected .panel-heading{color:#fff;background:#ea9d2b}
+    .selected .panel-body,.panel.selected{background:#fff;color:#071a21}
+    
+    .btn[disabled],.btn.disabled{cursor:default !important; pointer-events: none;}
+    .bulk .ico.check{width:40px;height:40px;border-radius:50px;background:#ebebeb url(assets/img/check-green.png) center center no-repeat;margin:5px 10px 0 0}
+    .bulk .info .col-md-3{border-right:1px solid #ddd}
+</style>
+
+<div class="container-fluid bg-top">
+    <div class="row bg-grad">
+        <div class="col-md-12 text-center mb-200">
+            <img class="mt-35" src="assets/img/logo-admove.png" alt="AdMove.com">
+        </div>
+    </div>
+</div>
+
+<div class="container bulk pianificazione">
+    <div class="col-md-12 mt-200-minus">
+        <h3 class="fs-26 text-uppercase text-center mt-35">Inserisci i dati della pianificazione</h3>
+        <form data-toggle="validator" id="upload" role="form" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+            <div class="row m-0">
+                <div class="panel panel-default shadow pb-20 selected">
+                    <div class="panel-heading"><span class="text-uppercase">STRUTTURA DEL TUO FILE</span></div>
+                    <div class="panel-body rel pb-0">
+                        <div class="row m-0">
+                            <div class="col-md-3 text-center">
+                                <img src="/assets/img/bulk/bulk_upload.gif" alt="Bulk Upload">
+                            </div>
+                            <div class="col-md-9 p-0">
+                                <b class="fs-18 uppercase text-bold">Crea il file Excel a partire dal template admove.com.</b>
+                                <p class="fs-16">Il template prevede una serie di informazioni necessarie per la creazione della campagna:</p>
+                                <div class="row uppercase mt-10 fs-13 info">
+                                    <div class="col-md-3 pr-0 mr-10 mb-10">
+                                        <div class="ico check d-inline-block"></div>
+                                        <div class="d-inline-block">
+                                            <b class="fs-17">Insegna</b><br>del punto vendita
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 pr-0 mr-10 mb-10">
+                                        <div class="ico check d-inline-block"></div>
+                                        <div class="d-inline-block">
+                                            <b class="fs-17">Indirizzo</b><br>del punto vendita
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 pr-0">
+                                        <div class="ico check d-inline-block"></div>
+                                        <div class="d-inline-block">
+                                            <b class="fs-17">Click URL</b><br>Indirizzo della landing page mobile
+                                        </div>
+                                    </div>
+                                </div>                                    
+                                <div class="mt-25">
+                                    <a href="/assets/files/AdmoveBulkGuidelines.pdf" target="_blank" class="btn btn-adm alternative text-uppercase mr-25">Scarica guidelines</a>
+                                    <a href="/assets/files/AdmoveBulkTmpl.zip" target="_blank" class="btn btn-adm alternative text-uppercase">Scarica template</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-eq-height-responsive mt-35">
+                <div class="col-md-6">
+                    <div class="panel panel-default shadow height-100">
+                        <div class="panel-heading"><span class="text-uppercase">DATI DEI PUNTI VENDITA</span></div>
+                        <div class="panel-body pb-0">
+                            <div class="form-group mt-25">
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
+                                    <input type="text" class="form-control b-radius-right-2" name="businessName" required data-error="Campo obbligatorio">
+                                    <label class="placeholder">Nome del cliente</label>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default shadow height-100">
+                        <div class="panel-heading"><span class="text-uppercase">Carica il file</span></div>
+                        <div class="panel-body pb-0">
+                            <div class="form-group">
+                                <p class="fs-12"><span class="text-uppercase color-orange">Carica il file dei PdV</span><span class="text-uppercase"> </span><i>XLS, XLSX (max 1000 items, max weight 150 Kb)</i></p>
+                                <div class="input-group input-group-lg">
+                                    <span class="input-group-addon"><span class="input-ico ico-file"></span></span>
+                                    <label class="dz ml-20 text-center fs-16 px-10"><span></span><input type="file" name="file" value="upload" required accept=".csv,.xls,.xlsx"></label>
+                                </div>
+                                <div class="help-block with-errors"></div>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-35">
+                <div class="col-xs-12 text-center">
+                    <button type="submit" class="btn btn-adm text-uppercase m-30">Avanti</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODALE  -->
+<div class="modal fade" id="popup-error" role="dialog" data-keyboard="false" data-backdrop="_static">
+    <div class="modal-dialog modal-lg mt-50" role="document">
+        <div class="modal-content errors">
+            <div class="modal-header bg-dark-blue">
+                <h4 class="modal-title text-uppercase">Verifica il file</h4>
+            </div>
+            <div class="modal-body bg-blue">
+                <script id="error-list-template" type="text/x-handlebars-template">
+                    <!--<form data-toggle="validator" role="form">
+                    </form>-->
+                    <div class="row slogan-list">
+                        <div class="col-md-8 p-0">
+                            <b class="color-orange"><span data-pdv-error>10</span></b> pianificazioni su <b class="color-orange"><span data-pdv-total>20</span></b> presentano degli errori o non sono formattati correttamente
+                        </div>
+                        <div class="col-md-4 text-right p-0">
+                            <a class="color-green-water link"><span class="badge bg-light-blue mr-10"><i>i</i></span>controlla le specifiche</a>
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="o-auto">
+                            <!-- basta la classe done per rendere l'elemento corretto -->
+                            <!--<div class="col-md-12 error done" data-id="3">
+                                    <div class="col-md-2 my-10"><i></i>Riga 2300</div>
+                                    <div class="col-md-10 rel">
+                                        <a class="update"></a>
+                                        <input type="text" value="errore da correggere">
+                                        <p class="note">Il campo non è formattato correttamente</p>
+                                    </div>
+                                </div>-->
+                            {{#each .}}
+                            <div class="col-md-12 error">
+                                <div class="col-md-4">
+                                    <div class="col-md-4 p-0"><i></i>Riga {{Row}}</div>
+                                    <div class="col-md-8">
+                                        <span rel="name">Insegna: {{Label}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 rel">
+                                    <a class="update" data-update-row="{{GoogleId}}"></a>
+                                    <input type="text" value="{{AddressCDE.FormattedAddress}}">
+                                    <p class="note">{{CustomError}}</p>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="row mt-25">
+                        <div class="col-xs-12 text-center">
+                            <button type="button" data-update-all class="btn btn-adm text-uppercase my-15-auto">Aggiorna tutto</button>
+                        </div>
+                    </div>
+                    <script>
+                        $("[data-update-row]").on("click", function (e) {
+                            currentPage.updateRow(e, e.currentTarget.dataset.updateRow, e.target.nextElementSibling.value);
+                        })
+                        $("[data-update-all]").on("click", function (e) {
+                            var divs = $("div.error > div.rel");
+                            currentPage.updateAll(e, divs);
+                        })
+                    </script>
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var currentPage;
+    
+    $(document).ready(function () {
+    
+        currentPage = navigationService.currentPage;
+        
+        var form = currentPage.html.find('#upload'),
+            submitter = form.find('button.btn');
+
+        form.on('change keydown keyup','input',function(){
+            //console.log('check');
+            setTimeout(function(){
+                if(form.find('.has-error').length) submitter.attr('disabled','disabled');
+                else submitter.removeAttr('disabled');
+            },50); 
+        });
+        
+        form.find('input[type=file]').on('change',function(evt){
+        
+            var t = $(this), size = t.data('size');
+            
+            if(this.files && this.files[0]){
+                var name = (this.files[0].name.length < 30) ? this.files[0].name : this.files[0].name.substring(0,30) + '...';
+                t.closest('label').addClass('done').find('span').attr('title',this.files[0].name).text(name);
+            }else{
+                t.closest('label').removeClass('done').find('span').html();
+            }
+            
+            form.find('input[type=text]').trigger('change');
+            
+        });
+        
+        form.validator();
+        form.find('input').trigger('change');
+
+    });
+</script>

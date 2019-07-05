@@ -1,0 +1,1652 @@
+<!--<style>
+    /* plugin maps style **/
+    .ib {
+        display: inline-block
+    }
+
+    .fl-left {
+        float: left
+    }
+
+    .a-right {
+        text-align: right
+    }
+
+    .info {
+        min-width: 250px
+    }
+    
+        .info .buttons {
+            display: none;
+        }
+
+        .info h2.title {
+            color: #e89c2a;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 16px
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #2e3e40
+        }
+
+        .info .buttons a.fl-left {
+            border-right: 1px solid #ddd
+        }
+
+        .info .buttons a.disable {
+            color: #ddd
+        }
+    
+    .loader {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: 8px solid #284a53;
+        border-top: 8px solid #ea9d2b; /* #5cc2e8 */
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        animation: spin 2s linear infinite;
+    }
+    
+    .nopl{padding-left:0}
+    #total-report .nopl{padding-left:15px}
+
+    .bootstrap-select[style]{overflow: none !important}
+    
+    /** fix carousel **/
+    #owl-report .owl-stage-outer .owl-item{padding:0 50px}
+    #owl-report .owl-stage-outer .row{margin-left:0;margin-right:0}
+    
+    /** infowindow small **/
+    #map .info h3.title-small{display:none}
+    
+    #chartjs-tooltip {
+		opacity: 1;
+		position: absolute;
+		background: rgba(0, 0, 0, .7);
+		color: white;
+        font-size:11px;
+		border-radius: 3px;
+		-webkit-transition: all .1s ease;
+		transition: all .1s ease;
+		pointer-events: none;
+		-webkit-transform: translate(-50%, 0);
+		transform: translate(-50%, 0);
+        margin-left:10px;
+	}
+    
+    .modal-content.rel{position:relative}
+    .modal-content.rel .footer{z-index:1;position:fixed;bottom:0;left:0;width:100%;background:rgba(0,0,0,.3);border-top: 1px solid rgba(255,255,255,.1); color:rgba(255,255,255,.6)}
+	
+    .chartjs-tooltip-key {
+		display: inline-block;
+		width: 10px;
+		height: 10px;
+		margin-right: 10px;
+	}
+    
+    .mh270{min-height:271px}
+    .bootstrap-select.btn-group .dropdown-menu.inner{overflow-x:hidden}
+    
+    .pdfcontainer{padding:50px;width:1200px;background:#fff;position:relative}
+    .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading{background-color:#fff;border:1px solid #071a21 !important;border-radius:3px;border-collapse:collapse}
+    .pdfcontainer .panel-default > .panel-heading{border:0 !important;background:#eee}
+    .pdfcontainer #current-templateOut span{font-weight:bold}
+    .pdfcontainer .charts-advm, .pdfcontainer .charts-smartphone, .pdfcontainer .charts-android{background-color:rgba(0,0,0,.15);border-radius:100%}
+    .pdfcontainer *{color:#071a21 !important;}
+    .pdfcontainer .nav-pills{border:none}
+    .pdfcontainer .not-available span{top:90%}
+    .pdfcontainer #choice-templateOut button{border:none !important;font-weight:bold;text-transform:uppercase;padding:0 !important}
+    .pdfcontainer #choice-templateOut button span{font-size:24px !important;position:relative;display:block;text-align:center}
+    .pdfcontainer #choice-templateOut span.bs-caret{display:none}
+    .pdfcontainer #insights-details-templateOut .col-md-12{padding:0 !important}
+    .pdfcontainer .mt-50, .pdfcontainer .mt-75{margin-top:0}
+    .pdfcontainer .nav-justified > li{display: table-cell;width:1%;}
+    .pdfcontainer .col-md-5{width:41.666;float:left}
+    .pdfcontainer .col-md-offset-1{margin-left: 8.33333333%;}
+    .pdfcontainer .col-md-6{width:50%;float:left}
+    .pdfcontainer .col-md-12{width:100%}
+    .pdfcontainer .progress{padding:1px}
+    .pdfcontainer .pdfpage.hide{display:block !important}
+    .pdfcontainer .owl-stage[style]{width:auto !important;-webkit-transform: none !important;transform: none !important;}
+    .pdfcontainer .owl-item .printnoscroll, .pdfcontainer .owl-item .col-md-12{padding:0 !important;margin:0 !important}
+    .pdfcontainer .owl-item .printnoscroll p, .pdfcontainer .owl-item .col-md-12 p{margin:30px 0;text-align:center}
+    .pdfcontainer .owl-item,.pdfcontainer .owl-item[style]{width:100% !important;padding:0 !important;margin: 0 !important;float:none !important;margin-bottom:50px !important}
+    .pdfcontainer .owl-dots,.pdfcontainer .owl-dots, .pdfcontainer .owl-nav{display:none !important}
+    .pdfcontainer .circles-wrp{border:10px solid rgba(0,0,0,.1);border-radius:100%}
+    .pdfcontainer .nopl{padding-left:15px !important}
+    .pdfcontainer .inizio .col-md-5, .pdfcontainer .inizio .col-md-6{float:none;clear:both;width:100%;margin-left:auto;margin-right:auto} 
+    .pdfcontainer .inizio .col-md-6.pba{margin-top:300px;text-align:left}
+    .pdfcontainer .inizio #group-selectpicker{margin:0 !important}
+    .pdfcontainer p.pdfcenter{text-align:center}
+    .pdfcontainer p.pdfcenter span{font-size:20px !important}
+    .pdfcontainer .inizio .col-md-6.pba p{text-align:left !important}
+    
+    a.btn.pdf{background: url(/assets/img/ico-print.png) left 5px center no-repeat;padding-left:40px;line-height:30px;color:#fff;margin-left:20px;border-radius:2px;float:right}
+    .modal-header a.pdf{margin-top:-10px}
+    a.btn.pdf:hover{background-color:rgba(255,255,255,.1)}
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    iframe {
+        min-height: 783px;
+        margin: 0;
+        border: 0;
+    }
+
+    #powerBI-container {
+        /*width: 1285px;*/
+    }
+</style>-->
+
+
+<!--<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container"> 
+            <div class="new-title uppercase mb-45">Analizza i risultati delle campagne</div>
+        </div>
+    </div>
+</div>-->
+
+
+<div class="container mt-120-minus">
+    <div class="pdfpage">
+    
+    <div class="row mt-50 mb-15">
+        <div class="col-sm-8">
+            <span class="title-sky-blue text-uppercase fs-16">Ciao <span data-agency></span></span>
+            <div class="bg-bubble mt-15 p-15 b-radius-right-2">
+                <p class="fs-16 lh-1-5 m-0 px-10 text-justify">
+                    In questa pagina trovi il dettaglio di tutte le campagne che hai acquistato.<br>
+                    Puoi verificare quante persone le hanno visualizzate e cliccate, in quale momento della giornata, se hanno avuto più visualizzazioni da Smartphone o da Tablet e scoprire tante altre informazioni. I dati delle campagne on air vengono aggiornati ogni 3 ore, e il report finale delle campagne terminate resta sempre online.
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4 hidden-xs text-right">
+            <img src="assets/img/logo-admove-big.png" alt="AdMove" class="mt-35">
+        </div>
+    </div>
+    <div class="row mt-50 mb-35 pdfignore">
+        <div class="col-md-12">
+            <a href="scelta-flusso" data-navigo class="btn btn-adm text-uppercase">Lancia una nuova campagna</a>
+            <!--a class="btn text-uppercase pdf" title="Stampa il report" data-rel=".container">Stampa</a-->
+        </div>
+    </div>
+    <div class="row printremove">
+        <div class="col-md-12 mt-50">
+            <p class="fs-16 text-uppercase">Le tue campagne:</p>
+            <ul class="nav nav-pills nav-justified mt-25 ">
+                <li role="presentation" class="active"><a href="#" data-status="Active">Attive</a></li>
+                <li role="presentation"><a href="#" data-status="Scheduled">Schedulate</a></li>
+                <li role="presentation"><a href="#" data-status="End">Concluse</a></li>
+                <li role="presentation"><a href="#" data-status="Waiting">In attesa</a></li>
+                <li role="presentation"><a href="#" data-status="Rejected">Non approvate</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-50" data-showSelectPicker id="inizio">
+        <div class="inizio">
+            <div class="col-md-5">
+                <script id="choice-template" type="text/x-handlebars-template">
+                    <div class="row">
+                        <div class="col-md-12 mt-15 mb-35" id="group-selectpicker">
+                            <select class="selectpicker" data-width="100%" data-style="btn-select">
+                                {{#each groups}}
+                                <option value="{{Id}}">{{Name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-md-12 mt-15 mb-35" id="pdv-selectpicker" style="display:none">
+                            <select class="selectpicker" data-width="100%" data-style="btn-select"></select>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $('.selectpicker').on('shown.bs.select',function(){
+                                var t = $(this), options = t.find('option'), h = (42 * options.length) + 'px';
+                                t.closest('.bootstrap-select').find('.dropdown-menu').css({'height':h});
+                
+                            }).selectpicker({size: '5', container: 'body'});
+                        });
+                    </script>
+                </script>
+                <div class="row pdfignore">
+                    <div class="col-md-12 mt-15 mb-35">
+                        <a href="#" class="btn btn-adm blue printremove flat" data-toggle="modal" data-target="#slider-creativity" id="linkToCreativity">Creatività</a>
+                        <span class="pl-15 pr-15 printremove" style="display:none">|</span>
+                        <a href="" class="btn btn-adm secondary" id="showTotalReport" style="display:none">Report complessivo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-1 pba">
+                <script id="current-template" type="text/x-handlebars-template">
+                    <div class="row bg-dark-blue shadow b-radius-2 m-0 p-20">
+                        <div class="pull-left">
+                            <div class="percentage mr-25">
+                                <div class="extra-text text-uppercase color-orange">Avanzamento</div>
+                                <div class="circle big" data-circle="1" data-width="8" data-color="#ea9d2b" data-color2="#284a53" data-radius="65" data-value="{{percentage}}"></div>
+                            </div>
+                        </div>
+                        <div class="pull-left">
+                            <p class="mt-5 mb-10 fs-16">
+                                Tipo di Campagna:
+                                <span class="color-orange">{{type}}</span>
+                            </p>
+                            <p class="mb-10 fs-16">
+                                Dettaglio Campagna:
+                                <span class="color-orange">{{description}}</span>
+                            </p>
+                            <p class="mb-10 fs-16">
+                                Partenza:
+                                <span class="color-orange">{{startDate}}</span>
+                            </p>
+                            <p class="mb-10 fs-16">
+                                Fine:
+                                <span class="color-orange">{{endDate}}</span>
+                            </p>
+                            <p class="m-0 fs-16">
+                                Importo:
+                                <b class="color-orange fs-20">{{euroAmount}}&euro;</b>
+                            </p>
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+    
+    <!-- TEMPLATE CREATIVITÀ -->
+    
+    <script id="creativity-preview3-template" type="text/x-handlebars-template">
+        <div class="modal fade" id="slider-creativity" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg mt-50" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark-blue">
+                        <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a>
+                        <h4 class="modal-title text-uppercase">Creatività</h4>
+                    </div>
+                    <div class="modal-body bg-intense-blue p-10">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 mb-35">
+                                <div class="container-slider-preview mt-35">
+                                    <div id="slider-preview" class="owl-carousel">
+                                        {{#each .}}
+                                        {{#if IsFacebook}}
+                                        <div class="item-preview-device">
+                                            <div class="smartphone facebook">
+                                                <div class="mask-top"></div>
+                                                <div class="abs">
+                                                    <div class="title uppercase">{{Copy.Title}}</div>
+                                                    <div class="description" title="{{Copy.Description}}">{{Copy.Description}}</div>
+                                                    <span data-bannerid="3">
+                                                        <img src="{{Url}}" />
+                                                    </span>
+                                                </div>
+                                                <div class="preview-display">
+                                                    <img src="assets/img/facebook_template.jpg">
+                                                </div>
+                                                <div class="mask-bottom"></div>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{#if IsSearch}}
+                                        <div class="item-preview-device">
+                                            <div class="smartphone search">
+                                                <div class="mask-top"></div>
+                                                <div class="abs">
+                                                    <div class="headline uppercase" title="{{Copy.Headline}}">{{Copy.Headline}}</div>
+                                                    <div class="website" title="{{Copy.DisplayUrl}}">{{Copy.DisplayUrl}}</div>
+                                                    <div class="row1" title="{{Copy.Row1}}">{{Copy.Row1}}</div>
+                                                    <div class="row2" title="{{Copy.Row2}}">{{Copy.Row2}}</div>
+                                                </div>
+                                                <div class="preview-display">
+                                                    <img src="assets/img/google_template.jpg">
+                                                </div>
+                                                <div class="mask-bottom"></div>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{#if IsDisplay}}
+                                        {{#if IsUniqueUsersOrClicks}}
+                                        <div class="item-preview-banner">
+                                            <div class="preview-banner">
+                                                <img src="{{Url}}">
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{#if IsFlyer}}
+                                        <div class="item-preview-banner">
+                                            <div class="preview-banner">
+                                                <img src="{{Url}}">
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{/if}}
+                                        <!--{{#if IsSmartphone}}
+                                        <div class="item-preview-device">
+                                            <div class="smartphone">
+                                                <div class="mask-top"></div>
+                                                <div class="preview-display">
+                                                    <img src="{{Url}}">
+                                                </div>
+                                                <div class="mask-bottom"></div>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{#if IsTablet}}
+                                        <div class="item-preview-device">
+                                            <div class="tablet">
+                                                <img src="{{Url}}">
+                                            </div>
+                                        </div>
+                                        {{/if}}-->
+                                        {{/each}}
+                                    </div>
+                                    <div class="prev-preview"></div>
+                                    <div class="next-preview"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    
+    <div>
+        <!-- NO CAMPAIGNS DATA -->
+        <div class="row p-20" style="display:none;" data-noCampaignDetails>
+            <div class="appd">
+                <div class="ico nodata"></div>
+                <div class="desc">Non sono presenti campagne per lo status selezionato.</div>
+            </div>
+        </div>
+
+        <div class="row mt-75 mb-45" style="display:none" data-showPowerBI>
+            <div id="powerBI-container"></div>
+        </div>
+
+        <!-- CIRCONFERENZA DI PIANIFICAZIONE -->
+        <div class="row mt-75 mb-45 pdfignore" data-showMaps style="display:none">
+            <div class="col-md-12">
+                <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Circonferenza di pianificazione</span></p>
+                <div class="panel panel-default shadow">
+                    <div class="panel-body p-0">
+                        <!-- SARANNO MOSTRATI TUTTI I PUNTI O SOLO QUELLO SELEZIONATO -->
+                        <div id="map-dashboard" class="b-radius-bottom-3" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="display:none" data-smart-report-days="7"></div>
+
+        <!-- SMART REPORT TEMPLATE -->
+        <script id="insights-template" type="text/x-handlebars-template">
+            <div class="row mt-50 pba" data-showCampaignDetails>
+                <div class="col-md-12">
+                    <p class="fs-16 mt-50"><span class="text-uppercase">Smart report: </span><span class="color-orange">Ultimi {{smartReportdays}} giorni</span></p>
+                    <div class="col-md-12 nopl">
+                        <div class="row">
+                            <div class="col-md-6" data-LandingCharts>
+                                <p class="fs-16 my-20"><span class="text-uppercase">{{ProductName}}: </span><span class="color-orange">{{ProductViews}}</span></p>
+                                <canvas id="myChart1"></canvas>
+                            </div>
+                            <!-- QUESTO BLOCCO DI CODICE RAPPRESENTA IL BOX CHE SI VISUALIZZA QUANDO I DATI NON SONO DISPONIBILI -->
+                            <div class="col-md-6" data-noLandingCharts>
+                                <div class="panel panel-default shadow">
+                                    <div class="panel-body">
+                                        <div class="row m-0">
+                                            <div class="not-available">
+                                                <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ********** FINE BLOCCO ********** -->
+                            <div class="col-md-6" data-LandingCharts>
+                                <p class="fs-16 my-20"><span class="text-uppercase">Click della tua pubblicità: </span><span class="color-orange">{{ProductClicks}}</span></p>
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                            <!-- QUESTO BLOCCO DI CODICE RAPPRESENTA IL BOX CHE SI VISUALIZZA QUANDO I DATI NON SONO DISPONIBILI -->
+                            <div class="col-md-6" data-noLandingCharts>
+                                <div class="panel panel-default shadow">
+                                    <div class="panel-body">
+                                        <div class="row m-0">
+                                            <div class="not-available">
+                                                <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ********** FINE BLOCCO ********** -->
+                        </div>
+                        <div class="row mt-75 mb-45 pba">
+                            <div class="col-md-12">
+                                <p class="fs-16 my-20"><span class="text-uppercase">Interazioni sulla landing page</span></p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default shadow">
+                                            <div class="panel-heading">
+                                                <span class="text-uppercase">% Click - Dove siamo</span>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row m-0">
+                                                    <div class="pull-left">
+                                                        <div class="percentage mr-25">
+                                                            <div class="circle" data-circle="1" data-width="8" data-color="#ea9d2b" data-color2="#284a53" data-radius="50" data-value="{{buttonClicks}}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-left">
+                                                        <p class="my-10 fs-16">
+                                                            Persone che hanno voluto sapere<br><b class="text-uppercase">come raggiungerti.</b>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-default shadow">
+                                            <div class="panel-heading">
+                                                <span class="text-uppercase">% Click - Chiamaci</span>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row m-0">
+                                                    <div class="pull-left">
+                                                        <div class="percentage mr-25">
+                                                            <div class="circle" data-circle="1" data-width="8" data-color="#ea9d2b" data-color2="#284a53" data-radius="50" data-value="{{CTCClicks}}"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pull-left">
+                                                        <p class="my-10 fs-16">
+                                                            Persone che hanno voluto <br><b class="text-uppercase">sapere di più</b> sulla tua attività.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+    </div>
+    
+    <!-- MODERAZIONE -->
+    <div class="row mt-50" data-showModeration>
+        <script id="moderationTemplate" type="text/x-handlebars-template">
+            <div class="row mt-3" style="margin:0 15px">
+                <div class="panel-group dash" id="accordion" role="tablist" aria-multiselectable="true">
+                    {{#each groups}}
+                    <div class="panel panel-default accordion">
+                        <div class="panel-heading" role="tab">
+                            <div role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse1" class="a-box a-accordion">
+                                <div class="row row-eq-height-responsive">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="py-6">
+                                            <div class=""><i class="more-less glyphicon glyphicon-plus mr-10"></i><span class="switch-color fs-16">{{CustomName}}<!--Nome campagna--></span></div>
+                                            <!-- la classe "red" va messa solo per campagne rigettate   -->
+                                            <div class="info red uppercase fs-12">{{statusDesc}}.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="row row-eq-height height-100">
+                                            <div class="col-md-7">
+                                                <div class="d-table bg-left pull-right {{ProviderClassName}} height-100">
+                                                    <!-- classi: ico-facebook, ico-google, ico-app -->
+                                                    <span class="media-body media-middle fs-16 py-6">{{Type}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5 sep-left">
+                                                <div class="d-table bg-left pull-right {{TypeClassName}} height-100">
+                                                    <!-- ico-users, ico-click -->
+                                                    <span class="media-body media-middle fs-16 py-6">{{TotalReach}} {{Description}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{#if showPrice}}
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="bg-accordion-inset text-right d-table pull-right">
+                                            <div class="media-body media-middle py-10">
+                                                <span class="fs-24">€ {{formattedTotalAmount.[0]}}<small>,{{formattedTotalAmount.[1]}} + IVA</small></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <div id="collapse{{@index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                            <div class="panel-body p-0">
+                                <!-- elenco pdv -->
+                                {{#each Campaigns}}
+                                <div class="row row-eq-height-responsive tr px-20 py-5 in">
+                                    <div class="d-inline-block ml-35 ico-time bg-left">Creata: {{formatDate CreatedDate "DD/MM/YYYY"}}</div>
+                                    <div class="d-inline-block ml-35 ico-time bg-left">Partenza: {{formatDate StartDate "DD/MM/YYYY"}}</div>
+                                </div>
+                                <div class="row row-eq-height-responsive tr px-20">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="py-6">
+                                            {{Name}} - {{Address}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="row row-eq-height height-100">
+                                            <div class="col-md-7"></div>
+                                            <div class="col-md-5 sep-left">
+                                                <div class="d-table bg-left pull-right {{TypeClassName}} height-100">
+                                                    <!-- classi: ico-users, ico-click -->
+                                                    <span class="media-body media-middle fs-16 py-6">{{Reach}} {{Description}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{#if showPrice}}
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="text-right d-table">
+                                            <div class="media-body media-middle">
+                                                <span class="fs-24">€ {{formattedAmount.[0]}}<small>,{{formattedAmount.[1]}} + IVA</small></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/if}}
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-info hide" data-rel="collapse2">
+                        {{statusFooter}}.
+                    </div>
+                    {{/each}}
+                </div>
+                <script>
+                    function toggleSelected(e) {
+                        let el = $(e.target);
+                        el.prev('.panel-heading').find(".more-less").toggleClass('glyphicon-plus glyphicon-minus');
+                        el.parent(".accordion").toggleClass('selected').next('.panel-info').toggleClass('hide');
+                    }
+
+                    $(".panel-group").on("hide.bs.collapse", toggleSelected).on("show.bs.collapse", toggleSelected);
+                </script>
+            </div>
+        </script>
+    </div>
+
+    </div><!-- end pdfpage -->
+
+    <!-- REPORT COMPLESSIVO MODALE -->
+    <div class="modal fade pba" id="total-report" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-xl  mt-50" role="document">
+            <div class="modal-content rel">
+                <div class="modal-header bg-dark-blue">
+                    <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a>
+                    <h4 class="modal-title text-uppercase">Report complessivo <a class="btn pdf" data-rel=".modal" data-init="1">Genera Report</a></h4>
+                </div>
+                
+                <div class="modal-body bg-intense-blue p-10" style="overflow-y: auto;" data-mcs-theme="minimal-dark">
+                    <script id="insights-details-template" type="text/x-handlebars-template">
+                        <div class="footer">
+                            <div class="p-10">{{LastReportDownload}}</div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="pdfpage">
+
+                            <div class="row mt-35">
+                                <div class="col-md-12">
+                                    <div id="owl-report" class="owl-carousel owl-nav-big">
+                                        {{#if showFacebookReach}}
+                                        <div class="row item">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-35 pba printnoscroll" data-FacebookChart>
+                                                        <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Utenti Unici Facebook: </span><span class="color-orange">{{facebookReach}}</span></p>
+                                                        <div class="chart-container printnoscroll">
+                                                            <canvas id="reportChartFB"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- QUESTO BLOCCO DI CODICE RAPPRESENTA IL BOX CHE SI VISUALIZZA QUANDO I DATI NON SONO DISPONIBILI -->
+                                                    <div class="col-md-12 mb-35 pda" data-noFacebookChart>
+                                                        <div class="panel panel-default shadow">
+                                                            <div class="panel-body">
+                                                                <div class="row m-0">
+                                                                    <div class="not-available">
+                                                                        <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--********** FINE BLOCCO ********** -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        <div class="row item">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-35 pba printnoscroll" data-LandingCharts>
+                                                        <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">{{ProductName}}: </span><span class="color-orange">{{sawAds}}</span></p>
+                                                        <div class="chart-container printnoscroll">
+                                                            <canvas id="reportMyChart1"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- QUESTO BLOCCO DI CODICE RAPPRESENTA IL BOX CHE SI VISUALIZZA QUANDO I DATI NON SONO DISPONIBILI -->
+                                                    <div class="col-md-12 mb-35 pda" data-noLandingCharts>
+                                                        <div class="panel panel-default shadow">
+                                                            <div class="panel-body">
+                                                                <div class="row m-0">
+                                                                    <div class="not-available">
+                                                                        <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--********** FINE BLOCCO ********** -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row item ">
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 mb-35 pba printnoscroll" data-LandingCharts>
+                                                        <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Click della tua pubblicità: </span><span class="color-orange">{{clickedAds}}</span></p>
+                                                        <div class="chart-container printnoscroll">
+                                                            <canvas id="reportMyChart2"></canvas>
+                                                        </div>
+                                                    </div>
+                                                    <!-- QUESTO BLOCCO DI CODICE RAPPRESENTA IL BOX CHE SI VISUALIZZA QUANDO I DATI NON SONO DISPONIBILI -->
+                                                    <div class="col-md-12 mb-35 pba" data-noLandingCharts>
+                                                        <div class="panel panel-default shadow">
+                                                            <div class="panel-body">
+                                                                <div class="row m-0">
+                                                                    <div class="not-available">
+                                                                        <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--********** FINE BLOCCO ********** -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Interazioni landing page -->
+                            {{#if hasLandingPageDetails}}
+                            <div class="row mt-75">
+                                <div class="col-md-12 nopl">
+                                    <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Interazioni sulla landing page</span></p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">% Click - Dove siamo</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        <div class="pull-left">
+                                                            <div class="percentage mr-25">
+                                                                <div class="circle" data-circle="1" data-width="8" data-color="#ea9d2b" data-color2="#284a53" data-radius="50" data-value="{{buttonClicks}}"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <p class="my-10 fs-16">
+                                                                Persone che hanno voluto sapere<br><b class="text-uppercase">come raggiungerti.</b>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">% Click - Chiamaci</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        <div class="pull-left">
+                                                            <div class="percentage mr-25">
+                                                                <div class="circle" data-circle="1" data-width="8" data-color="#ea9d2b" data-color2="#284a53" data-radius="50" data-value="{{CTCClicks}}"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <p class="my-10 fs-16">
+                                                                Persone che hanno voluto <br><b class="text-uppercase">sapere di più</b> sulla tua attività.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/if}}
+                            </div><!-- end pdfpage-->
+
+                            <!-- Dettaglio dispositivi -->
+                            <div class="pdfpage">
+                            <div class="row mt-50 mb-45">
+                                <div class="col-md-12">
+                                    <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Dettaglio dispositivi</span></p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Device</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        <div class="media" data-devicePieChart>
+                                                            <div class="media-left">
+                                                                <div class="charts-device charts-smartphone">
+                                                                    <canvas id="reportChartDevice"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-left media-bottom">
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend bg-orange"></span>Tablets
+                                                                </p>
+                                                                <p class="m-0 mt-10 fs-16">
+                                                                    <span class="legend bg-sky-blue"></span>Smartphone
+                                                                </p>
+                                                                <p class="m-0 mt-10 fs-12 color-light-green-water">
+                                                                    Percentuale su un campione del 20% del traffico erogato.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="not-available small" data-noDevicePieChart>
+                                                            <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Sistema operativo</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        <div class="media" data-OSPieChart>
+                                                            <div class="media-left">
+                                                                <div class="charts-os charts-android">
+                                                                    <canvas id="reportChartOS"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-left media-bottom">
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend bg-orange"></span>Android
+                                                                </p>
+                                                                <p class="m-0 mt-5 fs-16">
+                                                                    <span class="legend bg-sky-blue"></span>iOS
+                                                                </p>
+                                                                <p class="m-0 mt-5 fs-16">
+                                                                    <span class="legend bg-red"></span>Altro
+                                                                </p>
+                                                                <p class="m-0 mt-10 fs-12 color-light-green-water">
+                                                                    Percentuale su un campione del 20% del traffico erogato.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="not-available small" data-noOSPieChart>
+                                                            <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dettaglio orario -->
+                            <div class="row mt-50 mb-45">
+                                <div class="col-md-12">
+                                    <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Dettaglio orari e interazioni</span></p>
+                                    <div class="row" id="dynamic">
+                                        <div class="col-md-4">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Fascia oraria</span>
+                                                </div>
+                                                <div class="panel-body mh270">
+                                                    <div class="row m-0">
+                                                        {{#if timeSlotsSpecified}}
+                                                        <p class="m-0 mb-20">
+                                                            Quando è stata visualizzata la tua pubblicità.
+                                                        </p>
+                                                        <!--<div class="row">
+                                                            <div class="col-sm-3">
+                                                                Notte
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-sky-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{nightPercentage}}%;">
+                                                                        <span class="sr-only">{{nightPercentage}}% Complete</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                Mattina
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{morningPercentage}}%;">
+                                                                        <span class="sr-only">{{morningPercentage}}% Complete</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                Pomeriggio
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-red" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{afternoonPercentage}}%;">
+                                                                        <span class="sr-only">{{afternoonPercentage}}% Complete</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+                                                                Sera
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <div class="progress">
+                                                                    <div class="progress-bar bg-sky-blue" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{eveningPercentage}}%;">
+                                                                        <span class="sr-only">{{eveningPercentage}}% Complete</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--p class="m-0 mt-5 fs-12 color-light-green-water">
+                                                            Percentuale su un campione del 20% del traffico erogato.
+                                                        </p-->
+                                                        {{/if}}
+                                                        {{#unless timeSlotsSpecified}}
+                                                        <div class="not-available">
+                                                            <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                        </div>
+                                                        {{/unless}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{#if isDisplay}}
+                                        <!-- QUESTO BLOCCO DI CODICE è MOSTRAT0 SOLO SE LA CAMPAGNA È DISPLAY -->
+                                        <div class="col-md-4">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Distribuzione formati ADV</span>
+                                                </div>
+                                                <div class="panel-body mh270">
+                                                    <div class="row m-0" data-ReportChartADVSize>
+                                                        <p class="m-0 mb-35">
+                                                            Quale formato è stato più visualizzato.
+                                                        </p>
+                                                        <div class="media">
+                                                            <div class="media-left">
+                                                                <div class="charts-adv">
+                                                                    <canvas id="reportChartADVSize"></canvas>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-left">
+                                                                {{#if isUniqueUsersOrClick}}
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend bg-orange"></span>320x50
+                                                                </p>
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend bg-sky-blue"></span>300x250
+                                                                </p>
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend bg-red"></span>728x90
+                                                                </p>
+                                                                {{/if}}
+                                                                <p class="m-0 mt-15 fs-16">
+                                                                    <span class="legend" style="background-color:#28a185"></span>320x480
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <p class="m-0 mt-30 fs-12 color-light-green-water">
+                                                            Percentuale su un campione del 20% del traffico erogato.
+                                                        </p>
+                                                    </div>
+                                                    <div class="not-available small" data-noReportChartADVSize>
+                                                        <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--********** FINE BLOCCO ********** -->
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{#if showKeywords}}
+                            <!-- QUESTO BLOCCO DI CODICE è MOSTRAT0 SOLO SE LA CAMPAGNA È GOOGLE -->
+                            <div class="row mt-50 mb-45">
+                                <div class="col-md-12">
+                                    <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Adwords</span></p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Le tue keywords</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        {{#if keywords}}
+                                                        <p class="m-0 mb-20">
+                                                            Le prime 10 keywords del tuo annuncio pubblicitario.
+                                                        </p>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                {{#each keywordsFirstColumn}}
+                                                                <div class="row">
+                                                                    <div class="col-sm-3">
+                                                                        {{Name}}
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar bg-sky-blue" role="progressbar" aria-valuenow="{{Value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Value}}%;">
+                                                                                <span class="sr-only">{{Value}}% Complete</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                {{/each}}
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <div class="row">
+                                                                    {{#each keywordsSecondColumn}}
+                                                                    <div class="col-sm-3">
+                                                                        {{Name}}
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <div class="progress">
+                                                                            <div class="progress-bar bg-sky-blue" role="progressbar" aria-valuenow="{{Value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{Value}}%;">
+                                                                                <span class="sr-only">{{Value}}% Complete</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    {{/each}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p class="m-0 mt-5 fs-12 color-light-green-water">
+                                                            Percentuale su un campione del 20% del traffico erogato.
+                                                        </p>
+                                                        {{/if}}
+                                                        {{#unless keywords}}
+                                                        <div class="not-available">
+                                                            <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                        </div>
+                                                        {{/unless}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--********** FINE BLOCCO ********** -->
+                            {{/if}}
+                            
+                            {{#if showFacebookReach}}
+                            <!-- QUESTO BLOCCO DI CODICE è MOSTRAT0 SOLO SE LA CAMPAGNA È FACEBOOK -->
+                            <!--<div class="row mt-50 mb-45">
+                                <div class="col-md-12">
+                                    <p class="fs-16 mt-50 pdfcenter"><span class="text-uppercase">Utenti Unici Facebook: </span><span class="color-orange">{{facebookReach}}</span></p>
+                                    <div class="col-md-12 mt-25" data-FacebookChart>
+                                        <div class="chart-container">
+                                            <canvas id="reportChartFB"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="not-available" data-noFacebookChart>
+                                        <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!--********** FINE BLOCCO ********** -->
+                            {{/if}}
+
+                            {{#if showToApps}}
+                            <!-- QUESTO BLOCCO DI CODICE è MOSTRAT0 SOLO SE LA CAMPAGNA È APPNEXUS -->
+                            <div class="row mt-50 mb-35">
+                                <div class="col-md-12">
+                                    <p class="fs-16 my-20 pdfcenter"><span class="text-uppercase">Display</span></p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel panel-default shadow">
+                                                <div class="panel-heading">
+                                                    <span class="text-uppercase">Le top App di pianificazione</span>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="row m-0">
+                                                        {{#if apps}}
+                                                        <!--p class="m-0 mb-20">
+                                                            Le top App di pianificazione.
+                                                        </p-->
+                                                        {{#each apps}}
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0 m20" style="color:#5cc2e8">{{Name}}</p>
+                                                                <div class="row ten-columns">
+                                                                    {{#each topApp}}
+                                                                    <div class="col-md-2">
+                                                                        <div class="appd">
+                                                                            <div class="ico {{ImgClass}}"></div>
+                                                                            <div class="desc">{{Name}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--div class="col-sm-12 col-md-12">
+                                                                        {{Name}}
+                                                                    </div-->
+                                                                    {{/each}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        {{/each}}
+                                                        {{/if}}
+                                                        {{#unless apps}}
+                                                        <div class="not-available">
+                                                            <span class="text-uppercase text-center fs-16">I dati non sono attualmente disponibili. Riprova più tardi</span>
+                                                        </div>
+                                                        {{/unless}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--********** FINE BLOCCO ********** -->
+                            {{/if}}
+                            </div><!-- end pdfpage -->
+                        </div>
+
+                        <script>
+
+                            var b = currentPage.html.find('#total-report');
+                            CMS.circle(b);
+
+                            // Check dynamic contain
+                            var divDynamic = currentPage.html.find('#dynamic');
+                            if (divDynamic.children('div').length >= 3) {
+                                divDynamic.children('div').removeClass('col-md-4 col-md-6').addClass('col-md-4');
+                            } else {
+                                divDynamic.children('div').removeClass('col-md-4 col-md-6').addClass('col-md-6');
+                            }
+
+                            /* Bootstrap Tooltip
+                            $('[data-toggle="tooltip"]').tooltip();*/
+                            currentPage.loadDetailsCharts = function (data) {
+
+                                var reportCtx1 = currentPage.html.find("#reportMyChart1");
+                                
+                                // custom tooltip
+                                var customTooltips = function(tooltip) {
+                        			// Tooltip Element
+                        			var tooltipEl = document.getElementById('chartjs-tooltip');
+                        
+                        			if (!tooltipEl) {
+                        				tooltipEl = document.createElement('div');
+                        				tooltipEl.id = 'chartjs-tooltip';
+                        				tooltipEl.innerHTML = "<table></table>";
+                                    }    
+                        				
+                                    this._chart.canvas.parentNode.appendChild(tooltipEl);
+                        			
+                        
+                        			// Hide if no tooltip
+                        			if (tooltip.opacity === 0) {
+                        				tooltipEl.style.opacity = 0;
+                        				return;
+                        			}
+                        
+                        			// Set caret Position
+                        			tooltipEl.classList.remove('above', 'below', 'no-transform');
+                            			if (tooltip.yAlign) {
+                            				tooltipEl.classList.add(tooltip.yAlign);
+                            			} else {
+                            				tooltipEl.classList.add('no-transform');
+                            			}
+                            
+                            			function getBody(bodyItem) {
+                            				return bodyItem.lines;
+                            			}
+                            
+                            			// Set Text
+                            			if (tooltip.body) {
+                            				var titleLines = tooltip.title || [];
+                            				var bodyLines = tooltip.body.map(getBody);
+                            
+                            				var innerHtml = '<thead>';
+                            
+                            				titleLines.forEach(function(title) {
+                            					innerHtml += '<tr><th>' + title + '</th></tr>';
+                            				});
+                            				innerHtml += '</thead><tbody>';
+                            
+                            				bodyLines.forEach(function(body, i) {
+                            					var colors = tooltip.labelColors[i];
+                            					var style = 'background:' + colors.backgroundColor;
+                            					style += '; border-color:' + colors.borderColor;
+                            					style += '; border-width: 2px'; 
+                            					var span = '<span class="chartjs-tooltip-key" style="' + style + '"></span>';
+                            					innerHtml += '<tr><td>' + span + body + '</td></tr>';
+                            				});
+                            				innerHtml += '</tbody>';
+                            
+                            				var tableRoot = tooltipEl.querySelector('table');
+                            				tableRoot.innerHTML = innerHtml;
+                            			}
+                            
+                            			var positionY = this._chart.canvas.offsetTop;
+                            			var positionX = this._chart.canvas.offsetLeft;
+                            
+                            			// Display, position, and set styles for font
+                            			tooltipEl.style.opacity = 1;
+                            			tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+                            			tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+                            			tooltipEl.style.fontFamily = tooltip._fontFamily;
+                            			tooltipEl.style.fontSize = tooltip.fontSize;
+                            			tooltipEl.style.fontStyle = tooltip._fontStyle;
+                            			tooltipEl.style.padding = tooltip.yPadding + 'px ' + tooltip.xPadding + 'px';
+                            		};
+                                    // end custom tooltip
+            
+            
+                                if (data[0].labels.length > 0 && data[0].values.length > 0) {
+                                    var reportMyChart1 = new Chart(reportCtx1, {
+                                        type: 'line',
+                                        data: {
+                                            labels: data[0].labels,
+                                            datasets: [
+                                                {
+                                                    label: data[0].labelName,
+                                                    fill: false,
+                                                    lineTension: 0.1,
+                                                    backgroundColor: "rgba(92,194,232,0.4)",
+                                                    borderColor: "rgba(92,194,232,1)",
+                                                    borderCapStyle: 'butt',
+                                                    borderDash: [],
+                                                    borderDashOffset: 0.0,
+                                                    borderJoinStyle: 'miter',
+                                                    pointBorderColor: "rgba(92,194,232,1)",
+                                                    pointBackgroundColor: "#fff",
+                                                    pointBorderWidth: 0,
+                                                    pointHoverRadius: 5,
+                                                    pointHoverBackgroundColor: "#ea9d2b",
+                                                    pointHoverBorderColor: "#ea9d2b",
+                                                    pointHoverBorderWidth: 0,
+                                                    pointRadius: 1,
+                                                    pointHitRadius: 10,
+                                                    data: data[0].values,
+                                                    spanGaps: false,
+                                                }
+                                            ]
+                                        },
+                                        options: {
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                                display: false,
+                                            }
+                                        }
+                                    });
+                                    $("[data-LandingCharts]").show();
+                                    $("[data-noLandingCharts]").hide();
+                                }
+                                else {
+                                    $("[data-LandingCharts]").hide();
+                                    $("[data-noLandingCharts]").show();
+                                }
+
+                                var reportCtx2 = currentPage.html.find("#reportMyChart2");
+                                if (data[1].labels.length > 0 && data[1].values.length > 0) {
+                                    var reportMyChart2 = new Chart(reportCtx2, {
+                                        type: 'line',
+                                        data: {
+                                            labels: data[1].labels,
+                                            datasets: [
+                                                {
+                                                    label: data[1].labelName,
+                                                    fill: false,
+                                                    lineTension: 0.1,
+                                                    backgroundColor: "rgba(92,194,232,0.4)",
+                                                    borderColor: "rgba(92,194,232,1)",
+                                                    borderCapStyle: 'butt',
+                                                    borderDash: [],
+                                                    borderDashOffset: 0.0,
+                                                    borderJoinStyle: 'miter',
+                                                    pointBorderColor: "rgba(92,194,232,1)",
+                                                    pointBackgroundColor: "#fff",
+                                                    pointBorderWidth: 0,
+                                                    pointHoverRadius: 5,
+                                                    pointHoverBackgroundColor: "#ea9d2b",
+                                                    pointHoverBorderColor: "#ea9d2b",
+                                                    pointHoverBorderWidth: 0,
+                                                    pointRadius: 1,
+                                                    pointHitRadius: 10,
+                                                    data: data[1].values,
+                                                    spanGaps: false,
+                                                }
+                                            ]
+                                        },
+                                        options: {
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                                display: false,
+                                            }
+                                        }
+                                    });
+                                    $("[data-LandingCharts]").show();
+                                    $("[data-noLandingCharts]").hide();
+                                }
+                                else {
+                                    $("[data-LandingCharts]").hide();
+                                    $("[data-noLandingCharts]").show();
+                                }
+
+                                var reportCtxFB = currentPage.html.find("#reportChartFB");
+                                if (data[2].labels.length > 0 && data[2].values.length > 0) {
+                                    var reportChartFB = new Chart(reportCtxFB, {
+                                        type: 'line',
+                                        data: {
+                                            labels: data[2].labels,
+                                            datasets: [
+                                                {
+                                                    label: data[2].labelName,
+                                                    fill: false,
+                                                    lineTension: 0.1,
+                                                    backgroundColor: "rgba(92,194,232,0.4)",
+                                                    borderColor: "rgba(92,194,232,1)",
+                                                    borderCapStyle: 'butt',
+                                                    borderDash: [],
+                                                    borderDashOffset: 0.0,
+                                                    borderJoinStyle: 'miter',
+                                                    pointBorderColor: "rgba(92,194,232,1)",
+                                                    pointBackgroundColor: "#fff",
+                                                    pointBorderWidth: 0,
+                                                    pointHoverRadius: 5,
+                                                    pointHoverBackgroundColor: "#ea9d2b",
+                                                    pointHoverBorderColor: "#ea9d2b",
+                                                    pointHoverBorderWidth: 0,
+                                                    pointRadius: 1,
+                                                    pointHitRadius: 10,
+                                                    data: data[2].values,
+                                                    spanGaps: false,
+                                                }
+                                            ]
+                                        },
+                                        options: {
+                                            maintainAspectRatio: false,
+                                            legend: {
+                                                display: false,
+                                            }
+                                        }
+                                    });
+                                    $("[data-FacebookChart]").show();
+                                    $("[data-noFacebookChart]").hide();
+                                }
+                                else {
+                                    $("[data-FacebookChart]").hide();
+                                    $("[data-noFacebookChart]").show();
+                                }
+
+                                var reportCtxDevice = currentPage.html.find("#reportChartDevice");
+                                if (data[3].labels.length > 0 && data[3].values.length > 0) {
+                                    var reportChartDevice = new Chart(reportCtxDevice, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: data[3].labels,
+                                            datasets: [{
+                                                backgroundColor: [
+                                                    "#ea9d2b",
+                                                    "#5cc2e8"
+                                                ],
+                                                data: data[3].values,
+                                                borderWidth: 0
+                                            }]
+                                        },
+                                        options: {
+                                            legend: {
+                                                display: false,
+                                            },
+                                            cutoutPercentage: 85,
+                                            tooltips:{
+                                                enabled: false,
+                            					mode: 'index',
+                            					position: 'nearest',
+                            					custom: customTooltips
+                                            }
+                                        }
+                                    });
+                                    $("[data-devicePieChart]").show();
+                                    $("[data-noDevicePieChart]").hide();
+                                }
+                                else {
+                                    $("[data-devicePieChart]").hide();
+                                    $("[data-noDevicePieChart]").show();
+                                }
+
+                                var reportCtxOS = currentPage.html.find("#reportChartOS");
+                                if (data[4].labels.length > 0 && data[4].values.length > 0) {
+                                    var reportChartOS = new Chart(reportCtxOS, {
+                                        type: 'doughnut',
+                                        data: {
+                                            labels: data[4].labels,
+                                            datasets: [{
+                                                backgroundColor: [
+                                                    "#ea9d2b",
+                                                    "#5cc2e8",
+                                                    "#ea4941"
+                                                ],
+                                                data: data[4].values,
+                                                borderWidth: 0
+                                            }]
+                                        },
+                                        options: {
+                                            legend: {
+                                                display: false,
+                                            },
+                                            cutoutPercentage: 85,
+                                            tooltips:{
+                                                enabled: false,
+                            					mode: 'index',
+                            					position: 'nearest',
+                            					custom: customTooltips
+                                            }
+                                        }
+                                    });
+                                    $("[data-OSPieChart]").show();
+                                    $("[data-noOSPieChart]").hide();
+                                }
+                                else {
+                                    $("[data-OSPieChart]").hide();
+                                    $("[data-noOSPieChart]").show();
+                                }
+
+                                var reportCtxADVSize = currentPage.html.find("#reportChartADVSize");
+                                if (data[5].labels.length > 0 && data[5].values.length > 0) {
+                                    var reportChartADVSize = new Chart(reportCtxADVSize, {
+                                        type: 'pie',
+                                        data: {
+                                            labels: data[5].labels,
+                                            datasets: [{
+                                                backgroundColor: [
+                                                    "#ea9d2b",
+                                                    "#5cc2e8",
+                                                    "#ea4941",
+                                                    "#28a185",
+                                                ],
+                                                data: data[5].values,
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            legend: {
+                                                display: false,
+                                            },
+                                            tooltips:{
+                                                enabled: false,
+                            					mode: 'index',
+                            					position: 'nearest',
+                            					custom: customTooltips
+                                            }
+                                        }
+                                    });
+                                    $("[data-ReportChartADVSize]").show();
+                                    $("[data-noReportChartADVSize]").hide();
+                                }
+                                else {
+                                    $("[data-ReportChartADVSize]").hide();
+                                    $("[data-noReportChartADVSize]").show();
+                                }
+                            }
+
+                            /* Slider report */
+                            currentPage.html.find('#owl-report').owlCarousel({
+                                loop: false,
+                                nav: true,
+                                margin: 30,
+                                responsive: {
+                                    0: {
+                                        items: 1
+                                    }
+                                },
+                                navText: ['', '']
+                            });
+                        </script>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart -->
+<!--<script src="assets/js/Chart.min.js"></script>
+<script src="assets/js/pdf/dist/jspdf.debug.js"></script>
+<script src="assets/js/pdf/html2pdf.js"></script>-->
+
+<!--<script>
+    var currentPage;
+    $(document).ready(function () {                                
+        currentPage = navigationService.currentPage;
+
+        /* Bootstrap Tooltip */
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var totalReport = $('#total-report'), showTotalReport = $('#showTotalReport'), modalBody = totalReport.find('.modal-body'), iframe = totalReport.find('iframe');
+
+        function reportSize($target) {
+            if ($(window).width() <= 500) {
+                $target.css('height', 400);
+                return;
+            }
+            var h = $(window).height() - 170;
+            if (h <= 400) { // verifica che l'altezza ottenuta non sia inferiore a un determinato valore (in questo caso 400)
+                return;
+            }
+            $target.css('height', h);
+        }
+
+        reportSize(modalBody);
+
+        $(window).resize(function () {
+            reportSize(modalBody);
+        });
+
+        showTotalReport.on('click', function (e) {
+            e.preventDefault();
+            totalReport.modal('show');
+
+            currentPage.loadCampaignsDetailsData();
+        });
+
+        totalReport.on('hidden.bs.modal', function () {
+            // Nascondo il contenuto della finestra modale di modo da non vedere i dati vecchi quando verrà riaperta
+            $("#total-report").find(".modal-body").find(".row").hide();
+        });
+
+        currentPage.loadCharts = function (data) {
+            var ctx1 = currentPage.html.find("#myChart1");
+            
+            if (data[0].labels.length > 0 && data[0].values.length > 0) {
+                var myChart1 = new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: data[0].labels,
+                        datasets: [
+                            {
+                                label: data[0].labelName,
+                                fill: false,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(92,194,232,0.4)",
+                                borderColor: "rgba(92,194,232,1)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(92,194,232,1)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 0,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "#ea9d2b",
+                                pointHoverBorderColor: "#ea9d2b",
+                                pointHoverBorderWidth: 0,
+                                pointRadius: 1,
+                                pointHitRadius: 10,
+                                data: data[0].values,
+                                spanGaps: false,
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        }
+                    }
+                });
+                $("[data-LandingCharts]").show();
+                $("[data-noLandingCharts]").hide();
+            }
+            else {
+                $("[data-LandingCharts]").hide();
+                $("[data-noLandingCharts]").show();
+            }
+            
+            var ctx2 = currentPage.html.find("#myChart2");
+            if (data[1].labels.length > 0 && data[1].values.length > 0) {
+                var myChart2 = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: data[1].labels,
+                        datasets: [
+                            {
+                                label: data[1].labelName,
+                                fill: false,
+                                lineTension: 0.1,
+                                backgroundColor: "rgba(92,194,232,0.4)",
+                                borderColor: "rgba(92,194,232,1)",
+                                borderCapStyle: 'butt',
+                                borderDash: [],
+                                borderDashOffset: 0.0,
+                                borderJoinStyle: 'miter',
+                                pointBorderColor: "rgba(92,194,232,1)",
+                                pointBackgroundColor: "#fff",
+                                pointBorderWidth: 0,
+                                pointHoverRadius: 5,
+                                pointHoverBackgroundColor: "#ea9d2b",
+                                pointHoverBorderColor: "#ea9d2b",
+                                pointHoverBorderWidth: 0,
+                                pointRadius: 1,
+                                pointHitRadius: 10,
+                                data: data[1].values,
+                                spanGaps: false,
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        }
+                    }
+                });
+                $("[data-LandingCharts]").show();
+                $("[data-noLandingCharts]").hide();
+            }
+            else {
+                $("[data-LandingCharts]").hide();
+                $("[data-noLandingCharts]").show();
+            }
+        };
+        
+        CMS.loadPlugin("../assets/js/plugin/pdf", function(plugin){
+
+            if(!plugin) return $('a.pdf').addClass('disabled');
+            
+            plugin.init();
+            
+        });
+
+        CMS.loadPlugin("../assets/js/plugin/maps", function (plugin) {
+        
+            plugin.icons = '../assets/img/maps/';
+
+            // inizializzo il plugin
+            // la funzione di callback è sempre richiamata per ogni genere di evento propagato
+            plugin.init("map-dashboard", { lat: 45.4637307, lng: 9.1910625, zoom: 11 }, function (evt, pdi, data) { // callback eventi
+                if (!pdi && evt != "add-pdi") return false;
+            });
+
+            /********************
+            aggiungo il/i punto/i.
+            nel caso la pagina sia quella del gruppo, mostrerò tutti i punti, altrimenti solo quello selezionato
+            *****************************************************************************************************/
+            currentPage.loadMap = function (pdis) {
+            
+                plugin.removeAll(); // elimino tutti i punti precedenti
+                
+                for (var x = 0; x < pdis.length; x++) {
+                    var pdi = {
+                        lat: pdis[x].Latitude,
+                        lng: pdis[x].Longitude,
+                        circle: {
+                            lat: pdis[x].Latitude,
+                            lng: pdis[x].Longitude,
+                            radius: pdis[x].Radius
+                        },
+                        address: pdis[x].Address,
+                        title: pdis[x].Name,
+                        budget: { id: x, value: "" },
+                    };
+                    pdi.duplicable = false;
+                    pdi.editable = false;
+                    pdi.resettable = false;
+                    pdi.removable = false;
+                    plugin.actions("add", x, pdi);
+                }
+                
+                setTimeout(function(){
+                    plugin.panMap(0,-30);
+                },2000);
+            }
+        });
+    });
+</script>-->

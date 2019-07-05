@@ -1,0 +1,422 @@
+<!--<style>
+    .five-columns .panel-heading {
+        padding: 15px !important
+    }
+
+    .panel.selected{color:#595959}
+    [type="radio"] + label::after, [type="radio"] + label::before{top:0}
+    #checkboxes label{font-size:13px}
+    .close.bk{position:absolute;right:20px;top:20px}
+    .panel.green{background:#9dbd62}
+     .btn[disabled],.btn.disabled{cursor:default !important; pointer-events: none;}
+     .strike.text-left{text-align:left !important}
+     .configurazione .input-group-addon{background:#0d3340 !important}
+     .row.rel{position:relative}
+
+     /** cards **/
+     .panel.bulk{overflow:hidden;min-height:280px;position:relative;transform:scale(1,1);margin-top:10px}
+     .panel.bulk.erogazione{min-height:auto}
+     .panel.bulk .thumbnail-adv{margin:13% 0}
+     .panel.bulk .text{position:absolute;top:100%;margin-top:-49px;width:100%;z-index:1;background:#fff;height:100%;border-radius:0}
+     .panel.bulk .panel-heading,.panel.bulk.selected .panel-heading{background:#082731;position:relative;border-radius:0;padding:0 20px;line-height:50px;font-weight:bold;font-size: 15px}
+     .panel.bulk .panel-heading .ico{width:40px;height:40px;position:absolute;top:-20px;right:15px;border-radius:40px;background:#5cc2e8 url(assets/img/arrow-dx.png) center center no-repeat;box-shadow:0 0 3px rgba(0,0,0,.2)}
+     .panel.bulk.selected .text .panel-heading .ico,
+     .panel.bulk.erogazione.selected .panel-heading .ico{background-color:#ea9d2b;top:30px;background-image:url(assets/img/check_white.png);box-shadow:0 5px 6px rgba(0,0,0,.2);background-size:45%}
+     .panel.bulk.selected,.panel.bulk.selected .panel-body{background:#0d3340 !important;}
+     .panel.bulk.erogazione.selected .panel-body{background:#fff !important}
+     .panel.bulk.selected .text{top:0;margin-top:0;border-radius:3px}
+
+     .panel.bulk.disabled .panel-heading,
+     .panel.bulk.disabled .panel-body{-webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */filter: blur(2px)}
+     .panel.bulk.disabled .disabled.hide{display:block !important;position:absolute;width:100%;height:100%;background:rgba(0,0,0,.2);z-index:1}
+     .panel.bulk.disabled .disabled.hide .desc{padding:10px 20px 0 20px;line-height:14px;font-size:10px;position:absolute;top:50%;left:50%;width:150px;height:150px;margin-left:-75px;margin-top:-75px;z-index:2;border-radius:100%;border:2px solid #0d3340;background:rgba(0,0,0,.5);color:#fff}
+     .panel.bulk.disabled .disabled.hide .btn{background:#5cc2e8;color:#fff}
+
+     .panel.bulk .ico.base:not(.selected){background-image:url(assets/img/bulk/base-plan.png)}
+     .panel.bulk .ico.balanced:not(.selected){background-image:url(assets/img/bulk/balanced-plan.png)}
+     .panel.bulk .ico.quality:not(.selected){background-image:url(assets/img/bulk/quality-plan.png)}
+     .panel.bulk .ico.cluster:not(.selected){background-image:url(assets/img/bulk/cluster-plan.png?v=1)}
+
+     .panel.bulk.erogazione .panel-heading .ico{box-shadow:none;top:30px;box-shadow:none;background-color:#091a1f}
+     .panel.bulk.erogazione .panel-body{min-height:150px}
+     .pr-50{padding-right:50px}
+     /* pickadate */
+     .picker__day.pick_more,
+     .picker__day.pick_less{border-radius:100%; background:#9dbd62; transform:scale(.7); opacity:.7;color:#fff}  /* :not(.picker__day--disabled) */
+     .configurazione .picker--focused .picker__day--selected, .picker__day--selected, .picker__day--selected:hover{background-color:#9dbd62}
+
+     /*.picker__day.pick_more{background:rgba(50,255,0,.3)}*/
+
+
+     .anim{
+        transition-property: background, color, border, opacity, bottom, right, left, top, margin;
+        transition-duration: .25s;
+        transition-timing-function:ease-out;
+     }
+
+     @media (max-width: 1180px) {
+        .card.panel.bulk:not(.erogazione){min-height:330px}
+     }
+
+     @media (max-width: 970px) {
+        .card.panel.bulk:not(.erogazione), .card.panel.bulk .panel-body{min-height:auto}
+        .card.panel.bulk .thumbnail-adv{margin:10px 0 80px 0}
+     }
+</style>
+
+<!--div class="container-fluid bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="media py-10">
+                    <div class="media-left media-middle br-light-1" href="#">
+                        <img class="media-object" src="assets/img/logo-text.png" alt="AdMove">
+                    </div>
+                    <div class="media-body">
+                        <p class="m-0 px-10 color-dark-blue"><span class="badge bg-gray pull-left mr-10"><i>i</i></span>Seleziona il canale di Mobile Advertising e imposta la pianificazione.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-top">
+    <div class="row bg-grad">
+        <div class="col-md-12 text-center mb-160"></div>
+    </div>
+</div-->
+<!--<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container">
+            <div class="row rel m-0 mb-0">
+                <script id="count" type="text/x-handlebars-template">
+                    <div class="panel uppercase p-20 green mb-0 mt-15"><span>{{count}}</span> punti di pianificazione caricati correttamente</div>
+                </script>
+                <a class="close bk fs-20"><span aria-hidden="true">×</span></a>
+            </div>
+
+            <div class="new-title uppercase mb-20 mb-160 pt-0 mt-10">IMPOSTA LA PIANIFICAZIONE</div>
+        </div>
+    </div>
+</div>-->
+<!--<div class="container configurazione mt-50">
+    <form role="form" data-toggle="validator">
+        <div class="row mt-30">
+            <div class="col-md-12 mt-160-minus">
+
+                <div class="strike blue mb-10"><span class="uppercase">Seleziona il canale</span></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel card selected bulk" data-type-adv="DISPLAYUU">
+                            <div class="text anim">
+                                <div class="panel-heading"><span class="text-uppercase">Display Utenti Unici</span><div class="ico anim"></div></div>
+                                <div class="p-20">
+                                    <p class="text-bold">Protagonista delle App più utilizzate</p><p>
+                                        La campagna, declinata in 4 formati, verrà pubblicata in una selezione <strong>PREMIUM</strong> di App in target con maggiore traffico,
+                                        fino al raggiungimento degli Utenti Unici individuati. La campagna è proposta all’Utente nel momento in cui è attivo sulle
+                                        App. La persistenza dell’esposizione sugli Utenti, durante il periodo di campagna, genera maggiore memorabilità.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/app-advertising.png" alt="Display Utenti Unici">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel card bulk" data-type-adv="DISPLAYCLICK">
+                            <div class="text anim">
+                                <div class="panel-heading"><span class="text-uppercase">Display Pay per Click</span><div class="ico anim"></div></div>
+                                <div class="p-20">
+                                    <p class="text-bold">Per conquistare centinaia di potenziali clienti</p>
+                                    <p>
+                                        La campagna, declinata in 4 formati, verrà pubblicata in una selezione
+                                        <strong>PREMIUM</strong> di App in target con maggiore traffico fino al raggiungimento
+                                        dell’obiettivo di Click selezionato. La campagna è proposta all’Utente nel
+                                        momento in cui è attivo sulle App. L’esposizione continuativa sugli Utenti,
+                                        nel periodo di campagna genera una visibilità importante.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/PPC-advertising.png" alt="Display Pay per Click">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel card bulk" data-type-adv="FLYER">
+                            <div class="text anim">
+                                <div class="panel-heading"><span class="text-uppercase">Display CPM</span><div class="ico anim"></div></div>
+                                <div class="p-20">
+                                    <p class="text-bold">Più visibilità all'insegna</p>
+                                    <p>
+                                        La campagna verrà pubblicata in una selezione <strong>PREMIUM</strong> di App in
+                                        target con maggiore traffico, fino al raggiungimento dell’obiettivo di
+                                        impressions selezionato. La campagna è proposta all’Utente nel
+                                        momento in cui è attivo sulle App. L’annuncio, in formato interstitial, per
+                                        una maggiore visibilità, è rivolto al target in movimento, sul canale
+                                        Smartphone.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/flyer-advertising.png?v=1" alt="Display Utenti Unici">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="strike blue mt-35 mb-35"><span class="uppercase">Scegli la MODALITà DI EROGAZIONE</span></div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="panel card bulk erogazione selected" data-flow="Small" data-order-by="">
+                    <div class="panel-heading anim"><span class="text-uppercase">Base Plan</span><div class="ico base"></div></div>
+                    <div class="panel-body anim">
+                        Raggiungi l’obiettivo della campagna nel suo complesso, a prescindere dalle specificità del singolo Punto Vendita
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel card bulk erogazione" data-flow="Medium" data-order-by="">
+                    <div class="panel-heading anim"><span class="text-uppercase">Balanced Plan</span><div class="ico balanced"></div></div>
+                    <div class="panel-body anim">
+                        Pianifica la campagna garantendo ad ogni Punto Vendita il raggiungimento dello stesso obiettivo quantitativo
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel card bulk erogazione" data-flow="High" data-order-by="MobUsers">
+                    <div class="panel-heading anim"><span class="text-uppercase">Quality Plan</span><div class="ico quality"></div></div>
+                    <div class="panel-body anim">
+                        Pianifica la campagna grazie all’algoritmo di Admove che privilegia i Punti Vendita con più utenti mobile nelle immediate vicinanze
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel bulk erogazione card" data-flow="High" data-order-by="Level">
+                    <div class="disabled hide">
+                        <div class="desc text-center">
+                            <img src="assets/img/bulk/info.png" class="mb-5"><br>Non disponibile<br>Nessun livello di importanza specificato<br><br><a class="btn btn-back fs-12">RICARICA FILE</a>
+                        </div>
+                    </div>
+                    <div class="panel-heading"><span class="text-uppercase">Cluster Plan</span><div class="ico cluster"></div></div>
+                    <div class="panel-body">
+                        Pianifica la campagna sfruttando l’algoritmo di Admove che ottimizza il budget in funzione delle priorità dei Punti Vendita specificati
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 mt-25 pr-50">
+                <div class="strike blue text-left"><span class="uppercase">IMPOSTA IL BUDGET</span></div>
+                <p class="mt-5">Specifica il budget massimo da allocare per l'intera campagna</p>
+                <div class="form-group mt-35">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><span class="input-ico ico-price"></span></span>
+                        <input type="number" class="form-control b-radius-right-2" name="budget" min="500" required>
+                        <label class="placeholder">Es.: € 3.000</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 mt-25 pull-right">
+                <div class="strike blue text-left"><span class="uppercase">SPECIFICA IL PERIODO DELLA CAMPAGNA</span></div>
+                <p class="mt-5">Seleziona la data di partenza e la data di fine orientativa della campagna</p>
+                <div class="form-group mt-25">
+                    <div class="col-md-5 p-0 mt-10">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><span class="input-ico ico-calendar"></span></span>
+                            <input type="text" class="form-control b-radius-right-2" id="startDate" name="startDate" required>
+                            <label class="placeholder">GG/MM/AAAA</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 p-0"></div>
+                    <div class="col-md-5 p-0 mt-10">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><span class="input-ico ico-calendar"></span></span>
+                            <input type="text" class="form-control b-radius-right-2" id="endDate" name="endDate" required>
+                            <label class="placeholder">GG/MM/AAAA</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-35">
+            <div class="col-xs-12 text-center">-->
+<!--button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button-->
+<!--<button type="submit" class="btn btn-adm text-uppercase m-30">Lancia l'algoritmo di copertura</button>
+            </div>
+        </div>
+    </form>
+</div>-->-->
+
+<!--<script>
+
+    var currentPage;
+    var maxBudget;
+    $(document).ready(function () {
+
+        currentPage = navigationService.currentPage;
+
+        var form = currentPage.html.find('form'),
+            submitter = form.find('button:last');
+        calendar_start = $('<div class="media py-20 bg-blue" id="tx"><div class="media-left media-middle px-37 br-dark-1"><div class="bg-white b-radius-50p p-20"><img class="media-object" src="assets/img/ico-calendar.png" alt=""></div></div><div class="media-body media-middle p-20 color-white"><p class="text-uppercase"><b>Seleziona la data di partenza</b></p><p class="m-0">Scegli il periodo più indicato per lanciare la tua campagna.</p></div></div>'),
+            calendar_end = $('<div class="media py-20 bg-blue" id="tx"><div class="media-left media-middle px-37 br-dark-1"><div class="bg-white b-radius-50p p-20"><img class="media-object" src="assets/img/ico-calendar.png" alt=""></div></div><div class="media-body media-middle p-20 color-white"><p class="text-uppercase"><b>Seleziona la data orientativa di fine</b></p><p class="m-0">Scegli il periodo più indicato per concludere la tua campagna.</p></div></div>'),
+            calendar_button = $('<div class="bg-blue text-center"><button type="submit" class="btn btn-adm text-uppercase my-35">Scopri la tua campagna</button></div>'),
+            input = form.find('[name=startDate],[name=endDate]').attr('autocomplete', 'off'),
+            pic = $('<div><div data-picka_div="startDate"></div><div data-picka_div="endDate"></div></div>').appendTo(form),
+            picker = {};
+
+        (async () => {
+            maxBudget = await currentPage.GetBulkMaxBudget()
+
+        })();
+        input.each(function () {
+            var e = $(this), name = e.attr('name');
+
+            picker[name] = $('<div data-picka_div="' + name + '" />').appendTo(form).pickadate({
+                // Strings and translations
+                name: name,
+                monthsFull: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+                monthsShort: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+                weekdaysFull: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+                weekdaysShort: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+                // Buttons
+                today: '',
+                clear: '',
+                close: '',
+                // Accessibility labels
+                labelMonthNext: 'Prossimo mese',
+                labelMonthPrev: 'Mese precedente',
+                labelMonthSelect: 'Seleziona un mese',
+                labelYearSelect: 'Seleziona un anno',
+                showWeekdaysFull: true,
+                firstDay: 1,
+                format: 'dd/mm/yyyy',
+                closeOnSelect: true,
+                closeOnClear: true,
+                disable: currentPage.disableHolidayWeekendDays,
+                min: currentPage.minCampaignDate,
+                //max: navigationService.currentPage.maxCampaignDate,
+                onSet: async function (context) {
+                    var val = new Date(context.select),
+                        element = $(this.$node),
+                        name = element.data('picka_div');
+                    /*console.log(element.data())
+                    console.log(this.$root);
+                    console.log(this.$holder);
+                    console.log(this);*/
+
+                    form.find('[name=' + name + ']').val(this.get('select', 'dd/mm/yyyy')).trigger('change');
+
+                    currentPage.datePickerSelect(name, val);
+
+                    if (context.select) {
+                        if (name == 'startDate') {
+                            var delivery = await currentPage.GetDeliveryDays(currentPage.averageBudget);
+                            if (delivery) {
+                                var end_date = (val.getDate() + delivery[0]),
+                                    min = new Date(val),
+                                    max = new Date(val),
+                                    end = new Date(val);
+
+                                end.setDate(end_date);
+                                min.setDate(end_date + delivery[1]);
+                                max.setDate(end_date + 3);
+
+                                //form.find('input#endDate').pickadate('picker').set({
+                                //form.find('[data-picka_div=endDate]').pickadate('picker').set({
+                                picker['endDate'].set({
+                                    min: min,
+                                    max: max,
+                                    select: end,
+                                    disable: false,
+                                    enable: true
+                                });
+                            }
+                        }
+
+                        this.close();
+                    }
+
+                },
+                onOpen: function () {
+                    var t = this, append = calendar_start,
+                        element = $(t.$node),
+                        name = element.data('picka_div');
+
+                    element.trigger('click');
+
+                    if (name == 'endDate') append = calendar_end
+                    else $("[data-pick]").removeClass('pick_more').removeClass('pick_less');
+
+                    setTimeout(function () { // aggiungo gli elementi
+                        currentPage.html.find('.picker__wrap #tx').remove();
+                        currentPage.html.find('.picker__wrap').prepend(append);
+                    }, 100);
+
+                    //this.render();
+                },
+                onRender: function () {
+
+                    if (this && this.component && this.component.item && this.component.item.select) {
+
+                        var element = $(this.$node),
+                            name = element.data('picka_div'),
+                            pick = this.component.item.select.pick;
+
+                        if (name == 'endDate') {
+                            //console.log('test');
+                            //console.log(this.component);
+
+                            $("[data-pick]").each(function () {
+
+                                var td = $(this), p = parseInt(td.data('pick'));
+
+                                if (td.attr('aria-disabled')) return true;
+
+                                if (p > pick) td.addClass('pick_more');
+                                else if (p < pick) td.addClass('pick_less');
+
+                            });
+                        }
+                    }
+                }
+            }).pickadate('picker');
+
+        });
+
+
+        // Form
+        form.on('keydown', 'input[type=number]', function () {
+            if (pic.pickadate('picker') != undefined) { pic.pickadate('picker').clear(); }
+            input.val('');
+            setTimeout(function () {
+                if (form.find('.has-error').length) submitter.attr('disabled', 'disabled');
+                else submitter.removeAttr('disabled');
+            }, 50);
+        });
+
+        input.on('click', function (evt) {
+
+            var e = $(this), name = e.attr('name'), id = e.attr('id');
+            picker[name].open(false);
+            evt.stopPropagation();
+            evt.preventDefault();
+
+        }).validator();
+
+        currentPage.html.on('click', 'a.close', function () {
+            $(this).closest('.row').toggle(100);
+        });
+    });
+
+    $($("input[name='budget']")[0]).blur(function () {
+        if (currentPage.averageBudget > maxBudget) {
+            $("input[name='budget']")[0].value = ""
+            $($("input[name='budget']")[0]).focus();
+            currentPage.show();
+        }
+    });
+</script>-->

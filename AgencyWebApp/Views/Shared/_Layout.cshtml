@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>AdMove</title>
+    <meta name="version" content="@ArcadiaMobile.ThinkBig.Common.BuildVersionAttribute.Get()" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FAVICONS -->
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicon/57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicon/60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicon/72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon/76x76.png">
+    <link rel="icon" type="image/png" href="assets/img/favicon/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/img/favicon/16x16.png" sizes="16x16">
+    <link rel="manifest" href="assets/img/favicon/manifest.json">
+    <link rel="mask-icon" href="assets/img/favicon/admove.svg" color="#5bbad5">
+        
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <environment names="Development">
+        <!-- Bootstrap Dialog CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap-dialog.min.css">
+        <!-- owlCarousel2 CSS -->
+        <link rel="stylesheet" href="assets/owlCarousel2/assets/owl.carousel.min.css">
+        <!-- mCustomScroolbar CSS -->
+        <link rel="stylesheet" href="assets/mCustomScroolbar/jquery.mCustomScrollbar.min.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <!-- datepicker -->
+        <link rel="stylesheet" href="assets/datepicker/theme.css">
+        <!-- ekko-lightbox -->
+        <link rel="stylesheet" href="assets/lightbox-master/ekko-lightbox.min.css">
+        <!-- dropzone -->
+        <link rel="stylesheet" href="assets/dropzone/dropzone.css">
+        <!-- bootstrap-tagsinput -->
+        <link rel="stylesheet" href="assets/bootstrap-tagsinput/bootstrap-tagsinput.css">
+        <!-- bootstrap-select -->
+        <link rel="stylesheet" href="assets/bootstrap-select/css/bootstrap-select.min.css">
+        <!-- My CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="~/dist/site.min.css" asp-append-version="true">
+    </environment>
+    @RenderSection("Styles", false)
+
+    <!-- jQuery -->
+    <script src="~/assets/js/jquery-3.1.1.min.js"></script>
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-N4H3D67');
+    </script>
+    <!-- End Google Tag Manager -->
+
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4H3D67" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    @RenderBody()
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

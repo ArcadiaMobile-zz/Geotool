@@ -1,0 +1,745 @@
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container">
+            <div class="">
+                <div class="new-title uppercase mb-160">RIEPILOGO DELLA CAMPAGNA</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-160-minus">
+    <script id="riepilogo-template" type="text/x-handlebars-template">
+        <div class="row mt-50 ">
+            <div class="col-md-6">
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">Durata</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media py-10">
+                            <div class="media-left media-middle pr-25">
+                                <div class="bg-white b-radius-50p p-15">
+                                    <img class="media-object" src="assets/img/ico-calendar.png" alt="">
+                                </div>
+                            </div>
+                            <div class="media-body media-middle">
+                                <p class="mb-5 fs-16">
+                                    La tua campagna partirà
+                                    <span class="color-orange fs-18"><b>{{formattedStartDate}}</b></span>
+                                </p>
+                                <p class="m-0 fs-16">
+                                    e terminerà orientativamente
+                                    <span class="color-orange fs-18"><b>{{formattedEndDate}}</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">La tua campagna</span>
+                    </div>
+                    <div class="panel-body">
+                        <p class="mb-5 fs-16">
+                            Hai scelto:
+                            <span class="color-orange fs-18"><b>{{userSession.advertisementTypeDescription}}</b></span>
+                        </p>
+                        <p class="mb-5 fs-16">
+                            Obiettivo della campagna:
+                            <span class="color-orange fs-18"><b>{{userSession.objectiveDescription}}</b></span>
+                        </p>
+                        <p class="m-0 fs-16">
+                            Reach:
+                            <span class="color-orange fs-18"><b>{{totalReach}} {{reachWording}}</b></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#if isSearchType}}
+        <div class="row row-eq-height-responsive row-eq-height mb-20">
+            <div class="col-md-6">
+                <div class="panel panel-default mt-15 shadow height-100">
+                    <div class="panel-heading"><span class="text-uppercase">Alcune delle tue keywords</span></div>
+                    <div class="panel-body">
+                        <div class="bootstrap-tagsinput">
+                            {{#each keywords}}
+                            <span class="tag label label-info">{{.}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default mt-15 shadow height-100">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">Contenuto dell'inserzione</span>
+                    </div>
+                    <div class="panel-body" data-inserzione>
+                        {{#each texts}}
+                        <p class="fs-16">
+                            <span class="color-orange fs-16 text-bold">{{.}}</span>
+                        </p>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+        <!--div class="row">
+            <div class="col-md-12">
+                <p class="color-sky-blue fs-17 text-uppercase my-15">Punti vendita oggetto della campagna</p>
+                <select class="selectpicker" data-width="100%" data-style="btn-select-box">
+                    {{#each userSession.pdvs}}
+                    <option value="{{id}}" data-content="<span class='fs-16'>{{number}} - {{session.originalBusinessName}} </span> - {{address}}">{{number}} - {{session.businessName}} - {{address}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div-->
+    </script>
+    
+    <div class="row mt-10">
+
+        <!-- Dettaglio -->
+        <div class="col-lg-5 col-md-5">
+        
+            <script id="riepilogo-template-2" type="text/x-handlebars-template">
+                <style>
+                    table.riepilogo td,
+                    table.riepilogo thead tr th{border:1px solid rgba(255,255,255,.1);border-collapse:collapse}
+                    table.riepilogo thead{background:#082731}
+                    table.riepilogo tbody tr.trpdv:not(.active){cursor:pointer}
+                    table.riepilogo tbody tr.trpdv.active, tbody tr.trpdv:hover:not(.active){color:#ea9d2b;background:rgba(255,255,255,.1)}</style>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default mt-15 shadow">
+                            <div class="panel-heading"><span class="text-uppercase">Punti vendita oggetto della campagna</span></div>
+                            <div class="panel-body">
+                                <table class="table riepilogo">
+                                    <thead class="_text-uppercase"><tr><th style="width:35%">Insegna</th><th>Indirizzo</th></tr></thead>
+                                    <tbody>
+                                    {{#each userSession.pdvs}}
+                                    <tr class="trpdv" data-id_pdv="{{id}}" data-content="<span class='fs-16'>{{number}} - {{session.originalBusinessName}} </span> - {{address}}"><td>{{number}} - {{session.businessName}}</td><td>{{address}}</td></tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+            
+            <script id="dettaglioRiepilogo-template" type="text/x-handlebars-template">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default mt-15 shadow">
+                            <div class="panel-heading"><span class="text-uppercase">Dettagli </span><b class="color-orange text-uppercase hide" data-pdv>(Punto <span class="number">{{number}}</span>)</b></div>
+                            <div class="panel-body">
+                                <div class="media mt-5">
+                                    <div class="media-left media-middle pr-15">
+                                        <img class="media-object" src="assets/img/ico-user-dark.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="fs-16 m-0">
+                                            Reach:
+                                            <span class="color-orange fs-18"><b>{{Pdv.selectedProduct.item.Value}} {{reachWording}}</b></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="media mt-5">
+                                    <div class="media-left media-middle pr-15">
+                                        <img class="media-object" src="assets/img/ico-euro-dark.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="fs-16 m-0">
+                                            Budget:
+                                            <span class="color-orange fs-18"><b>€ {{Pdv.formattedPrices}}</b></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                {{#if isNotTailored}}
+                                {{#if Pdv.uriClickToMap }}
+                                <div class="media" data-showClickToMaps>
+                                    <div class="media-left media-middle pr-15">
+                                        <img class="media-object" src="assets/img/ico-link-dark.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="fs-16 m-0 ellipsis">
+                                            Click to Map:
+                                            <a href="{{Pdv.uriClickToMap}}" target="_blank" class="color-orange fs-18"><b>Mostra Mappa</b></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{#if Pdv.clickToCall }}
+                                <div class="media">
+                                    <div class="media-left media-middle pr-15">
+                                        <img class="media-object" src="assets/img/ico-link-dark.png" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="fs-16 m-0 ellipsis">
+                                            Click to Call:
+                                            <a href="tel:{{Pdv.clickToCall}}" target="_blank" class="color-orange fs-18"><b>{{Pdv.clickToCall}}</b></a>
+                                        </p>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+        
+        <!-- Banner -->
+        <div class="col-lg-6 col-lg-offset-1 col-md-7 col-md-offset-0 mb-35">
+            <p class="color-sky-blue fs-17 text-uppercase text-center my-15">Anteprima grafica <b class="color-orange text-uppercase hide" data-pdv>(Punto <span class="number">1</span>)</b></p>
+            <p class="fs-16 text-center mt-35" id="rcreativityTitle">LANDING PAGE PER SMARTPHONE</p>
+            <ul class="switch-preview text-center">
+                <li class="switch-facebook selected"></li>
+                <li class="switch-search"></li>
+                <li class="switch-smartphone"></li>
+                <li class="switch-tablet"></li>
+                <li class="switch-banner-1"></li>
+                <li class="switch-interstitial"></li>
+                <li class="switch-banner-3"></li>
+                <li class="switch-banner-2"></li>
+            </ul>
+            <div class="container-slider-preview personalizza">
+                <div id="slider-preview" class="owl-carousel">
+                    <!-- FACEBOOK -->
+                    <div class="item-preview-device">
+                        <div class="smartphone facebook nocta">
+                            <div class="mask-top"></div>
+                            <div class="abs">
+                                <div class="title uppercase"></div>
+                                <div class="description" title=""></div>
+                                <span data-bannerid="3">
+                                    <img data-banner-size="Format1200x628" src="" style="cursor: zoom-in;">
+                                </span>
+                            </div>
+                            <div class="preview-display">
+                                <img src="assets/img/facebook_template.jpg">
+                                <div class="approvingly"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                            </div>
+                            <div class="mask-bottom"></div>
+                        </div>
+                    </div>
+                    <!-- GOOGLE -->
+                    <div class="item-preview-device">
+                        <div class="smartphone search nocta">
+                            <div class="mask-top"></div>
+                            <div class="abs">
+                                <div class="headline uppercase" title=""></div>
+                                <div class="website" title=""></div>
+                                <div class="row1" title=""></div>
+                                <div class="row2" title=""></div>
+                            </div>
+                            <div class="preview-display">
+                                <img src="assets/img/google_template.jpg">
+                                <div class="approvingly"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                            </div>
+                            <div class="mask-bottom"></div>
+                        </div>
+                    </div>
+                    <!-- SMARTPHONE -->
+                    <div class="item-preview-device">
+                        <div class="smartphone">
+                            <div class="mask-top"></div>
+                            <div class="preview-display">
+                                <img src="" data-banner-size="Format640x1024">
+                                <div class="approvingly" data-format="Format640x1024"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                            </div>
+                            <div class="mask-bottom"></div>
+                        </div>
+                    </div>
+                    <!-- TABLET -->
+                    <div class="item-preview-device">
+                        <div class="tablet">
+                            <div class="preview-display">
+                                <img src="" data-banner-size="Format2020x1320">
+                                <div class="approvingly" data-format="Format2020x1320"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FORMATO 300x250 -->
+                    <div class="item-preview-banner">
+                        <div class="preview-banner">
+                            <img data-banner-size="Format300x250" src="">
+                            <div class="approvingly"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                        </div>
+                    </div>
+                    <!-- FORMATO INTERSTITIAL -->
+                    <div class="item-preview-banner">
+                        <div class="preview-banner">
+                            <img data-banner-size="Format320x480" src="">
+                            <div class="approvingly"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                        </div>
+                    </div>
+                    <!-- FORMATO 320x50 -->
+                    <div class="item-preview-banner">
+                        <div class="preview-banner">
+                            <img data-banner-size="Format320x50" src="">
+                            <div class="approvingly"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                        </div>
+                    </div>
+                    <!-- FORMATO 728x90 -->
+                    <div class="item-preview-banner">
+                        <div class="preview-banner">
+                            <img data-banner-size="Format728x90" src="">
+                            <div class="approvingly"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prev-preview"></div>
+                <div class="next-preview"></div>
+            </div>
+        </div>
+    </div>
+    <script id="riepilogo-invoice-template" type="text/x-handlebars-template">
+        {{#if needInvoiceData}}
+        <form id="invoice-form" class="" data-toggle="validator" role="form">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default mt-15 shadow">
+                        <div class="panel-heading">
+                            <span class="text-uppercase">Dati di fatturazione</span>
+                        </div>
+                        <div class="panel-body">
+                            <p class="m-0 fs-16">
+                                Compila i campi richiesti per ricevere la fattura del tuo acquisto
+                            </p>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-user"></span></span>
+                                            <input type="text" value="{{userSession.agencyInfo.agency.AgencyDescription}}" name="ragioneSociale" class="form-control b-radius-right-2" required="" data-error="Campo obbligatorio">
+                                            <label class="placeholder">Ragione sociale</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-document"></span></span>
+                                            <input type="text" name="piva" value="{{userSession.agencyInfo.agency.AgencyVATCode}}" class="form-control b-radius-right-2" required="" pattern="^[0-9]{11}$" data-error="Inserire una Partita IVA valida">
+                                            <label class="placeholder">Partita IVA</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-mail"></span></span>
+                                            <input type="email" value="{{userSession.agencyInfo.agency.AgencyReferralEmail}}" name="email" class="form-control b-radius-right-2" required="" data-error="Inserire una email valida">
+                                            <label class="placeholder">Indirizzo email</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-location"></span></span>
+                                            <input type="text" value="{{userSession.agencyInfo.agency.AgencyAddress}}" name="address" class="form-control b-radius-right-2" required="" data-error="Campo obbligatorio">
+                                            <label class="placeholder">Indirizzo</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-cap"></span></span>
+                                            <input type="text" value="{{userSession.agencyInfo.agency.AgencyPostalCode}}" name="cap" class="form-control b-radius-right-2" required="" data-error="Campo obbligatorio">
+                                            <label class="placeholder">CAP</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-location-pin"></span></span>
+                                            <input type="text" value="{{userSession.agencyInfo.agency.AgencyCity}}" name="citta" class="form-control b-radius-right-2" required="" data-error="Campo obbligatorio">
+                                            <label class="placeholder">Città</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- einvoice -->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-user"></span></span>
+                                            <input type="text" value="0000000" name="SDICode" class="form-control b-radius-right-2" data-error="Impostare un codice destinatario valido" data-efield="codice_destinatario" pattern="^[A-Za-z-0-9]{7}$" maxlength="7">
+                                            <label class="placeholder">Codice destinatario</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="form-group mt-50">
+                                        <div class="input-group input-group-lg">
+                                            <span class="input-group-addon"><span class="input-ico ico-mail"></span></span>
+                                            <input type="email" value="" name="PECMail" class="form-control b-radius-right-2" data-error="Inserire una email pec valida" data-efield="email_pec" data-email>
+                                            <label class="placeholder">Indirizzo email PEC</label>
+                                        </div>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 clear"><div class="">Compilare almeno uno dei due campi</div></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 m-0 mt-15">
+                    <input type="checkbox" class="filled-in blue" name="terms" id="terms" data-error="Accettare le condizioni generali" required>
+                    <label for="terms">Dichiaro di aver letto e di accettare le <a href="/terms" target="_blank">condizioni generali</a> del servizio.</label>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="checkbox" class="filled-in blue" name="policy" id="policy" data-error="Accettare le condizioni" required>
+                    <label for="policy">Dichiaro di aver letto e di approvare espressamente gli <a href="" data-toggle="modal" data-target="#popup-policy">articoli dal 3 al 16</a> delle suddette condizioni e ai sensi degli art. 1341 e 1342 del Codice Civile.</label>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="modal fade" id="popup-policy" role="dialog" data-keyboard="false">
+                <div class="modal-dialog modal-lg mt-50" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark-blue">
+                            <!-- <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a> -->
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title text-uppercase">Clausole</h4>
+                        </div>
+                        <div class="modal-body bg-blue">
+                            <ul class="fs-15">
+                                <li style="margin: 5px 0">Art. 3 (Creazione dell’Inserzione);</li>
+                                <li style="margin: 5px 0">Art. 5 (Utilizzo dell'Inserzione ); 6 (Pagamenti); 7 (Accessi non autorizzati);</li>
+                                <li style="margin: 5px 0">Art. 8 (Statistiche di Utilizzo);</li>
+                                <li style="margin: 5px 0">Art. 10 (Dichiarazioni e Garanzie);</li>
+                                <li style="margin: 5px 0">Art. 11 (Limitazione di Garanzia);</li>
+                                <li style="margin: 5px 0">Art. 12 (Limitazione di Responsabilità);</li>
+                                <li style="margin: 5px 0">Art. 13 (Recesso e risoluzione);</li>
+                                <li style="margin: 5px 0">Art. 15 (Varie);</li>
+                                <li style="margin: 5px 0">Art. 16 (Legge applicabile e foro esclusivamente competente).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="well payment-info">
+                        <div class="vertical-ribbon">
+                            <img src="assets/img/ico-basket.png" class="img-responsive m-auto mt-15">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                        <img src="assets/img/bg-payment-mode.png" class="img-responsive m-auto pt-15 mb-15-minus">
+                                    </div>
+                                    <div class="col-md-8 box-info">
+                                        <p class="fs-15 text-uppercase">
+                                            Modalità di pagamento
+                                        </p>
+                                        <p class="mt-25">
+                                            <img src="assets/img/img-payment-mode.png" class="img-responsive">
+                                        </p>
+                                        <p class="fs-15 mt-25">
+                                            <b>Acquista in sicurezza con il sistema elettronico di Banca Sella.</b>
+                                            Potrai scegliere la modalità di pagamento dal pannello di controllo dopo aver cliccato su “procedi con il pagamento”.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{#if userSession.showPrice}}
+                            <div class="col-md-4">
+                                <p class="fs-15 text-uppercase">
+                                    Importo da pagare:
+                                </p>
+                                <table class="table flat mt-25 fs-16">
+                                    <tr class="current_price f-bold">
+                                        <td class="py-6">Totale</td>
+                                        <td class="py-6 text-right">€<span class="value">{{formattedTotalPrice.[0]}}</span>,<span class="decimals">{{formattedTotalPrice.[1]}}</span></td>
+                                    </tr>
+                                    {{#if userSession.tailored}}
+                                    <tr class="tailor">
+                                        <!-- in caso di tailor creativity, + 50  -->
+                                        <td class="py-6">+ CREATIVITÀ TAILOR MADE</td>
+                                        <td class="py-6 text-right">€<span class="value">50</span>,<span class="decimals">00</span></td>
+                                    </tr>
+                                    {{/if}}
+                                    <tr class="vat">
+                                        <td class="py-6">+ IVA (22%)</td>
+                                        <td class="py-6 text-right">€<span class="value">{{formattedVat.[0]}}</span>,<span class="decimals">{{formattedVat.[1]}}</span></td>
+                                    </tr>
+                                    <tr class="total f-bold color-orange">
+                                        <td class="py-6">Totale complessivo</td>
+                                        <td class="py-6 text-right fs-20">€<span class="value">{{formattedTotalVatPrice.[0]}}</span>,<span class="decimals">{{formattedTotalVatPrice.[1]}}</span></td>
+                                    </tr>
+                                </table>
+                                <!--p class="fs-52 color-orange mt-35">€ {{formattedTotalPrice.[0]}}<small>,{{formattedTotalPrice.[1]}}</small></p-->
+                            </div>
+                            {{/if}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-35">
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+                    <button type="submit" class="btn btn-adm text-uppercase m-30">Procedi con il pagamento</button>
+                </div>
+            </div>
+        </form>
+        {{else}}
+        <div class="row mt-50">
+            <div class="col-md-12">
+                <div class="well payment-info pb-0">
+                    <div class="vertical-ribbon">
+                        <img src="assets/img/ico-basket.png" class="img-responsive m-auto mt-15">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                    <img src="assets/img/bg-payment-mode.png" class="img-responsive m-auto pt-15 mb-15-minus">
+                                </div>
+                                <div class="col-md-8 box-info">
+                                    <p class="fs-15 text-uppercase">
+                                        Stai per completare l'ordine
+                                    </p>
+                                    <p class="fs-15 mt-25">
+                                        Dopo aver effettuato il tuo ordine, potrai accedere alla dashboard, dove sarà possibile consultare lo stato delle tue campagne e verificare gli insights una volta live.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if userSession.showPrice}}
+                        <div class="col-md-4">
+                            <p class="fs-15 text-uppercase">
+                                Importo da pagare:
+                            </p>
+                            <table class="table flat mt-25 fs-16">
+                                <tr class="current_price f-bold">
+                                    <td class="py-6">Totale</td>
+                                    <td class="py-6 text-right">€<span class="value">{{formattedTotalPrice.[0]}}</span>,<span class="decimals">{{formattedTotalPrice.[1]}}</span></td>
+                                </tr>
+                                {{#if userSession.tailored}}
+                                <tr class="tailor">
+                                    <!-- in caso di tailor creativity, + 50  -->
+                                    <td class="py-6">+ CREATIVITÀ TAILOR MADE</td>
+                                    <td class="py-6 text-right">€<span class="value">50</span>,<span class="decimals">00</span></td>
+                                </tr>
+                                {{/if}}
+                                <tr class="vat">
+                                    <td class="py-6">+ IVA (22%)</td>
+                                    <td class="py-6 text-right">€<span class="value">{{formattedVat.[0]}}</span>,<span class="decimals">{{formattedVat.[1]}}</span></td>
+                                </tr>
+                                <tr class="total f-bold color-orange">
+                                    <td class="py-6">Totale complessivo</td>
+                                    <td class="py-6 text-right fs-20">€<span class="value">{{formattedTotalVatPrice.[0]}}</span>,<span class="decimals">{{formattedTotalVatPrice.[1]}}</span></td>
+                                </tr>
+                            </table>
+                            <!--p class="fs-52 color-orange mt-35">€ {{formattedTotalPrice.[0]}}<small>,{{formattedTotalPrice.[1]}}</small></p-->
+                        </div>
+                        {{/if}}
+                    </div>
+
+                </div>
+            </div>
+            <div data-page-ordine-panel class="p-15 text-center">
+                <button type="button" class="btn btn-adm btn-back text-uppercase m-30" style="margin-left:0">Indietro</button>
+                <button type="button" class="btn btn-adm text-uppercase m-30" data-page-ordine>Invia ordine</button>
+            </div>
+        </div>
+        {{/if}}
+    </script>
+</div>
+<script>
+    $(document).ready(function () {
+        var currentPage = navigationService.currentPage;
+        
+        console.log('keyw',currentPage.userSession);
+        
+        $('[data-toggle="tooltip"]').tooltip();
+
+        /* Slider Preview */
+        var handleSliderNavigation = function (item) {
+
+            var paginatorsLink = currentPage.html.find('.switch-preview li');
+
+            paginatorsLink.each(function (i) {
+                if (item != i) {
+                    $(paginatorsLink[i]).removeClass('selected');
+                } else {
+                    $(paginatorsLink[i]).addClass('selected');
+                }
+                $(paginatorsLink[i]).click(function () {
+                    owl.trigger('to.owl.carousel', i);
+                });
+            });
+
+        };
+
+        var handleSlideChange = function (item) {
+            $('#rcreativityTitle').html(currentPage.pagerTooltips[item]);
+        };
+
+        var owl = currentPage.html.find('#slider-preview');
+        owl.on('initialize.owl.carousel', function (elem) {
+            handleSliderNavigation(elem, this);
+        });
+        owl.on('changed.owl.carousel', function (event) {
+            var items = event.item.count; // Number of items
+            var item = event.item.index;
+
+            var left = currentPage.html.find('.container-slider-preview').find('.prev-preview'), right = currentPage.html.find('.container-slider-preview').find('.next-preview');
+
+            handleSliderNavigation(item);
+            handleSlideChange(item);
+
+            if (item == 0) {
+                left.hide();
+            } else {
+                left.show();
+            }
+            if (item == items - 1) {
+                right.hide();
+            } else {
+                right.show();
+            }
+        });
+        owl.owlCarousel({
+            loop: false,
+            nav: false,
+            dots: false,
+            margin: 10,
+            items: 1
+        });
+        // Go to the next item
+        $('.next-preview').click(function () {
+            owl.trigger('next.owl.carousel');
+        });
+        // Go to the previous item
+        $('.prev-preview').click(function () {
+            owl.trigger('prev.owl.carousel');
+        });
+
+        /*
+         * Select
+         * https://silviomoreto.github.io/bootstrap-select/
+         *
+         */
+         
+        //if($('.selectpicker option').length == 1) $('.selectpicker').attr('disabled', true);
+        //$('.selectpicker').selectpicker({size:'5'});
+        //$('.selectpicker option:first').prop('selected',true);
+        
+        // call to action
+        
+        var cta_img = {};
+        
+        function change_cat_image(type){
+            owl.find('img.cta').remove();
+            
+            if(!type || type == 'null') return;
+            
+            owl.find('.smartphone:not(.nocta) .preview-display').prepend('<img class="cta" src="/assets/img/cta/smartphone-'+type+'.png" />');
+            owl.find('.tablet .preview-display').prepend('<img class="cta" src="/assets/img/cta/tablet-'+type+'.png" />');
+        }
+        
+        var pdvs = {}; // riorganizzo pdv
+        var tb = currentPage.html.find('tr[data-id_pdv]:not(.active)').each(function(){
+            var t = $(this), address = t.find('td:last').text();
+            if(!pdvs[address]) pdvs[address] = [];
+            if(pdvs[address].length > 0) t.find('td:last').text('Pianificazione '+pdvs[address].length);
+            pdvs[address].push(t.attr('data-index',t.index()));
+        }).closest('tbody').empty();
+        
+        $.each(pdvs,function(i,e){
+            $.each(e,function(ii,ee){
+                tb.append(ee);
+            });
+        });
+        
+        currentPage.html.on('click','tr[data-id_pdv]:not(.active)',function(){
+
+            var t = $(this), id = t.data('id_pdv'), index = t.data('index'), parent = t.closest('tbody');
+            
+            parent.find('tr').removeClass('active').filter(t).addClass('active');
+            
+            currentPage.selectPickerChanged(index);
+  
+            if(navigationService._userSession.manualData.isSet == false) return;
+                
+            $.each(navigationService._userSession.pdvs, function (i, e) {
+            
+                if(e.id != id) return true;
+                
+                var type = "both";
+                if (e.clickToMap === null || e.clickToCall === null) {
+                    if (e.clickToMap !== null) type = "map";
+                    else type = "call";
+                }
+                
+                change_cat_image(type);
+            });
+            
+        }).find('tr[data-id_pdv]:first').trigger('click');
+        
+        // single/multiple
+        if( navigationService._userSession.pdvs.length > 1) currentPage.html.find('[data-pdv]').removeClass('hide');
+
+        var form = $('form#invoice-form');
+        
+        //console.log('einvoice custom 2',form);
+        
+        form.validator({
+            custom: {
+                efield: function($el) {
+                    var val = '', valid = false;
+                    form.find('[data-efield]').each(function(){
+                        val += $(this).val();
+                    });
+                    
+                    if(val != '') valid = true;
+                    
+                    console.log('VAL: ',val);
+                    
+                    if (!valid) {
+                        return "Inserire o il codice destinatario di 7 cifre o un indirizzo email PEC nel campo dedicato"
+                    }
+                }
+            }
+        });
+        
+        currentPage.html.find('[data-inserzione] p').each(function(i,e){
+            var e = $(this);
+            if(i == 0) e.prepend('Titolo: ');
+            else if(i == 1) e.prepend('URL di visualizzazione:  ');
+            else if(i == 2) e.prepend('Descrizione:  ');
+        });
+        
+    });
+    
+</script>

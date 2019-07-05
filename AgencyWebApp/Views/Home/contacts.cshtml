@@ -1,0 +1,180 @@
+﻿@*@model AgencyWebApp.ViewModels.ContactsViewModel
+<div id="page">
+
+    <div class="container-fluid bg-contacts"></div>
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12 mt-60-minus mb-45">
+
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading text-center">
+                        <img src="assets/img/logo-admove-big.png" class="mt-10 mb-120-minus">
+                    </div>
+                    <div class="panel-body p-15">
+
+                        <div class="row mt-85">
+
+                            <div class="col-md-12 mt-35">
+
+                                <div class="row-eq-height-responsive">
+
+                                    <div class="col-md-4">
+                                        <h1 class="m-0 color-sky-blue text-uppercase fs-24 mt-10 mb-10">Contattaci</h1>
+
+                                        <p class="fs-15">
+                                            Puoi trovare tutte le informazioni sul sito <a class="color-orange" title="Admove" href="https://admove.com/" target="_blank">www.admove.com</a> e sulle FAQ <a class="color-orange" title="FAQ" href="https://admove.com/faq/" target="_blank">www.admove.com/faq/</a>.<br>
+                                            Se non hai trovato la risposta ai tuoi quesiti non esitare a scriverci.<br>I tuoi feedback sono essenziali per aiutarci a migliorare.
+                                        </p>
+
+                                        <h2 class="m-0 color-sky-blue fs-16 mt-50 mb-10">Hai dubbi o domande?</h2>
+                                        <p class="fs-15">Un consulente Admove è a tua disposizione dal Lunedì al Venerdì dalle 9:00 alle 18:00.</p>
+
+                                        <h2 class="m-0 color-sky-blue fs-16 mt-50 mb-10">Chiamaci al numero</h2>
+                                        <p class="fs-20 color-orange">+39 02 35948 198</p>
+
+                                    </div>
+
+                                    <div class="col-md-8 form-contacts">
+
+                                        @if (Model.Sent)
+                                        {
+                                            <h1>Messaggio inviato</h1>
+                                        }
+                                        else
+                                        {
+                                        <form data-toggle="validator" role="form" asp-action="contacts">
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-35">
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-addon"><span class="input-ico ico-user"></span></span>
+                                                            <input type="text" class="form-control b-radius-right-2" asp-for="FullName" required="" data-error="Campo obbligatorio">
+                                                            <label class="placeholder">Nome e cognome</label>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-35">
+                                                        <div class="input-group input-group-lg">
+                                                            <span class="input-group-addon"><span class="input-ico ico-mail"></span></span>
+                                                            <input type="email" class="form-control b-radius-right-2" asp-for="Email" required="" data-error="Campo obbligatorio">
+                                                            <label class="placeholder">Indirizzo email</label>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group mt-35">
+                                                        <div class="input-group input-group-lg select-input col-xs-12">
+                                                            <select class="selectpicker" data-width="100%" asp-for="Subject" data-style="btn-select-subject" required>
+                                                                <option value="" selected disabled>Oggetto del messaggio</option>
+                                                                <option value="Fatturazione">Fatturazione</option>
+                                                                <option value="Reportistica">Reportistica</option>
+                                                                <option value="Segnalazione errore">Segnalazione errore</option>
+                                                                <option value="Richiesta informazioni">Richiesta informazioni</option>
+                                                                <option value="Altro">Altro</option>
+                                                            </select>
+                                                            <label class="placeholder active">Oggetto</label>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mt-35">
+                                                        <div class="input-group input-group-lg textarea-input col-xs-12">
+                                                            <textarea class="form-control b-radius-right-2" asp-for="Message" rows="4" data-length="220" required=""></textarea>
+                                                            <label class="placeholder">Il tuo messaggio</label>
+                                                        </div>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group mt-25">
+                                                        <input type="checkbox" class="filled-in blue" name="terms" id="privacy" data-error="Accettare l'informativa sulla Privacy" required>
+                                                        <label for="privacy">Ho letto e accetto l'<a asp-action="privacy" title="Privacy" target="_blank">Informativa sulla Privacy</a></label>
+                                                        <div class="help-block with-errors"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="g-recaptcha mt-25" data-sitekey="6LcY4iYUAAAAAAZVLQe-u3OlElaeH_RmfLBA5ve5"></div>
+                                                    <span asp-validation-for="Captcha"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="hidden-xs col-sm-6">
+                                                    <a href="/" type="button" class="btn btn-adm btn-back text-uppercase my-35">Indietro</a>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <button type="submit" class="btn btn-adm text-uppercase my-35 pull-right-sm">Invia richiesta</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ 
+
+</div>
+
+<script src="~/dist/site.min.js" asp-append-version="true"></script>
+<script src='//www.google.com/recaptcha/api.js'></script>
+<script>
+
+    $(document).ready(function () {
+
+        // inizializzo il framework
+        CMS.init();
+
+        /* Bootstrap Tooltip */
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+
+        /*
+         * Select
+         * https://silviomoreto.github.io/bootstrap-select/
+         *
+         */
+        $(function () {
+            $('.selectpicker').selectpicker();
+        });
+
+    });
+
+
+</script>*@

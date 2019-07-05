@@ -1,0 +1,335 @@
+<style>
+    .w100p{width:100% !important}
+    .bulk .interest,
+    .plan .interest{line-height:40px;text-align:left;font-size:15px;height:auto !important;min-height:40px;margin:10px 0}
+    .plan .interest{width:43%;padding-bottom:0;margin-bottom:0;}
+    .plan .interest span:last-child,
+    .bulk .interest span:last-child{margin-left:10px}
+    .bulk h2.small{font-size:10px;font-weight: bold}
+</style>
+<!--div class="container-fluid bg-light-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="media py-10">
+                    <div class="media-left media-middle br-light-1" href="#">
+                        <img class="media-object" src="assets/img/logo-text.png" alt="AdMove">
+                    </div>
+                    <div class="media-body">
+                        <p class="m-0 px-10 color-dark-blue"><span class="badge bg-gray pull-left mr-10"><i>i</i></span>Riepilogo della tua campagna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid bg-top">
+    <div class="row bg-grad">
+        <div class="col-md-12 text-center mb-160"></div>
+    </div>
+</div-->
+
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container" data-fluid>
+            <div class="new-title uppercase mb-20 mb-160">RIEPILOGO DELLA CAMPAGNA</div>
+        </div>
+    </div>
+</div>
+
+<div class="container fluid">
+    <div class="row mt-50">
+        <script id="riepilogo-bulk" type="text/x-handlebars-template">
+            <div class="col-md-6 mt-120-minus">
+                <!--div class="panel panel-default shadow">
+                <div class="panel-heading">
+                    <span class="text-uppercase">Cliente: </span><b class="color-orange uppercase">{{BusinessName}}</b>
+                </div>
+            </div-->
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">I tuoi dati</span>
+                    </div>
+                    <div class="panel-body">
+                        <p class="mb-5 fs-16">
+                            Nome agenzia:
+                            <span class="color-orange fs-18 uppercase"><b>{{AgencyName}}</b></span>
+                        </p>
+                        <p class="mb-5 fs-16">
+                            Recapito telefonico:
+                            <span class="color-orange fs-18"><b>{{AgencyPhone}}</b></span>
+                        </p>
+                        <p class="mb-5 fs-16">
+                            Nome Referente:
+                            <span class="color-orange fs-18"><b>{{ReferentName}} {{ReferentSurame}}</b></span>
+                        </p>
+                        <p class="mb-5 fs-16">
+                            Email referente:
+                            <span class="color-orange fs-18"><b>{{ReferentEmail}}</b></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">La tua campagna</span>
+                    </div>
+                    <div class="panel-body">
+                        <p class="mb-5 fs-16">
+                            Hai scelto:
+                            <span class="color-orange fs-18"><b>{{ProductDesc}}</b></span>
+                        </p>
+                        <!--<p class="mb-5 fs-16">
+                        Obiettivo della campagna:
+                        <span class="color-orange fs-18"><b>{{userSession.objectiveDescription}}</b></span>
+                    </p>-->
+                        <p class="m-0 fs-16">
+                            Reach:
+                            <span class="color-orange fs-18"><b>{{Target}} {{TargetName}}</b></span>
+                        </p>
+                    </div>
+                </div>
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">Punti di pianificazione</span>
+                    </div>
+                    <div class="panel-body bulk">
+                        <div class="interest w100p">
+                            <span class="interest-ico ico-location-pin" data-toggle="tooltip" data-placement="bottom" title=""></span>
+                            <span>Punti vendita: <b class="color-orange">{{TotalPdv}}</b></span>
+                        </div>
+                        <div class="interest w100p m-0">
+                            <span class="interest-ico ico-gps" data-toggle="tooltip" data-placement="bottom" title=""></span>
+                            <span>Pianificazioni totali: <b class="color-orange">{{TotalCde}}</b></span>
+                        </div>
+                        <!--div class="text-right">
+                        <a type="button" class="btn btn-adm alternative text-uppercase mt-15">Scarica PDF</a>
+                    </div-->
+                    </div>
+                </div>
+                <div class="panel panel-default shadow">
+                    <div class="panel-heading">
+                        <span class="text-uppercase">Durata</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media py-10">
+                            <div class="media-left media-middle pr-25">
+                                <div class="bg-white b-radius-50p p-15">
+                                    <img class="media-object" src="assets/img/ico-calendar.png" alt="">
+                                </div>
+                            </div>
+                            <div class="media-body media-middle">
+                                <p class="mb-5 fs-16">
+                                    La tua campagna partirà
+                                    <span class="color-orange fs-18"><b>{{StartDate}}</b></span>
+                                </p>
+                                <p class="m-0 fs-16">
+                                    e terminerà orientativamente
+                                    <span class="color-orange fs-18"><b>{{EndDate}}</b></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <div class="col-md-6 mt-120-minus">
+                <div class="mb-35">
+                    <p class="color-sky-blue fs-17 text-uppercase text-center my-15">Anteprima grafica</p>
+                    <p class="fs-16 text-center mt-35" id="rcreativityTitle">LANDING PAGE PER SMARTPHONE</p>
+                    <ul class="switch-preview text-center">
+                        <li class="switch-smartphone"></li>
+                        <li class="switch-tablet"></li>
+                        <li class="switch-banner-1"></li>
+                        <li class="switch-interstitial"></li>
+                        <li class="switch-banner-2"></li>
+                        <li class="switch-banner-3"></li>
+                    </ul>
+                    <div class="container-slider-preview">
+                        <div id="slider-preview" class="owl-carousel">
+
+                            <div class="item-preview-device">
+                                <div class="smartphone">
+                                    <div class="mask-top"></div>
+                                    <div class="preview-display">
+                                        <img src="" data-banner-size="Format640x1024" style="cursor: zoom-in;">
+                                        <div class="approvingly" data-format="Format640x1024"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                                    </div>
+                                    <div class="mask-bottom"></div>
+                                </div>
+                            </div>
+
+                            <div class="item-preview-device">
+                                <div class="tablet">
+                                    <img src="" data-banner-size="Format2020x1320" style="cursor: zoom-in;">
+                                    <div class="approvingly" data-format="Format2020x1320"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+                                </div>
+                            </div>
+
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <img src="" data-banner-size="Format300x250" style="cursor: zoom-in;">
+                                    <div class="approvingly" data-format="Format300x250"><span class="fs-17 text-uppercase">In<br>approvazione</span></div>
+
+                                </div>
+                            </div>
+
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <img src="" data-banner-size="Format320x480" style="cursor: zoom-in;">
+                                    <div class="approvingly" data-format="Format320x480"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                                </div>
+                            </div>
+
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <img src="" data-banner-size="Format320x50" style="cursor: zoom-in;">
+                                    <div class="approvingly" data-format="Format320x50"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                                </div>
+                            </div>
+
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <img src="" data-banner-size="Format728x90" style="cursor: zoom-in;">
+                                    <div class="approvingly" data-format="Format728x90"><span class="fs-17 text-uppercase">In approvazione</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prev-preview"></div>
+                        <div class="next-preview"></div>
+                    </div>
+                </div>
+            </div>
+</div>
+    <div class="row mb-35">
+            <!--dati ordine-->
+        <div class="col-md-12">
+            <script id="riepilogo-bulk-ordine" type="text/x-handlebars-template">
+                <div class="well payment-info pb-0">
+                    <div class="vertical-ribbon">
+                        <img src="assets/img/ico-basket.png" class="img-responsive m-auto mt-15">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4 hidden-sm hidden-xs text-center">
+                                    <img src="assets/img/bg-payment-mode.png" class="img-responsive m-auto pt-15 mb-15-minus">
+                                </div>
+                                <div class="col-md-8 box-info">
+                                    <p class="fs-15 text-uppercase">
+                                        Stai per completare l'ordine
+                                    </p>
+                                    <p class="fs-15 mt-25">
+                                        Dopo aver effettuato il tuo ordine, potrai accedere alla dashboard, dove sarà possibile consultare lo stato delle tue campagne e verificare gli insights una volta live.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <p class="fs-15 text-uppercase">
+                                Importo da pagare:
+                            </p>
+                            <table class="table flat mt-25 fs-16">
+                                <tr class="current_price f-bold">
+                                    <td class="py-6">Totale</td>
+                                    <td class="py-6 text-right">€<span class="value">{{formattedTotalPrice.[0]}}</span>,<span class="decimals">{{formattedTotalPrice.[1]}}</span></td>
+                                </tr>
+                                <!--{{#if userSession.tailored}}
+                    <tr class="tailor">
+                        <td class="py-6">+ CREATIVITÀ TAILOR MADE</td>
+                        <td class="py-6 text-right">€<span class="value">50</span>,<span class="decimals">00</span></td>
+                    </tr>
+                    {{/if}}-->
+                                <tr class="vat">
+                                    <td class="py-6">+ IVA (22%)</td>
+                                    <td class="py-6 text-right">€<span class="value">{{formattedVat.[0]}}</span>,<span class="decimals">{{formattedVat.[1]}}</span></td>
+                                </tr>
+                                <tr class="total f-bold color-orange">
+                                    <td class="py-6">Totale complessivo</td>
+                                    <td class="py-6 text-right fs-20">€<span class="value">{{formattedTotalVatPrice.[0]}}</span>,<span class="decimals">{{formattedTotalVatPrice.[1]}}</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+             </script>
+        </div>
+        <!-- fine dati ordine -->
+        <div class="col-xs-12 text-center">
+            <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+            <button type="button" class="btn btn-adm text-uppercase m-30" data-page-ordine-panel>Invia ordine</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var currentPage = navigationService.currentPage;
+        /* Bootstrap Tooltip */
+        
+        $('[data-toggle="tooltip"]').tooltip();
+
+        /* Slider Preview */
+        var handleSliderNavigation = function (item) {
+
+            var paginatorsLink = currentPage.html.find('.switch-preview li');
+
+            paginatorsLink.each(function (i) {
+                if (item != i) {
+                    $(paginatorsLink[i]).removeClass('selected');
+                } else {
+                    $(paginatorsLink[i]).addClass('selected');
+                }
+                $(paginatorsLink[i]).click(function () {
+                    owl.trigger('to.owl.carousel', i);
+                });
+            });
+
+        };
+
+        var handleSlideChange = function (item) {
+            $('#rcreativityTitle').html(currentPage.pagerTooltips[item]);
+        };
+
+        var owl = currentPage.html.find('#slider-preview');
+        owl.on('initialize.owl.carousel', function (elem) {
+            handleSliderNavigation(elem, this);
+        });
+        owl.on('changed.owl.carousel', function (event) {
+            var items = event.item.count; // Number of items
+            var item = event.item.index;
+
+            var left = currentPage.html.find('.container-slider-preview').find('.prev-preview'), right = currentPage.html.find('.container-slider-preview').find('.next-preview');
+
+            handleSliderNavigation(item);
+            handleSlideChange(item);
+
+            if (item == 0) {
+                left.hide();
+            } else {
+                left.show();
+            }
+            if (item == items - 1) {
+                right.hide();
+            } else {
+                right.show();
+            }
+        });
+        owl.owlCarousel({
+            loop: false,
+            nav: false,
+            dots: false,
+            margin: 10,
+            items: 1
+        });
+        // Go to the next item
+        $('.next-preview').click(function () {
+            owl.trigger('next.owl.carousel');
+        });
+        // Go to the previous item
+        $('.prev-preview').click(function () {
+            owl.trigger('prev.owl.carousel');
+        });
+
+    });
+</script>

@@ -1,0 +1,131 @@
+<div class="container-fluid bg-top">
+    <div class="row bg-grad">
+        <div class="col-md-12 text-center mb-200">
+            <img class="mt-35" src="assets/img/logo-admove.png" alt="AdMove.com">
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row mt-35">
+        <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 mt-200-minus">
+
+            <h3 class="fs-26 text-uppercase text-center">Bentornato <span class="color-red" data-agency></span>.<br>Scegli quale strumento utilizzare.</h3>
+
+            <div class="row content-flusso">
+
+                <div class="col-lg-3 col-md-4 col-sm-6 px-5 flusso">
+                    <div class="panel panel-default card flusso selected" data-link="scelta-categoria" data-title="ADvanced" data-desc="Scegli tu il canale di Mobile Advertising più adeguato all’attività che vuoi promuovere e finalizza in pochi minuti la campagna pubblicitaria.">
+                        <div class="panel-heading orange"><span class="text-uppercase">ADvanced</span></div>
+                        <div class="panel-body">
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/flusso-1-avanzato-off.png" class="flusso-off" alt="">
+                                <img src="assets/img/flusso-1-avanzato-on.png" class="flusso-on" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 px-5 flusso">
+                    <div class="panel panel-default card flusso" data-link="scelta-categoria-2" data-title="ADvised" data-desc="Usa l’algoritmo di Admove.com per scoprire il canale più efficiente e crea in real time le campagne per i tuoi Inserzionisti.">
+                        <div class="panel-heading orange"><span class="text-uppercase">ADvised</span></div>
+                        <div class="panel-body">
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/flusso-2-basic-off.png" class="flusso-off" alt="">
+                                <img src="assets/img/flusso-2-basic-on.png" class="flusso-on" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-4 col-sm-6 px-5 flusso bulk">
+                    <div class="panel panel-default card flusso" data-link="bulk-pianificazione" data-title="BulkUpload" data-desc="Carica in modo facile e veloce diversi Punti Vendita per il canale Display, scegli il modello più adatto e lancia subito la campagna.">
+                        <div class="panel-heading orange"><span class="text-uppercase">Bulk Upload</span></div>
+                        <div class="panel-body">
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/flusso-bulk-off.png" class="flusso-off" alt="">
+                                <img src="assets/img/flusso-bulk-on.png" class="flusso-on" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 px-5 flusso">
+                    <div class="panel panel-default card flusso" data-link="home-flusso-3" data-title="Geotool" data-desc="Scopri le potenzialità del territorio nei dintorni dell’Inserzionista e analizzale per creare le campagne di Geo marketing in maniera efficace.">
+                        <div class="panel-heading orange"><span class="text-uppercase">Geotool</span></div>
+                        <div class="panel-body">
+                            <div class="thumbnail-adv">
+                                <img src="assets/img/flusso-3-light-off.png" class="flusso-off" alt="">
+                                <img src="assets/img/flusso-3-light-on.png" class="flusso-on" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row mt-50 values content-flusso">
+        <div class="col-md-10 col-md-offset-1">
+
+            <div class="media mb-15">
+                <div class="media-left media-middle pr-15">
+                    <img class="media-object" src="assets/img/ico-info.png">
+                </div>
+                <div class="media-body">
+                    <span class="fs-20 color-sky-blue m-0"><span class="color-orange" id="nome-flusso" data-title></span></span>
+                </div>
+            </div>
+
+            <p class="fs-16 lh-1-5" data-desc></p>
+
+        </div>
+    </div>
+
+    <div class="row mb-35">
+        <div class="col-xs-12 text-center">
+            <a href="#" id="link-flusso" data-navigo class="btn btn-adm text-uppercase m-30">Avanti</a>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        $('body').on('click', '.card', function () {
+            var t = $(this), parent = t.parent().parent(), link = t.data('link'), title = t.data('title'), desc = t.data('desc');
+
+            var elements = parent.find('.card');
+            if (elements.lenght <= 1) {
+                return false;
+            }
+
+            navigationService.currentPage.userSession.isFlow2 = false;
+
+            // Eccezione per impostare il flag del flusso
+            if (link == "scelta-categoria-2") {
+                link = "scelta-categoria";
+
+                navigationService.currentPage.userSession.isFlow2 = true;
+            }
+
+            // CAMBIO LINK AL BUTTON
+            $('#link-flusso').attr('href', link);
+
+            //CAMBIO IL NOME e DESC DEL FLUSSO SCELTO
+            $('.values [data-title]').html(title);
+            $('.values [data-desc]').html(desc);
+
+            if (t.hasClass('selected')) return false;
+            else {
+                t.addClass('selected');
+                //console.log(parent);
+                parent.find('.card').not(t).removeClass('selected');
+            }
+        }).find('.card:first').trigger('click');
+    });
+
+</script>

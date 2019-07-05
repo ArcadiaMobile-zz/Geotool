@@ -1,0 +1,179 @@
+<style>
+    .wrap {
+        max-width: 380px;
+        margin: 0 auto;
+    }
+
+        .wrap .input-group {
+            width: 100% !important;
+        }
+
+        .wrap label.placeholder {
+            top: 7px;
+            left: 0px;
+        }
+
+            .wrap label.placeholder.active {
+                top: -20px;
+            }
+
+        .wrap .has-error .help-block {
+            padding: 0;
+        }
+
+    .background_branding_container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+
+    .background-image {
+        width: auto;
+        height: auto;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+    .panel-register {
+        position: absolute;
+        width: 500px;
+        height: 100%;
+        top: 0;
+        right: 0;
+        background: #0d3340;
+        padding: 20px 25px 30px 25px;
+        text-align: center;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 1;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        .panel-register .has-error .input-group-addon {
+            background-color: #0d3340;
+        }
+
+    .logo {
+        margin: 20px 0 0 0;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+    }
+
+    @media screen and (max-width: 600px) {
+        .panel-register {
+            width: 100%;
+            padding: 20px 20px 30px 20px;
+        }
+    }
+</style>
+
+<div class="background_branding_container">
+    <img class="background-image" src="assets/img/login_signin.jpg" alt="Illustration">
+    <div class="panel-register">
+        <img class="logo" src="assets/img/logo-hp.png" alt="AdMove.com">
+        <div class="text-left" data-signup-form>
+            <h2 class="color-sky-blue fs-20 text-center mt-25">Crea il tuo account AdMove.com</h2>
+            <form data-toggle="validator" role="form" class="">
+                <div class="wrap pt-15">
+                    <div class="form-group mt-35">
+                        <div class="input-group">
+                            <input type="text" name="business_name" class="form-control b-radius-right-2" required data-error="Campo obbligatorio">
+                            <label class="placeholder">Ragione Sociale azienda</label>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="row mt-35 mb-5">
+                        <div class="form-group col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <input type="text" name="name" class="form-control b-radius-right-2" required data-error="Campo obbligatorio">
+                                <label class="placeholder">Nome referente</label>
+                            </div>
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                        <div class="form-group col-md-6 col-xs-12">
+                            <div class="input-group">
+                                <input type="text" name="surname" class="form-control b-radius-right-2" required data-error="Campo obbligatorio">
+                                <label class="placeholder">Cognome referente</label>
+                            </div>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-20">
+                        <div class="input-group">
+                            <input type="email" name="email" class="form-control b-radius-right-2" required data-error="Inserire una email valida">
+                            <label class="placeholder">Email referente</label>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group mt-35">
+                        <div class="input-group">
+                            <input type="password" name="password" id="password" class="form-control b-radius-right-2" data-minlength="8" maxlength="15" pattern="^((?=.*[0-9])(?=.*[a-zA-Z])(\S+){8})$" data-error="Inserire una password corretta" required>
+                            <label class="placeholder">Scegli una password</label>
+                            <span class="input-group-addon bg-transparent"><span class="info-badge pull-left ml-15" data-toggle="tooltip" data-placement="top" title="" data-original-title="8-15 caratteri, almeno un numero e una lettera"></span></span>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group mt-35">
+                        <div class="input-group">
+                            <input type="password" name="password_repeat" class="form-control b-radius-right-2" data-match="#password" data-match-error="La password inserita non coincide" required>
+                            <label class="placeholder">Ripeti la password</label>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group mt-35">
+                        <div class="input-group">
+                            <input type="tel" name="phone" class="form-control b-radius-right-2" _required data-error="Campo obbligatorio">
+                            <label class="placeholder">Recapito telefonico azienda</label>
+                        </div>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="row mt-20">
+
+                        <div class="form-group mt-25 col-md-6">
+                            <input type="checkbox" class="filled-in" name="privacy" id="privacy" data-error="Accetto di ricevere comunicazioni relativi ai servizi Admove.com">
+                            <label for="privacy"><a href="privacy" target="_blank" class="color-sky-blue">GDPR 2016/679</a></label>
+                            <div class="help-block with-errors">
+                                <ul class="list-unstyled">
+                                    <li style="color:#A94442;">Accetto di ricevere comunicazioni relativi ai servizi Admove.com</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-25 col-md-6">
+                            <input type="checkbox" class="filled-in" name="terms" id="terms" data-error="Accetta i termini e condizioni" required>
+                            <label for="terms"><a href="terms" target="_blank" class="color-sky-blue">Termini e condizioni</a></label>
+                            <div class="help-block with-errors"></div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-adm mt-25" type="submit">Crea account</button>
+                    <!--<p class="fs-13 mt-35">
+                        Clicca sul link che riceverai via email per validare l’account e proseguire. Ricorda di controllare anche nella cartella Posta indesiderata.
+                    </p>-->
+                </div>
+
+            </form>
+        </div>
+
+        <div data-signup-completed style="display: none">
+            <!-- Offer Conversion: AdMove Agenzie -->
+            <img src="http://hicmobile.go2cloud.org/aff_l?offer_id=414" width="1" height="1" />
+            <!-- // End Offer Conversion -->
+
+            <h1>Registrazione effettuata!</h1>
+            <p>Adesso puoi realizzare la tua pubblicità su Smartphone e Tablet in pochi e semplici passaggi. Una volta partita, potrai vederne le performances sulla tua Dashboard</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var currentPage = navigationService.currentPage;
+
+        /* Bootstrap Tooltip */
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+</script>

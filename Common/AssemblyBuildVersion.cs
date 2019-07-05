@@ -1,0 +1,1 @@
+﻿[assembly: ArcadiaMobile.ThinkBig.Common.BuildVersionAttribute("1.0")]

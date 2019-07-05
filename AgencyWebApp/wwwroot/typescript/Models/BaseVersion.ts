@@ -1,0 +1,3 @@
+﻿interface BaseVersion {
+    SysTimestamp: number[];
+}

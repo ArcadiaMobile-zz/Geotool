@@ -1,0 +1,568 @@
+<style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #container-map {
+        position: relative;
+        min-height: 400px;
+    }
+
+    #rmap {
+        margin-left: 10px;
+        height: 400px;
+    }
+
+    .ib {
+        display: inline-block
+    }
+
+    .fl-left {
+        float: left
+    }
+
+    .a-right {
+        text-align: right
+    }
+
+
+        .info h2.title {
+            color: #e89c2a;
+            padding: 0;
+            margin: 5px 0;
+            font-size: 16px
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #2e3e40
+        }
+
+
+    .modal-header {
+        background-color: #082731;
+    }
+    /*.modal-body{padding:15px;background:rgba(255,255,255,.1)}*/
+    .modal-footer {
+        padding: 15px
+    }
+    
+
+    .fl-right{float:right}
+    .fl-left{float:left}
+    .ib{display:inline-block}
+    .clear{clear:both}
+    .anticipo_credito .ib{vertical-align:middle;line-height:21px}
+    .anticipo_credito .ico{margin-top:5px}
+    
+    div[data-pdis_count="1"] [data-pdi-action="remove"],
+    div[data-pdis_count="1"] [data-maps="remove"],
+    div[data-pdis_count="1"] #container-map .info .buttons,
+    div[data-pdis_count="1"] #container-map .info h3.title-small{display:none}
+    .a-accordion img{height:15px;vertical-align:middle}
+    i.gender{position:absolute;right:10px;top:5px;font-style:normal}
+    i.gender img{display:inline !important;vertical-align:middle;margin:auto 3px !important;max-height:18px}
+    .selected i.gender img{filter:invert(100%) brightness(250%)}
+</style>
+
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container" data-fluid>
+            <div class="new-title uppercase mb-20">RIEPILOGO DEI PUNTI VENDITA</div>
+        </div>
+    </div>
+</div>
+
+<div id="container-map">
+    <div id="rmap"></div>
+</div>
+
+<div class="container">
+
+    <div id="summary">
+
+        <p class="text-uppercase color-white my-15 fs-15">Riepilogo<!-- del<b class="color-orange hide"> (Punto <span class="number" data-pdi-selected>1</span>)</b-->:</p>
+
+        <script id="pdvs-template" type="text/x-handlebars-template">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                {{#each pdvs}}
+                <div class="panel panel-default accordion" data-pdi-id="{{id}}">
+                    <div class="panel-heading" role="tab" id="heading{{number}}">
+                        <div role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{number}}" aria-expanded="true" aria-controls="collapse{{number}}" class="a-box a-accordion">
+                            <div class="row row-eq-height-responsive">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="py-6">
+                                        <i class="more-less glyphicon glyphicon-plus mr-10"></i>
+                                        <span class="title-sky-blue fs-16"><span data-pdi-number>{{number}}</span> - </span>
+                                        <span class="switch-color fs-16">{{detail.Address}}</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 col-xs-3 text-right">
+                                    <div class="row m-0">
+                                        <button class="none maps btn" data-pdi-action="remove" data-placement="top" title="Elimina campagna per questo PdV"><img src="assets/img/maps/map-remove.png"></button>
+                                        <button class="none maps btn" data-pdi-action="budget" data-placement="top" title="Modifica il budget da investire sul PdV"><img src="assets/img/maps/map-euro.png"></button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-4 sep-left">
+                                    <div class="row row-eq-height height-100">
+                                        <div class="col-md-10">
+                                            <div class="d-table bg-left pull-right ico-users height-100">
+                                                <span class="media-body media-middle fs-16 py-6"><span>{{selectedProduct.item.Value}}</span> {{reachWording}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 sep-left">
+                                            <div class="d-table bg-left pull-right ico-mobile height-100">
+                                                <span class="media-body media-middle fs-16 py-6">{{potentialUsersString}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{#if selectedProduct.showPrice}}
+                                <div class="col-xs-12 col-md-2">
+                                    <div class="bg-accordion-inset text-right">
+                                        <span class="fs-24">€ {{formattedPrices.[0]}}<small>,{{formattedPrices.[1]}} + IVA</small></span>
+                                    </div>
+                                </div>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapse{{number}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{number}}">
+                        <div class="panel-body p-0">
+                            <table class="table table-striped m-0 fs-16">
+                                <tbody>
+                                    <tr>
+                                        <td class="no-border py-5">Uomini:</td>
+                                        <td class="no-border py-5" style="width:25%">{{formattedMaleStatsString}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="no-border py-5">Donne:</td>
+                                        <td class="no-border py-5" style="width:25%">{{formattedFemaleStatsString}}</td>
+                                    </tr>
+                                    {{#if showCompetitorsRanking}}
+                                    <tr>
+                                        <td class="no-border py-5">Competitor:</td>
+                                        <td class="no-border py-5 competitors_num" style="width:25%">{{competitorsRanking}}</td>
+                                    </tr>
+                                    {{/if}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div><!-- panel-group -->
+        </script>
+
+        <script id="pdvTotals-template" type="text/x-handlebars-template">
+            <div class="row m-0 mb-35">
+                <div class="col-xs-12 p-0 bt-1 bb-1">
+                    <div class="d-inline-block pt-20 ml-15 mr-15">
+                        <span class="fs-18">Totale Complessivo</span>
+                    </div>
+                    <div class="d-inline-block pull-right text-right">
+                        <div class="d-inline-block bg-left ico-users-on m-10">
+                            <span class="fs-18 py-6 mr-10">{{userSession.totalUniqueUsers}} {{reachWording}}</span>
+                        </div>
+
+                        {{#if userSession.showPrice}}
+                        <div class="d-inline-block bg-dark-blue p-6 endprice {{#if hasNotEnoughBudget}} pricef {{/if}}">
+                            <!--
+                            {{#if hasNotEnoughBudget}}
+                            <a href="#" class="badge bg-warning-adv ml-10 mr-10 mb-10" data-budget-warning role="button" data-toggle="popover" data-placement="top">!</a>
+                            {{/if}}
+                            -->
+                            <span class="fs-32 mr-10">€ {{userSession.formattedTotalPrice.[0]}}<small>,{{userSession.formattedTotalPrice.[1]}} + IVA</small></span>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+            </div>
+            {{#if hasNotEnoughBudget}}
+                <div class="anticipo_credito row m-0 mb-35">
+                    <div class="row uppercase">
+                        <div class="col-md-6 text-alert">Il tuo credito attuale non è sufficiente per poter pianificare questa campagna.</div>
+                        <div class="col-md-6 text-right">
+                            <div class="fl-right panel">
+                                <div class="credit fl-left">
+                                    <span class="fs-24">€ {{userSession.formattedBalance.[0]}}<small>,{{userSession.formattedBalance.[1]}}</small></span>
+                                </div>
+                                <img src="/assets/img/ico-anticipo-crediti.png" class="ib fl-right ico">
+                                <div class="fl-right"> è il tuo credito residuo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row suggest">
+                        <h2>Ti suggeriamo di:</h2>    
+                        <div class="col-md-3 uppercase mb-10"><span class="none maps ib"><img src="assets/img/maps/map-remove.png" class="ib"></span> <span class="ib">Diminuire il budget per PDV</span></div>
+                        <div class="col-md-3 uppercase mb-10"><span class="none maps ib"><img src="assets/img/maps/map-euro.png" class="ib"></span> <span class="ib">Eliminare uno o più PDV</span></div>
+                        <div class="col-md-4 uppercase"><a data-ask-credit class="btn npulse"><span>Richiedere anticipo crediti</span><span></span></a></div>
+                    </div>
+                </div>
+                {{/if}}
+                <script>
+                    /* Bootstrap Popover */
+                    $(function () {
+                        // Enables popover
+                        $("[data-budget-warning]").popover({
+                            html: true,
+                            title: function () {
+                                return $("#budget-warning-title").html();
+                            },
+                            content: function () {
+                                return $("#budget-warning-content").html();
+                            }
+                        });
+
+                        $('[data-toggle="popover"]').popover();
+                        $('a[data-toggle="popover"]').popover().click(function (e) {
+                            e.preventDefault();
+                        });
+
+                    });
+                </script>
+        </script>
+        
+        
+
+        <!-- Richiesta anticipo credito -->
+        <div class="modal fade" id="credit" tabindex="-1" role="dialog" aria-labelledby="credit" style="display: none;">
+            <div class="modal-dialog mt-50" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark-blue">
+                        <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a>
+                        <h4 class="modal-title text-uppercase" id="myLargeModalLabel">Richiedi anticipo crediti</h4>
+                    </div>
+                    <div class="modal-body bg-blue">
+                        <p class="fs-16">
+                            Con AdMove Agenzie hai la possibilità di continuare a creare la tua campagna, garantendone comunque l’erogazione, purché l’importo previsto venga saldato entro l’inizio della campagna.<br><br>
+                            <strong>Verrai contattato da AdMove al termine del processo per definire le modalità di pagamento</strong>
+                        </p>
+
+                        <div class="row">
+                            <div class="hidden-xs col-sm-6">
+                                <button type="button" class="btn btn-adm light text-uppercase my-35" data-dismiss="modal">Chiudi</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="submit" id="creditsRequest" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Attendere..." class="btn btn-adm text-uppercase my-35 pull-right-sm">Richiedi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal seleziona budget -->
+        <div class="modal fade" id="select-budget" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg mt-50" role="document">
+                <div class="modal-content">
+                    <div class="modal-body bg-intense-blue">
+
+                        <div id="rprices">
+
+                            <p class="text-uppercase color-white mt-15 mb-35 fs-15">Seleziona la reach per il <b class="color-orange">(Pdv <span class="pdi-number">1</span>)</b> in funzione del budget:</p>
+
+                            <script id="rproducts-template" type="text/x-handlebars-template">
+                                <div id="rowl-price" class="owl-carousel">
+                                    {{#each .}}
+                                    <div class="row item">
+                                        {{#each .}}
+                                        <div class="col-md-6">
+                                            <a href="#" class="a-box">
+                                                <div class="well {{#if isSelected}}selected{{/if}}" data-id="{{item.Id}}" data-value="{{item.Price}}" data-altro="">
+                                                    <div class="row">
+                                                        <div class="col-xs-7">
+                                                            <span class="title-sky-blue fs-25"><b>{{item.Value}}</b></span>
+                                                            <span class="text-uppercase fs-18" data-reach="1">{{reachWording}}</span>
+                                                        </div>
+                                                        {{#if showPrice}}
+                                                        <div class="col-xs-5 sep-left bg-check text-right">
+                                                            <span class="fs-26">€ {{formattedPrice.[0]}}<small>,{{formattedPrice.[1]}} + IVA</small></span>
+                                                        </div>
+                                                        {{/if}}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        {{/each}}
+                                    </div>
+                                    {{/each}}
+                                </div>
+                                <script>
+                                    // carousel del budget
+                                    var carousel_prices = $('#rowl-price');
+                                    carousel_prices.owlCarousel({
+                                        loop: true,
+                                        mouseDrag: false,
+                                        nav: true,
+                                        margin: 30,
+                                        items: 1,
+                                        navText: ['', '']
+                                    });
+                                </script>
+                            </script>
+
+                        </div>
+
+                        <div class="row mb-35 mt-10">
+                            <div class="col-xs-12 text-center">
+                                <button type="button" class="btn btn-adm text-uppercase closeDialog" data-dismiss="modal">Conferma</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-35">
+            <div class="col-xs-12 text-center">
+                <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+                <a href="seleziona-scenari" data-navigo class="btn btn-adm text-uppercase">Conferma</a>
+                <!--<button type="button" class="btn btn-adm text-uppercase">Seleziona gli scenari</button>-->
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        // imposto le variabili d'ambiente
+        var body = navigationService.currentPage.html,
+            pdis = body.find("#owl-dashboard .owl-stage"), // slider
+            pdiArea = body.find("#insights"), // insights
+            pdiBudget = body.find("#rprices"), // budget
+            ignore_trigger = false,
+            modal = null;
+
+            //console.log(currentPage.html);
+
+        /* Bootstrap Tooltip */
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var carousel_pdis = $('#owl-dashboard');
+
+        // carousel del budget
+        var carousel_prices = $('#rowl-price');
+        carousel_prices.owlCarousel({
+            loop: true,
+            mouseDrag: false,
+            nav: true,
+            margin: 30,
+            items: 1,
+            navText: ['', '']
+        });
+
+
+        CMS.loadPlugin("./../assets/js/plugin/maps", function (plugin) {
+            plugin.icons = '../assets/img/maps/';
+            if (!plugin) return BootstrapDialog.alert('Impossibile caricare il plugin'); // errore nel caricamento
+
+            function updateInsights(pdi) {
+                if (!pdi.insights.data || $.isEmptyObject(pdi.insights.data)) pdi.insights.data = { PotentialUsers: "-", MaleStats: "-", FemaleStats: "-", PublicOfficesNumber: 0, PrivatesNumber: 0, PublicTransportNumber: 0, Ranking: [3, 6, 7], Cluster: "" };
+                $('[data-insight-PotentialUsers]').text((+pdi.insights.data.PotentialUsers).toLocaleString());
+                $('[data-insight-MaleStats]').text((+pdi.insights.data.MaleStats).toLocaleString());
+                $('[data-insight-FemaleStats]').text((+pdi.insights.data.FemaleStats).toLocaleString());
+                $('[data-insight-PublicOfficesNumber]').text(pdi.insights.data.PublicOfficesNumber);
+                $('[data-insight-PrivatesNumber]').text(pdi.insights.data.PrivatesNumber);
+                $('[data-insight-PublicTransportNumber]').text(pdi.insights.data.PublicTransportNumber);
+
+                if (navigationService.currentPage.userSession.businessCategoryId != "No cat" && navigationService.currentPage.userSession.businessCategoryId != undefined) {
+                    $('#competitors_div').show();
+
+                    $('[data-competitors-low]').text('< ' + pdi.insights.data.Ranking[0]);
+                    $('[data-competitors-medium]').text((pdi.insights.data.Ranking[0] + 1) + ' - ' + pdi.insights.data.Ranking[1]);
+                    $('[data-competitors-high]').text('> ' + pdi.insights.data.Ranking[2]);
+
+                    var cc = $('#competitors_container li').removeClass('done active');
+
+                    if (pdi.insights.data.Competitors <= pdi.insights.data.Ranking[0]) {
+                        cc.filter(':first').addClass('active');
+                    } else if (pdi.insights.data.Competitors > pdi.insights.data.Ranking[0] && pdi.insights.data.Competitors <= pdi.insights.data.Ranking[1]) {
+                        cc.filter(':first').addClass('done');
+                        cc.filter(':eq(1)').addClass('active');
+                    } else if (pdi.insights.data.Competitors > pdi.insights.data.Ranking[2]) {
+                        cc.filter(':first').addClass('done');
+                        cc.filter(':eq(1)').addClass('done');
+                        cc.filter(':last').addClass('active');
+                    }
+                }
+                else {
+                    $('#competitors_div').hide();
+                }
+            }
+
+            function updateCarousel(pdi) {
+                // aggiorno i dati da elemento già presente
+                var item = carousel_pdis.find('[data-id=' + pdi.id + ']');
+                item.find('.pdi-number').text(pdi.number);
+                item.find('.pdi-title').text(pdi.title);
+                item.find('.pdi-address').text(pdi.address);
+                item.find('.pdi-phone').text(pdi.phoneNumber);
+                item.find('img.media-object:first').attr('src', pdi.image);
+                carousel_pdis.trigger('refresh.owl.carousel');
+            }
+
+            navigationService.currentPage.onUpdatePdv = function (res) {
+                var pdi = plugin.getPoint(res.id);
+                if (!pdi) return BootstrapDialog.alert('Il punto non è stato trovato');
+
+                // aggiorno i dati
+                pdi.insights.data = res.insights.data;
+                pdi.title = res.title;
+
+                // aggiorno il carosello
+                updateCarousel(pdi);
+
+                if (plugin.getSelected().id === res.id) {
+                    // aggiorno tutti i dati di insights
+                    updateInsights(pdi);
+                }
+
+                try {
+                    pdi.changeLocation(res.lat, res.lng, res.title, res.address);
+                } catch (e) {
+                    BootstrapDialog.alert("Impossibile aggiornare il punto: " + e.message);
+                }
+            }
+
+            var gender_replace = function(html){
+                return html.replace('Uomo','<i class="gender">(<img src="assets/img/ico-men.png">)</i>').replace('Donna','<i class="gender">(<img src="assets/img/ico-women.png">)</i>');
+            };
+            
+            // inizializzo il plugin
+            // la funzione di callback è sempre richiamata per ogni genere di evento propagato
+            plugin.init("rmap", { lat: 45.4637307, lng: 9.1910625, zoom: 11 }, function (evt, pdi, data) { // callback eventi   
+                if (!pdi && evt != 'add-pdi') return false;
+                
+                body.attr("data-pdis_count", plugin.getCount());
+
+                if (evt == 'added') { // punto aggiunto. Aggiorno slider
+
+                } else if (evt == 'removed') {
+
+                    // punto rimosso. Aggiorno lo slider
+                    var index = pdis.find('.item').index($('[data-id=' + pdi + ']'));
+                    carousel_pdis.trigger('remove.owl.carousel', index).trigger('refresh.owl.carousel');
+
+                    // rimuovo riferimento accordion
+                    $('.panel.accordion[data-pdi-id=' + pdi + ']').remove();
+
+                    // cambio numero per accordion
+                    for (var p in plugin.pdis) {
+                        $('.panel.accordion[data-pdi-id=' + $.escapeSelector(plugin.pdis[p].id) + '] [data-pdi-number]').text(plugin.pdis[p].number);
+                    }
+
+                    navigationService.currentPage.pdiRemoved(pdi);
+                } else if (evt == 'selected') { // elemento selezionato
+                    // imposto l'id del punto in caso di aggiornamento dell'indirizzo
+                    pdiArea.find('[name=id]').val(pdi.id);
+
+                    // mostro area insights e budget
+                    pdiArea.removeClass('hide');
+                    pdiBudget.removeClass('hide');
+
+                    // imposto lo slider
+                    ignore_trigger = true;
+                    carousel_pdis.trigger('to.owl.carousel', pdi.number - 1);
+                    ignore_trigger = false;
+
+                    // seleziono il prezzo scelto per il punto, se esiste
+                    var index = $('#rprices .well').removeClass('selected').filter('[data-id=' + $.escapeSelector(pdi.budget.id) + ']').addClass('selected').index();
+                    console.log('index: ' + index);
+
+                    // aggiorno tutti i dati di insights
+                    updateInsights(pdi);
+
+                    // apro accordion relativo
+                    if (data != 'accordion_off')
+                        $('.panel.accordion[data-pdi-id=' + pdi.id + ']:not(.selected) a').trigger('click');
+
+                    // aggiorno numerazione selezionato
+                    $('[data-pdi-selected]').text(pdi.number);
+
+                } else if (evt == 'clear') { // nessun elemento selezionato
+
+                }
+
+            });
+
+            carousel_pdis.on('changed.owl.carousel', function (event) {
+                if (ignore_trigger)
+                    return ignore_trigger = false;
+
+                var pdi = plugin.getPointByNumber(event.page.index + 1);
+                if (pdi) plugin.actions('select', pdi.id);
+            });
+
+
+            // imposto un listener per i bottoni dei punti (quello di aggiunta e quelli della finestra del punto)
+            // le azioni saranno dirottate verso la callback dell'inizializzazione
+            body.on("click", "a[data-maps]:not(.disable)", function (evt) {
+                var b = $(this), evt = b.data("maps"), id = b.data("id");
+                plugin.actions(evt, id, null);
+
+            }).on("click maps", "#summary [data-pdi-id] .btn", function () {
+                var b = $(this), id = b.closest('[data-pdi-id]').data("pdi-id"), action = b.data("pdi-action");
+                if (action == 'remove') {
+                    plugin.actions("remove", id);
+
+                } else if (action == 'budget') {
+
+                    navigationService.currentPage.pdiShowBudget(id);
+
+                    // open popup budget
+                    $('#select-budget').modal('show');
+
+                }
+            }).on("click", "#summary [data-pdi-id] a", function (evt) { // evento normale
+                var b = $(this), parent = b.closest('[data-pdi-id]'), id = parent.data("pdi-id");
+                if (!parent.hasClass("selected")) {
+                    plugin.actions("select", id, 'accordion_off');
+                }
+            }).on("click", "#rprices .well", function (evt) { // aggiorno il budget
+                evt.preventDefault();
+                var t = $(this), data = t.data();
+                body.find('#rprices .well').removeClass('selected');
+                t.addClass('selected');
+                plugin.getSelected().setBudget(data);
+
+                navigationService.currentPage.budgetSelected(data.id);
+                
+                navigationService.currentPage.html.find('.a-accordion').html(function(index,html){
+                    return gender_replace(html);
+                });
+            });
+
+            navigationService.currentPage.preparePlugin(plugin);
+            
+            
+            // sostituisco nomi con icone all'apertura della modale
+            navigationService.currentPage.html.find('#select-budget').on('show.bs.modal',function(evt){
+                $(this).find('[data-reach]').html(function(index,html){
+                    return gender_replace(html);
+                });
+            });
+        });
+
+        navigationService.currentPage.html.find('.a-accordion').html(function(index,html){
+            return html.replace('Uomo','<i class="gender">(<img src="assets/img/ico-men.png">)</i>').replace('Donna','<i class="gender">(<img src="assets/img/ico-women.png">)</i>');
+        });
+
+        /* Tablist bootstrap (Accordion) */
+        function toggleSelected(e) {
+            let el = $(e.target);
+
+            el.prev('.panel-heading').find(".more-less").toggleClass('glyphicon-plus glyphicon-minus');
+            el.parent(".accordion").toggleClass('selected');
+        }
+
+        body.find('.panel-group').on('click','button',function(evt){
+            evt.stopPropagation();
+            $(this).trigger('maps');
+            return false;
+        }).on('hide.bs.collapse', toggleSelected).on('show.bs.collapse', toggleSelected);
+    });
+
+</script>

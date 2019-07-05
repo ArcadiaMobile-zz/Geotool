@@ -1,0 +1,39 @@
+﻿
+<div class="container">
+
+    <!--
+     Questa è una pagina di messaggio generico.
+     Si può personalizzare cambiando il testo del titolo e della descrizione, modificando l'icona del tipo
+     di messaggio (se error o success) e cambiando l'immagine nel box.
+     -->
+    <div class="col-md-8 col-md-offset-2 mt-35">
+
+        <p class="fs-24 text-uppercase text-center color-sky-blue" data-title>Titolo</p>
+
+        <div class="box-message error-message bg-blue shadow">
+            <!--
+             Il div seguente indica l'icona dell'errore. Se c'è la classe "error" comparirà l'icona della "X", se c'è la classe "success" (al posto della classe "error") comparirà
+             l'icona del "Check". Nel div con classe "message-img" si può cambiare l'src del tag img per mostrare l'immagine relativo al messaggio.
+             -->
+            <div class="message-icon error"></div> <!-- error OR success -->
+            <div class="message-img">
+                <img src="assets/img/error-generic.png" alt=""> <!-- error OR success -->
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8 col-md-offset-2 mt-25">
+        <p class="fs-18 pt-15 bt-1 text-center" data-description>
+            Descrizione<br>
+        </p>
+
+        <div class="row mb-35">
+            <div class="col-xs-12 text-center">
+                <a href="/" class="btn btn-adm text-uppercase m-30">Indietro</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

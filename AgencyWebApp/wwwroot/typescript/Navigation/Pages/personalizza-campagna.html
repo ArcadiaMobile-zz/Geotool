@@ -1,0 +1,619 @@
+<div class="bg-top">
+    <div class="bg-grad">
+        <div class="container" data-fluid>
+            <div class="new-title uppercase mb-160">PERSONALIZZA LA CREATIVITà</div>
+        </div>
+    </div>
+</div>
+
+<form role="form" id="compaign_admove" class="personalizza mt-160-minus">
+    <div class="container">
+        <div class="row mt-50">
+            <div class="col-lg-5 col-md-5">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default shadow">
+                            <div class="panel-heading">
+                                <span class="text-uppercase">Informazioni</span>
+                                <img data-image-logo src="assets/img/logo_cat.png" class="img-circle img-circle-admove pull-right">
+                            </div>
+                            <div class="panel-body mt-25">
+                                <div class="form-group mt-25">
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
+                                        <input type="text" class="form-control b-radius-right-2" id="customBusinessName" data-length="20" required>
+                                        <label class="placeholder">Nome dell'attività</label>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group mt-50" data-product-description>
+                                    <div class="input-group input-group-lg">
+                                        <span class="input-group-addon"><span class="input-ico ico-category"></span></span>
+                                        <input type="text" class="form-control b-radius-right-2" id="customProductDescription" data-length="20" required>
+                                        <label class="placeholder">Prodotto in promozione</label>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group mt-35" data-price>
+                                    <div class="input-group input-group-lg group-space">
+                                        <span class="input-group-addon pull-left b-radius-2"><span class="input-ico ico-price"></span></span>
+                                        <label for="customPrice" class="control-label pull-left p-10 fs-16">Prezzo: </label>
+                                        <input type="number" class="form-control b-radius-2" id="customPrice" min="1" max="99999" step="any" required style="min-width:80px">
+
+                                        <label class="control-label pull-left p-10 fs-16">€</label>
+
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <div class="form-group mt-35" data-discount>
+                                    <div class="input-group input-group-lg group-space">
+                                        <span class="input-group-addon pull-left b-radius-2"><span class="input-ico ico-discount"></span></span>
+                                        <label for="customDiscount" class="control-label pull-left p-10 fs-16">Imposta sconto: -</label>
+                                        <input type="number" class="form-control b-radius-2" id="customDiscount" min="1" max="100" required>
+                                        <label class="control-label pull-left p-10 fs-16">%</label>
+                                    </div>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                                <!--div class="row">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-adm secondary text-uppercase mt-35 mr-15" data-toggle="modal" data-target="#modal-change-graphics" data-change-graphics><span class="info-badge info-dark pull-right ml-10 d-inline-block" data-toggle="tooltip" data-placement="top" title="Seleziona ulteriori immagini"></span>Cambia grafica</a>
+                                        <button type="button" data-update-banners class="btn btn-adm secondary text-uppercase mt-35">Aggiorna l'anteprima</button>
+                                    </div>
+                                </div-->
+                                <!-- modal cambia grafica -->
+                                <div class="modal modal-middle fade" id="modal-change-graphics" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                    <div class="modal-dialog modal-dialog-middle modal-lg" role="document">
+                                        <div class="row">
+                                            <script id="modal-change-graphics-template-alt1" type="text/x-handlebars-template">
+                                                <div class="col-md-4">
+                                                    <div class="panel panel-default change-graphic">
+                                                        <div class="panel-heading"><span class="text-uppercase">Stile alternativo 1</span></div>
+                                                        <div class="panel-body p-0">
+                                                            <img id="{{Id}}" src="{{Uri}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </script>
+                                            <script id="modal-change-graphics-template-current" type="text/x-handlebars-template">
+                                                <div class="col-md-4">
+                                                    <div class="panel panel-default change-graphic">
+                                                        <div class="panel-heading"><span class="text-uppercase">Stile corrente</span></div>
+                                                        <div class="panel-body p-0">
+                                                            <img id="{{Id}}" src="{{Uri}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </script>
+                                            <script id="modal-change-graphics-template-alt2" type="text/x-handlebars-template">
+                                                <div class="col-md-4">
+                                                    <div class="panel panel-default change-graphic">
+                                                        <div class="panel-heading"><span class="text-uppercase">Stile alternativo 2</span></div>
+                                                        <div class="panel-body p-0">
+                                                            <img id="{{Id}}" src="{{Uri}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel panel-default mt-10 shadow _hide" id="graphic">
+                            <div class="panel-heading pb-25"><span class="text-uppercase">Call to action landing page </span><b class="color-orange text-uppercase hide" data-pdv>(Punto <span class="number">1</span>)</b></div>
+                            <div class="panel-body pb-0">
+                                <script id="customUI-template" type="text/x-handlebars-template">
+                                    <div class="pdv-info align-center hide" data-pdv>
+                                        <div class="color-orange">{{userSession.originalBusinessName}}</div>
+                                    </div>
+                                    <div id="owl-graphic" class="owl-carousel owl-nav-top bt-10">
+                                        {{#each userSession.pdvs}}
+                                        <div class="item pb-20" data-calltoaction>
+                                            <div class="pdv-info align-center mb-20 hide" data-pdv>
+                                                {{address}}
+                                            </div>
+                                            <div class="owl-panel-inset _bg-dark-blue">
+                                                <div class="fs-13">Seleziona e configura le azioni che l'utente potrà effettuare e le informazioni di contatto che verranno mostrate sulla landing page.</div>
+                                                <div class="cta error-message py-10 mt-10 text-center">Seleziona almeno un'opzione</div>
+                                                <div class="row mt-15 pb-20 calltoaction" data-type="map">
+                                                    <div class="col-md-12 pb-20">
+                                                        <div class="pull-left mt--10">
+                                                            <input type="checkbox" class="filled-in" name="link-map" data-link-map id="link-map{{@index}}" checked="checked">
+                                                            <label for="link-map{{@index}}"></label>
+                                                        </div>
+                                                        <div class="panel-heading p-0 text-uppercase color-sky-blue ib">Click to Map <span class="info-badge pull-right ml-10" data-toggle="tooltip" data-placement="top" data-original-title="Inserisci l'indirizzo dell'attività per mostrare agli utenti come raggiungerla"></span></div>
+                                                    </div>
+                                                    <div class="col-md-12 pt-20">
+                                                        <div class="form-group">
+                                                            <div class="input-group input-group-lg">
+                                                                <span class="input-group-addon"><span class="input-ico ico-link"></span></span>
+                                                                <input type="text" class="form-control b-radius-right-2" value="{{clickToMap}}" data-ctm="{{address}}" data-link-map-id="{{@index}}" data-valid="1">
+                                                                <label class="placeholder">Inserisci l'indirizzo</label>
+                                                            </div>
+                                                            <div class="buttons mt-5 text-right">
+                                                                <a class="btn update hide" data-action="update" data-pdv data-toggle="tooltip" title="Valida l'indirizzo inserito"><b class="ico"></b><span></span>Valida indirizzo</a>
+                                                                <a class="btn reset hide" data-action="reset" data-pdv data-toggle="tooltip" title="Ripristina l'indirizzo inserito"><b class="ico"></b><span></span>Ripristina indirizzo</a>
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-35 calltoaction" data-type="call">
+                                                    <div class="col-md-12 pb-20">
+                                                        <div class="pull-left mt--10">
+                                                            <input type="checkbox" class="filled-in" name="link-call" data-link-call id="link-call{{@index}}">
+                                                            <label for="link-call{{@index}}"></label>
+                                                        </div>
+                                                        <div class="panel-heading p-0 text-uppercase color-sky-blue ib">Click to Call <span class="info-badge pull-right ml-10" data-toggle="tooltip" data-placement="top" data-original-title="Inserisci il numero di telefono che vuoi che gli utenti chiamino per avere informazioni sull'attività"></span></div>
+                                                    </div>
+                                                    <div class="col-md-12 pt-20">
+                                                        <div class="form-group">
+                                                            <div class="input-group input-group-lg">
+                                                                <span class="input-group-addon"><span class="input-ico ico-phone"></span></span>
+                                                                <input type="text" class="form-control b-radius-right-2" data-link-call value="{{phoneNumber}}" pattern="^[0-9]{8,12}$" data-error="Inserisci un numero di telefono valido composto da 8 a 12 numeri" required>
+                                                                <label class="placeholder">Inserisci il numero di telefono</label>
+                                                            </div>
+                                                            <div class="help-block with-errors"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                    </div>
+                                    <script>
+                                        var currentPage = navigationService.currentPage;
+                                        var owlGraphic = $('#owl-graphic');
+                                        owlGraphic.owlCarousel({
+                                            loop: false,
+                                            nav: true,
+                                            dots: false,
+                                            autoHeight: true,
+                                            mouseDrag: false,
+                                            touchDrag: false,
+                                            margin: 50,
+                                            items: 1,
+                                            stageOuterClass: 'owl-stage-outer owl-panel',
+                                            navText: ['', '']
+                                        }).on('changed.owl.carousel', function (event) {
+                                            currentPage.contactsCarouselChanged(event.item.index);
+                                            owlGraphic.trigger('pdv:change',[event.item.index]);
+                                        });
+                                    </script>
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lg-offset-1 col-md-7 col-md-offset-0 mb-35">
+                <div id="affixPreview">
+                    <p class="color-sky-blue fs-17 text-uppercase text-center">Anteprima grafica <b class="color-orange text-uppercase hide" data-pdv>(Punto <span class="number">1</span>)</b></p>
+                    <p class="py-10 text-center"><a class="btn btn-adm secondary text-uppercase" data-toggle="modal" data-target="#modal-change-graphics" data-change-graphics><span class="info-badge info-dark pull-right ml-10 d-inline-block" data-toggle="tooltip" data-placement="top" title="Seleziona ulteriori immagini"></span>Cambia grafica</a></p>
+                    <p class="fs-16 text-center" id="creativityTitle">Landing page per smartphone</p>
+                    <ul class="switch-preview text-center">
+                        <li class="switch-facebook selected"></li>
+                        <li class="switch-search"></li>
+                        <li class="switch-smartphone"></li>
+                        <li class="switch-tablet"></li>
+                        <li class="switch-banner-1"></li>
+                        <li class="switch-interstitial"></li>
+                        <li class="switch-banner-3"></li>
+                        <li class="switch-banner-2"></li>
+                    </ul>
+                    <div class="container-slider-preview">
+                        <div id="slider-preview" class="owl-carousel">
+                            <!-- FACEBOOK -->
+                            <div class="item-preview-device">
+                                <div class="smartphone facebook">
+                                    <div class="mask-top"></div>
+                                    <div class="abs">
+                                        <div class="title uppercase"></div>
+                                        <div class="description" title=""></div>
+                                        <span data-bannerid="3">
+                                            <a data-banner-size="Format1200x628" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                                <img data-banner-size="Format1200x628" src="" style="cursor: zoom-in;">
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="preview-display">
+                                        <img src="assets/img/facebook_template.jpg">
+                                    </div>
+                                    <div class="mask-bottom"></div>
+                                </div>
+                            </div>
+                            <!-- GOOGLE -->
+                            <div class="item-preview-device">
+                                <div class="smartphone search">
+                                    <div class="mask-top"></div>
+                                    <div class="abs">
+                                        <div class="headline uppercase" title=""></div>
+                                        <div class="website" title=""></div>
+                                        <div class="row1" title=""></div>
+                                        <div class="row2" title=""></div>
+                                    </div>
+                                    <div class="preview-display">
+                                        <img src="assets/img/google_template.jpg">
+                                    </div>
+                                    <div class="mask-bottom"></div>
+                                </div>
+                            </div>
+                            <!-- SMARTPHONE -->
+                            <div class="item-preview-device">
+                                <div class="smartphone">
+                                    <div class="mask-top"></div>
+                                    <div class="preview-display">
+                                        <a data-banner-size="Format640x1024" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                            <img src="" data-banner-size="Format640x1024" style="cursor: zoom-in;">
+                                        </a>
+                                    </div>
+                                    <div class="mask-bottom"></div>
+                                </div>
+                            </div>
+                            <!-- TABLET -->
+                            <div class="item-preview-device">
+                                <div class="tablet">
+                                    <div class="preview-display">
+                                        <a data-banner-size="Format2020x1320" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                            <img src="" data-banner-size="Format2020x1320" style="cursor: zoom-in;">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FORMATO 300x250 -->
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <a data-banner-size="Format300x250" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                        <img data-banner-size="Format300x250" src="" style="cursor: zoom-in;">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- FORMATO INTERSTITIAL -->
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <a data-banner-size="Format320x480" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                        <img data-banner-size="Format320x480" src="" style="cursor: zoom-in;">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- FORMATO 320x50 -->
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <a data-banner-size="Format320x50" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                        <img data-banner-size="Format320x50" src="" style="cursor: zoom-in;">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- FORMATO 728x90 -->
+                            <div class="item-preview-banner">
+                                <div class="preview-banner">
+                                    <a data-banner-size="Format728x90" href="" data-toggle="lightbox" data-gallery="example-gallery" data-type="image">
+                                        <img data-banner-size="Format728x90" src="" style="cursor: zoom-in;">
+                                    </a>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="prev-preview"></div>
+                        <div class="next-preview"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-35" id="offsetBottom">
+            <div class="col-xs-12 text-center">
+                <button type="button" class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
+                <button type="button" class="btn btn-adm text-uppercase m-30" id="submitter">Scegli una data</button>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    var currentPage;
+    
+    $(document).ready(function () {
+        currentPage = navigationService.currentPage;
+        
+        currentPage.html.find('#compaign_admove').on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+
+        /* Cambia grafica */
+        currentPage.html.on('click', '.change-graphic', function () {
+            var t = $(this), parent = t.closest(".row");
+
+            var elements = parent.find('.change-graphic');
+            if(elements.length <= 1) {
+                return false;
+            }
+
+            t.addClass('selected');
+            parent.find('.change-graphic').not(t).removeClass('selected');
+
+            currentPage.userSession.selectedBannerId = t.find("img").attr("id");
+            currentPage.updateBanners();
+            $('#modal-change-graphics').modal('hide');
+        });
+
+        /* Bootstrap Tooltip */
+        currentPage.html.find('[data-toggle="tooltip"]').tooltip();
+
+        /* Slider Preview */
+        var handleSliderNavigation = function (item) {
+            var paginatorsLink = $('.switch-preview li');
+
+            paginatorsLink.each(function (i) {
+                if (item != i) {
+                    $(paginatorsLink[i]).removeClass('selected');
+                } else {
+                    $(paginatorsLink[i]).addClass('selected');
+                }
+                $(paginatorsLink[i]).click(function () {
+                    owl.trigger('to.owl.carousel', i);
+                });
+            });
+        };
+
+        var handleSlideChange = function (item) {
+            currentPage.html.find('#creativityTitle').html(currentPage.pagerTooltips[item]);
+        };
+
+        var owl = currentPage.html.find('#slider-preview');
+        owl.on('initialize.owl.carousel', function (elem) {
+            handleSliderNavigation(elem, this);
+        });
+        owl.on('changed.owl.carousel', function (event) {
+            var items = event.item.count; // Number of items
+            var item = event.item.index;
+
+            var left = $('.container-slider-preview').find('.prev-preview'), right = $('.container-slider-preview').find('.next-preview');
+
+            handleSliderNavigation(item);
+            handleSlideChange(item);
+
+            if (item == 0) {
+                left.hide();
+            } else {
+                left.show();
+            }
+            if (item == items - 1) {
+                right.hide();
+            } else {
+                right.show();
+            }
+
+        });
+        owl.owlCarousel({
+            loop: false,
+            nav: false,
+            dots: false,
+            margin: 10,
+            items: 1
+        });
+        // Go to the next item
+        $('.next-preview').click(function () {
+            owl.trigger('next.owl.carousel');
+        });
+        // Go to the previous item
+        $('.prev-preview').click(function () {
+            owl.trigger('prev.owl.carousel');
+        });
+
+        /* Affix */
+        $('#affixPreview').affix({
+            offset: {
+                top: $('#affixPreview').offset().top,
+                bottom: function () {
+                    return (this.bottom = $('#offsetBottom').outerHeight(true))
+                }
+            }
+        });
+
+        var submitter = currentPage.html.find('#submitter'),
+            form = $('form#compaign_admove'),
+            calendar_text = $('<div class="media py-20 bg-blue"><div class="media-left media-middle px-37 br-dark-1"><div class="bg-white b-radius-50p p-20"><img class="media-object" src="assets/img/ico-calendar.png" alt=""></div></div><div class="media-body media-middle p-20 color-white"><p class="text-uppercase"><b>Seleziona la data di partenza</b></p><p class="m-0">Scegli il periodo più indicato per lanciare la tua campagna.</p></div></div>'),
+            calendar_button = $('<div class="bg-blue text-center"><button type="submit" class="btn btn-adm text-uppercase my-35">Scopri la tua campagna</button></div>');
+        var input = $('<input type="text">').hide().appendTo(form);
+
+        /* Form */
+        form.validator({
+            custom: {
+                length: function ($el) {
+                    var matchValue = $el.data("length") // foo
+                    if ($el.val().length > matchValue) {
+                        return "Non inserire più di " + matchValue + " caratteri"
+                    }
+                },
+                valid: function($el) {
+                    var valid = $el.data("valid");
+                    if($el.is(':enabled') && valid != 1) return "  ";
+                }
+            }
+        });
+
+
+        input.pickadate({
+            // Strings and translations
+            monthsFull: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+            monthsShort: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+            weekdaysFull: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+            weekdaysShort: ['Do', 'Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa'],
+            // Buttons
+            today: '',
+            clear: '',
+            close: '',
+            // Accessibility labels
+            labelMonthNext: 'Prossimo mese',
+            labelMonthPrev: 'Mese precedente',
+            labelMonthSelect: 'Seleziona un mese',
+            labelYearSelect: 'Seleziona un anno',
+            showWeekdaysFull: true,
+            firstDay: 1,
+            format: 'dd/mm/yyyy',
+            closeOnSelect: true,
+            closeOnClear: true,
+            disable: currentPage.disableHolidayWeekendDays,
+            min: currentPage.minCampaignDate,
+            //max: navigationService.currentPage.maxCampaignDate,
+            onSet: function (context) {
+                var val = this.get('select', 'dd/mm/yyyy');
+                currentPage.datePickerSelect(this.get('select').obj);
+            },
+            onOpen: function (context) {
+                setTimeout(function () { // aggiungo gli elementi
+                    $('.picker__wrap').prepend(calendar_text).append(calendar_button);
+                }, 100);
+            }
+        }).pickadate('picker').set('select', currentPage.minCampaignDate);
+
+        var pd = input.pickadate('picker');
+
+        submitter.on('click',function(evt){
+
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            if($(this).hasClass('disabled')) return false;
+
+            pd.open();
+
+        });
+
+        // click to actions
+
+        var error_message = currentPage.html.find('.cta.error-message'); // oggetto relativo alle immagini per pdv
+
+        currentPage.html.on('change', 'input[type=checkbox].filled-in', function () {
+            var t = $(this),
+                checked = t.is(':checked'),
+                box = t.closest('.calltoaction'),
+                type = box.data('type'),
+                input = box.find('input[type=text]'),
+                fg = input.closest('.form-group'),
+                owl = t.closest('.owl-item'),
+                index = owl.index(),
+                otype = owl.find('[data-type]').not('[data-type="' + type + '"]').data('type'),
+                otype_checked = owl.find('[data-type]').not('[data-type="' + type + '"]').find('input[type=checkbox]').is(':checked');
+
+            owl.find('.form-group').removeClass('has-error');
+            error_message.removeClass('color-red');
+
+            if (checked) {
+                fg.removeClass('disabled');
+                input.removeAttr('disabled');
+            } else {
+
+                fg.addClass('disabled');
+                input.attr('disabled', 'disabled');
+
+                if (!otype_checked) {
+                    owl.find('.form-group').addClass('has-error');
+                    error_message.addClass('color-red');
+                }
+            }
+
+            input.trigger('change');
+
+            currentPage.setClickToMap();
+            currentPage.setClickToCall();
+
+            if (!error_message.hasClass('color-red'))
+                currentPage.updateBanners();
+
+        }).on('click', '[data-action][data-pdv]', async function (evt) { // bottoni di validazione e reset
+            evt.preventDefault();
+            var t = $(this), action = t.data('action'), fg = t.closest('.form-group'), input = fg.find('[data-ctm]');
+
+            if (action == 'reset') {
+                input.val(input.data('ctm')).data('valid', 1).trigger('keydown').trigger('change');
+                currentPage.setClickToMap();
+                currentPage.updateBanners();
+                return;
+            }
+
+            if (t.hasClass('loading')) return false;
+
+            if (input.val().length > 0) {
+                t.addClass('loading');
+
+                var address = await currentPage.verifyAddress(input.val());
+
+                setTimeout(function () {
+                    t.removeClass('loading').removeClass('npulse').addClass('disabled');
+                    if (address) {
+                        input.val(address).data('valid', 1).trigger('change', [true]);
+                        currentPage.setClickToMap();
+                        currentPage.updateBanners();
+                    }
+                }, 1000);
+            }
+        }).on('change keyup', '[data-ctm]', function (evt, v) { // input click to map
+            var t = $(this), fg = t.closest('.form-group'), originalAddress = t.data('ctm'), index = t.data('link-map-id'), val = t.val(), valid = t.data('valid')
+                updateBtn = fg.find('a[data-action="update"]').removeClass('npulse'), resetBtn = fg.find('a[data-action="reset"]');
+            
+            if(v) return false;
+            
+            if (val == originalAddress) {
+                updateBtn.addClass('hide').addClass('disabled');
+                resetBtn.addClass('hide').addClass('disabled');
+                t.data('valid',1); // permetto di proseguire il flusso
+            }
+            else if (val == currentPage.userSession.pdvs[index].clickToMapCustom) {
+                // Ho già validato l'indirizzo e posso solo resettare'
+                resetBtn.removeClass('hide').removeClass('disabled');
+            }
+            else if (val == "") {
+                resetBtn.removeClass('hide').removeClass('disabled');
+                t.data('valid', 0); // impedisco di proseguire il flusso
+            }
+            else {
+                updateBtn.removeClass('hide').removeClass('disabled');
+                resetBtn.removeClass('hide').removeClass('disabled');
+                t.data('valid', 0); // impedisco di proseguire il flusso
+            }
+            
+
+            if (!updateBtn.hasClass('disabled')) {
+                setTimeout(function () {
+                    updateBtn.addClass('npulse');
+                }, 50);
+            }
+
+        }).on('blur', '[data-link-call]', function () {
+            var t = $(this);
+            if (t.val().length > 0 || t.val() !== "") {
+                currentPage.setClickToCall();
+                currentPage.updateBanners();
+            }
+        });
+
+        owlGraphic.on('pdv:change',function(evt,index){
+            setTimeout(function(){
+                owlGraphic.find('.owl-item.active input[type=checkbox]:first').trigger('change');
+            },100);
+        }).trigger('pdv:change',[0]);
+        
+        // end click to actions
+
+        // single/multiple
+        if (currentPage.userSession.pdvs.length > 1) currentPage.html.find('[data-pdv]').removeClass('hide');
+
+        $("#customBusinessName,#customProductDescription,#customDiscount,#customPrice").on("focusout", function () {
+            currentPage.setCustomValues();
+            currentPage.updateBanners();
+        })
+
+        CMS.check(form, submitter, function (evt,errors) {
+            //if (!evt.isDefaultPrevented()) {
+            if(!errors){
+                evt.preventDefault();
+                currentPage.goToRiepilogo.call(currentPage, evt);
+            }
+        });
+    });
+
+</script>
