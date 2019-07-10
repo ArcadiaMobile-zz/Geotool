@@ -5083,7 +5083,7 @@ if (!isLocalHost) {
 // Definizioni delle chiavi per ogni host
 var clientIds = {
     "localhost": {
-        clientId: "5ed992e4-c93d-4a26-a889-6702c1760dd5",
+        clientId: "6759ca85-3e16-4f75-b91d-0eedcc98b948",
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_AgencyDevSignIn"
     },
