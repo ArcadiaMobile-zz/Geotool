@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="assets/css/rangeslider.css">
+<link rel="stylesheet" type="text/css" href="assets/css/simpleslider.css">
 <style>
     /* Always set the map height explicitly to define the size of the div
       * element that contains the map. */
@@ -81,10 +81,10 @@
     a.type-place.loading .next {
         opacity: .5
     }
-
+    /*
     .map-update {
         display: none
-    }
+    }*/
 
     .panel {
         margin-bottom: 0 !important
@@ -284,11 +284,11 @@
         .pdfcontainer .type-place img {
             opacity: 1 !important
         }
-
+    /*
     a.map-update[data-maps="update"],
     a.map-reset[data-maps="update"] {
         display: none !important
-    }
+    }*/
 </style>
 
 <div class="container-fluid bg-light-gray hide">
@@ -327,7 +327,8 @@
                         <div class="form-group mt-25">
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
-                                <input type="range" min="500" max="5000" step="500" value="300" data-orientation="horizontal">
+                                <input type="text" data-slider="true" data-slider-snap="true" data-slider-step="500" data-slider-range="500,5000" value="1000">
+                                <div data-radius>1000 mt</div>
                             </div>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -447,7 +448,7 @@
     </div>
 
 </div> <!-- end pdfpage -->
-<script src="assets/js/rangeslider.min.js"></script>
+<script src="assets/js/simpleslider.min.js"></script>
 <script src="assets/js/pdf/dist/jspdf.debug.js"></script>
 <script src="assets/js/pdf/html2pdf.js"></script>
 <script>
@@ -499,6 +500,8 @@
             plugin.init();
 
         });
+        
+        var rs = body.find('input[type=range]');
 
         CMS.loadPlugin("../assets/js/plugin/maps", function (plugin) {
 
@@ -733,9 +736,10 @@
             var pdi = currentPage.userSession.pdvs[0].mapItem;
             pdi.duplicable = false;
             pdi.cancelable = false;
-            pdi.resettable = false;
+            pdi.resettable = true;
             pdi.mouseDrag = false;
             pdi.selected = true;
+            pdi.editable = true;
             pdi.circle = { radius: currentPage.userSession.flow3.radius };
             plugin.actions("add", false, pdi);
 
@@ -748,20 +752,26 @@
 
                 plugin.actions(evt, id, null);
 
+            }).bind('slider:changed','input[type=range]',function(evt,data){
+                console.log(evt,data);
+                body.find('[data-radius]').data('radius',data.value).text(data.value+' metri');
+                var pdi = plugin.getSelected();
+                if(pdi){
+                    pdi.circle.radius = data.value;
+                    pdi.update();
+                    plugin.fitBounds(pdi);
+                    //plugin.actions("update", pdi.id, pdi);
+                }
             });
 
         });
         
-        var rs = body.find('input[type=range]').rangeslider({
-            onInit: function() {console.log('onSlideInit');},
-
-            // Callback function
-            onSlide: function(position, value) {console.log('onSlide');},
         
-            // Callback function
-            onSlideEnd: function(position, value) {console.log('onSlideEnd');}
-        });
-        console.log( 'rangeslider', rs );
+        
+        rs.simpleSlider("setValue", currentPage.userSession.flow3.radius);
+        
+        console.log( 'value', currentPage.userSession.flow3.radius ); 
+
 
     });
 
@@ -770,5 +780,4 @@
         $("#sidebar-dashboard").mCustomScrollbar();
     });
 
-    console.log('no script');
 </script>

@@ -396,6 +396,7 @@
         },
         
         update: function(){ // redraw circle
+            //console.log('update',this.circle);
             this._setCircles(this.circle.radius);
             this._setLines();
             return this;
