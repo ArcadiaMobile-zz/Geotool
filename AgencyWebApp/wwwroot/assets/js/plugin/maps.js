@@ -16,7 +16,7 @@
     icons: '/admove-agenzie/assets/img/maps/',
     
     // layout base del popup del singolo punto
-    infoContent: '<div id="content"><div class="info" id="info{id}"><h2 class="title">-</h2><div class="media"><div class="media-left"><i class="fas fa-map-marker-alt color-red"></i></div><p class="media-body"><span class="address">-</span></p></div><div class="media mt-5 mb-10"><div class="media-left"><div class="media-object phone" style="color:#666"></div></div></div><h3 class="title-small">Gestisci PDV</h3><div class="buttons"><a data-id="0" data-maps="reset" class="map-reset" title="Resetta il centro di pianificazione">Reset</a><a data-id="0" data-maps="remove" class="map-remove" title="Rimuovi il Punto Vendita e la pianificazione">Elimina</a><a data-id="0" data-maps="duplicate" class="map-duplicate" title="Duplica il Punto Vendita">Duplica</a><a data-id="0" data-maps="update" class="map-update npulse" title="Ricalcola gli insight"><span>Aggiorna</span><span></span></a></div></div></div>',
+    infoContent: '<div id="content"><div class="info" id="info{id}"><h2 class="title">-</h2><div class="media"><div class="media-left"><i class="fas fa-map-marker-alt color-red"></i></div><p class="media-body"><span class="address">-</span></p></div><div class="media mt-5 mb-10"><div class="media-left"><div class="media-object phone" style="color:#666"></div></div></div><br><div class="buttons"><a data-id="0" data-maps="reset" class="map-reset" title="Resetta il centro di pianificazione">Reset</a><a data-id="0" data-maps="remove" class="map-remove" title="Rimuovi il Punto Vendita e la pianificazione">Elimina</a><a data-id="0" data-maps="duplicate" class="map-duplicate" title="Duplica il Punto Vendita">Duplica</a><a data-id="0" data-maps="update" class="map-update npulse" title="Ricalcola gli insight"><span>Aggiorna</span><span></span></a></div></div></div>',
     
     infoWindow: false,
 
@@ -114,11 +114,11 @@
                 for(var i = 0; i < 4; i++){
                     
                     var options = {
-                        strokeColor: '#465568',
+                        strokeColor: '#e02b20',
                         strokeOpacity: 0,
                         strokeWeight: 0,
-                        fillColor: '#465568',
-                        fillOpacity: 0.2,
+                        fillColor: '#e02b20',
+                        fillOpacity: 0.12,
                         map: t.scope.map,
                         center: center,
                         radius: radius,
@@ -238,22 +238,7 @@
         },
         
         _setMarker: function(){
-            /*var t = this;
-            if(!t.marker){
-                t.marker = new google.maps.Marker({
-                  zIndex:1000,
-                  map: t.scope.map,
-                  title: t.title
-                });
-                
-                t._setElementListener(t.marker,[{event:'click',callback:function(){
-                    t.scope.actions('select',t.id);
-                    t.scope.fitBounds(t);
-                }}]);
-            }
-            t.marker.setPosition(new google.maps.LatLng(t.vlat(), t.vlng()));
-            t._setMarkerIcon();
-            return t;*/
+
             var t = this;
             if(!t.marker){
                 
@@ -296,7 +281,7 @@
                 t.lines = new google.maps.Polyline({
                   path: [],
                   geodesic: true,
-                  strokeColor: '#465568',
+                  strokeColor: '#e02b20',
                   strokeOpacity: 1.0,
                   strokeWeight: 1,
                   map:t.scope.map
@@ -311,11 +296,7 @@
         _checkRotation: function(){ // ottengo la rotazione in base a raggruppamenti di lat,lng
         
             var group = {}, rotation = 0, l = 0;
-            /*
-            console.log('check rot');
-            console.log(this.scope);
-            console.log(this.scope.pdis); */
-            
+
             for(var pdi in this.scope.pdis){
             
                 var lat = this.scope.pdis[pdi].lat, lng = this.scope.pdis[pdi].lng, nmb = this.scope.pdis[pdi].number;
@@ -358,15 +339,15 @@
              
             var icon = {
 
-              path: 'M12.6,0h0A12.6,12.6,0,0,0,0,12.6a13.86,13.86,0,0,0,1,4.83L12.6,70,24.29,17.3a13.79,13.79,0,0,0,.91-4.7A12.6,12.6,0,0,0,12.6,0Z',
-              fillColor: '#071a21',
+              path: 'M12.6,0h0A12.6,12.6,0,0,0,0,12.6a13.86,13.86,0,0,0,1,4.83L12.6,40,24.29,17.3a13.79,13.79,0,0,0,.91-4.7A12.6,12.6,0,0,0,12.6,0Z',
+              fillColor: '#e02b20',
               fillOpacity: 1,
               scale: 1,
               strokeWeight: 2,
               strokeColor: '#fff',
-              strokeOpacity: .3,
+              strokeOpacity: .5,
               rotation: this._checkRotation(),
-              anchor: new google.maps.Point(13, 70),
+              anchor: new google.maps.Point(13, 40),
               labelOrigin:new google.maps.Point(12.5,12)
             };
 
@@ -376,7 +357,7 @@
             if(opt) for(var o in opt) icon[o] = opt[o];
             if(this.selected || (opt && opt.label)) label = 'LABEL_SELECTED';
 
-            this.marker.setLabel({text:this.number+'',fontFamily:label});
+            this.marker.setLabel({text:'.',fontFamily:label});
             this.marker.setIcon(icon);          
                         
         },

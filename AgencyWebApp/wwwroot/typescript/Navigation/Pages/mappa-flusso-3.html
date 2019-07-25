@@ -1,49 +1,28 @@
 <link rel="stylesheet" type="text/css" href="assets/css/simpleslider.css">
 <style>
-    /* Always set the map height explicitly to define the size of the div
-      * element that contains the map. */
-    #container-map {
-        position: relative;
-        min-height: 400px;
-    }
 
-    #map {
-        margin-left: 0px;
-        height: 400px;
-    }
-
-    .ib {
-        display: inline-block
-    }
-
-    .fl-left {
-        float: left
-    }
-
-    .a-right {
-        text-align: right
-    }
+    #container-map {position: relative;min-height: 400px;}
+    #map {margin-left: 0px;height: 400px;}
+    .ib {display: inline-block}
+    .fl-left {float: left}
+    .a-right {text-align: right}
 
     .info h2.title {
         color: #e02b20;
         padding: 0;
         margin: 5px 0;
-        font-size: 16px
+        font-size: 16px;
+        font-weight: bold;
     }
 
-    .info p {
-        font-size: 14px;
-        color: #2e3e40
-    }
-
-
-    a.type-place {
-        position: relative;
-    }
-
-    #places-available p {
-        margin-top: 0
-    }
+    .info p {font-size: 14px;color: #2e3e40}
+    a.type-place {position: relative;line-height:40px}
+    a.type-place i.fa{font-size:20px;width:40px;line-height:40px;border-radius:50%;background:#fff;color:#e02b20;margin-right:10px;text-align:center}
+    a.type-place:hover i.fa,a.type-place.active i.fa{background:#e02b20;color:#fff}
+    a.type-place.loading{opacity:.6}
+    a.type-place.loading i.fa:before{content:"\f013" !important}
+    #places-available p {margin-top: 0}
+    .btn-mr.btn-small.ctrl{font-size:11px !important}
 
     a.type-place .next {
         position: absolute;
@@ -276,11 +255,15 @@
         .pdfcontainer .type-place img {
             opacity: 1 !important
         }
-    /*
-    a.map-update[data-maps="update"],
-    a.map-reset[data-maps="update"] {
-        display: none !important
-    }*/
+    
+    div[style*="font-family: LABEL_SELECTED"], div[style*="font-family: LABEL_SELECTED"][style]{background:#fff;color:#fff}
+    
+    .gm-style-iw.gm-style-iw-c .gm-ui-hover-effect,.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect[style]{margin:10px 10px 0 0 !important;}
+    .gm-style-iw.gm-style-iw-c .gm-ui-hover-effect img,.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect img[style]{width: auto !important;height:auto !important;margin:0 !important}
+
+    #places-available{width:320px}
+    #range-slider{left: 50%;width: 50%;margin-left: -30%;}
+
 </style>
 
 <div class="container-fluid bg-light-gray hide">
@@ -304,39 +287,13 @@
 
     <div id="container-map">
         <div id="map" class="with-sidebar"></div>
-        <input id="map-range" data-slider-id='range-slider' type="text" />
+        <input id="map-range" data-slider-id='range-slider' type="text" data-slider-value="1000" />
         <div id="places-available" data-mcs-theme="minimal-dark">
-            <p class="fs-18 my-15 fs-15 pdfignore">Seleziona le categorie:</p>
+            <p class="fs-24 pdfignore">Attività sul territorio:</p>
         </div>
     </div>
-
-    <!-- DIEGO -->
-    <div class="container">
-    
-        <div class="row">
-            <div class="col-md-12 col-md-offset-0 col-sm-10 col-sm-offset-1 mt-25">
-                <div class="panel panel-default shadow">
-                    <div class="panel-heading"><span class="text-uppercase">Imposta il raggio:</span></div>
-                    <div class="panel-body">
-                        <div class="form-group mt-25">
-                            <div class="input-group input-group-lg">
-                                <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
-                                <input type="text" data-slider="true" data-slider-snap="true" data-slider-step="500" data-slider-range="500,5000" value="1000">
-                                <div data-radius>1000 mt</div>
-                            </div>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!-- DIEGO -->
 
     <div class="container pt-15" id="container-pdv">
-
-        <p class="text-uppercase title-sep f-bold fs-15 mb-15 hidden-md">Informazioni sul territorio e potenziali clienti:</p>
 
         <div class="row">
             <script id="business-template" type="text/x-handlebars-template">
@@ -344,12 +301,11 @@
                     <div class="well">
                         <div class="media" style="overflow: visible;">
                             <div class="media-left media-middle">
-                                <!--img class="media-object" style="max-width: 137px; max-height: 76px" src="{{image}}" alt="{{businessName}}"-->
                                 <img class="media-object static-img" src="assets/img/thumb.png" alt="Mondored.it">
                             </div>
                             <div class="media-body media-middle bg-pdv">
 
-                                <h3 class="color-red fs-18 m-0 mb-10">{{businessName}}</h3>
+                                <h3 class="color-red fs-18 m-0 mb-10"><b>{{businessName}}</b></h3>
 
                                 <div class="media m-0">
                                     <div class="media-left">
@@ -379,8 +335,8 @@
                                 <div class="col-md-12 p-15 bg-data">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-light-gray fs-12 pull-left lh-18 mr-5">Utenti mobile</span>
-                                        <i class="fas fa-question-circle color-red c-help pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></i>
+                                        <span class="text-uppercase color-light-gray fs-14 pull-left lh-18 mr-5">Media mobile users daily</span>
+                                        <!--i class="fas fa-question-circle color-red c-help pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></i-->
                                     </div>
 
                                     <div class="media">
@@ -388,7 +344,7 @@
                                             <img class="media-object" src="assets/img/ico-smartphone.png" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <span class="fs-24 color-red" data-insight-PotentialUsers="">26.250</span>
+                                            <span class="fs-26 color-red" data-insight-PotentialUsers="">26.250</span>
                                         </div>
                                     </div>
 
@@ -400,7 +356,7 @@
                                 <div class="col-sm-6 col-xs-12 p-15 br-light-1 bg-men">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-12 lh-18">Uomini</span>
+                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-14 lh-18">Uomini</span>
                                     </div>
 
                                     <div class="media">
@@ -408,7 +364,7 @@
                                             <img class="media-object" src="assets/img/ico-men.png" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <span class="fs-24" data-insight-MaleStats="">49.210</span>
+                                            <span class="fs-26" data-insight-MaleStats="">49.210</span>
                                         </div>
                                     </div>
 
@@ -417,7 +373,7 @@
                                 <div class="col-sm-6 col-xs-12 p-15 bg-women">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-12 lh-18">Donne</span>
+                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-14 lh-18">Donne</span>
                                     </div>
 
                                     <div class="media">
@@ -425,7 +381,7 @@
                                             <img class="media-object" src="assets/img/ico-women.png" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <span class="fs-24" data-insight-FemaleStats="">23.515</span>
+                                            <span class="fs-26" data-insight-FemaleStats="">23.515</span>
                                         </div>
                                     </div>
 
@@ -449,13 +405,6 @@
             </div>
 
         </div>
-
-        <!--div class="row mb-15 pdfignore">
-            <div class="col-xs-12 text-center">
-                <button class="btn btn-mr btn-small btn-back text-uppercase m-10">Indietro</button>
-                <a class="btn btn-mr btn-small circle text-uppercase pdf m-10">Salva PDF <span class="circle-btn"><i class="fas fa-print"></i></span></a>
-            </div>
-        </div-->
 
     </div>
 
@@ -517,7 +466,21 @@
 
         });
         
-        var rs = body.find('input[type=range]');
+        //var rs = body.find('input[type=range]');
+        
+        /* Slider Range */
+        $("#map-range").slider({
+            tooltip: 'always',
+            min: 500,
+            max: 5500,
+            step: 500,
+            ticks: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500],
+            ticks_positions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            ticks_labels: ['500 mt', '1000 mt', '1500 mt', '2000 mt', '2500 mt', '3000 mt', '3500 mt', '4000 mt', '4500 mt', '5000 mt', '5500 mt'],
+            ticks_snap_bounds: 0
+        });
+        
+        
 
         CMS.loadPlugin("../assets/js/plugin/maps", function (plugin) {
 
@@ -528,16 +491,16 @@
             var service = null;
 
             var types = {
-                "movie_theater": { "name": "Cinema", "path": "cinema-teatro.png" },
-                "stadium": { "name": "Stadi", "path": "stadio.png" },
-                "airport": { "name": "Aeroporti", "path": "aeroporto.png" },
-                "gym": { "name": "Palestre", "path": "palestra.png" },
-                "book_store": { "name": "Librerie", "path": "libreria.png" },
-                "hair_care": { "name": "Parrucchieri", "path": "parrucchiere.png" },
-                "department_store": { "name": "Centri commerciali", "path": "centro-commerciale.png" },
-                "beauty_salon": { "name": "Centri estetici", "path": "salone-bellezza.png" },
-                "restaurant": { "name": "Ristoranti", "path": "ristorante.png" },
-                "bar": { "name": "Bar", "path": "caffe.png", types: ["bar", "cafe"] }
+                "movie_theater": { "name": "Cinema", "path": "cinema-teatro.png", ico: 'fa fas fa-film' },
+                "stadium": { "name": "Stadi", "path": "stadio.png", ico: 'fa fas fa-cube' },
+                "airport": { "name": "Aeroporti", "path": "aeroporto.png", ico: 'fa fas fa-plane' },
+                "gym": { "name": "Palestre", "path": "palestra.png", ico: 'fa fas fa-dumbbell' },
+                "book_store": { "name": "Librerie", "path": "libreria.png", ico: 'fa fas fa-book' },
+                "hair_care": { "name": "Parrucchieri", "path": "parrucchiere.png", ico: 'fa fas fa-cut' },
+                "department_store": { "name": "Centri commerciali", "path": "centro-commerciale.png", ico: 'fa fas fa-shopping-cart' },        
+                "beauty_salon": { "name": "Centri estetici", "path": "salone-bellezza.png", ico: 'fa fas fa-spa' },
+                "restaurant": { "name": "Ristoranti", "path": "ristorante.png", ico: 'fa fas fa-utensils' },
+                "bar": { "name": "Bar", "path": "caffe.png", types: ["bar", "cafe"], ico: 'fa fas fa-coffee' }
             }, _get_type = function (t) {
                 if (types[t] && types[t].types) return types[t].types;
                 return [t];
@@ -610,9 +573,9 @@
             };
 
 
-            var panel = $('<div class="panel"><div class="row pdfignore"><div class="col-xs-6 mt-15 mb-15"><a data-type="clear" title="Disattiva tutte le categorie" class="btn btn-mr btn-white btn-small clear ctrl ml-5">Cancella</a></div> <div class="col-xs-6 mt-15 mb-15"><a data-type="all" title="Attiva tutte le categorie" class="btn btn-mr btn-small light all ctrl mr-5">Attiva</a></div></div></div>');
+            var panel = $('<div class="panel"><div class="row pdfignore"><div class="col-xs-6 mt-15 mb-15"><a data-type="clear" title="Cancella tutto" class="btn btn-mr btn-white btn-small clear ctrl ml-5 text-uppercase">Cancella tutto</a></div> <div class="col-xs-6 mt-15 mb-15"><a data-type="all" title="Attiva tutto" class="btn btn-mr btn-small light all ctrl mr-5 text-uppercase">Attiva tutto</a></div></div></div>');
 
-            for (var t in types) panel.prepend('<a data-type="' + t + '" class="text-uppercase type-place" title="Attiva ' + types[t].name + '"><img src="' + _get_path(t) + '" class="mr-10">' + types[t].name + '<span class="status"></span></a>'); //<span class="next" data-toggle="tooltip" data-placement="left" title="Aggiungi i prossimi risultati">+</span>
+            for (var t in types) panel.prepend('<a data-type="' + t + '" class="text-uppercase type-place" title="Attiva ' + types[t].name + '"><i class="'+types[t].ico+'"></i>' + types[t].name + '<span class="status"></span></a>'); //<span class="next" data-toggle="tooltip" data-placement="left" title="Aggiungi i prossimi risultati">+</span>
 
             panel.find("[data-toggle=tooltip]").tooltip();
 
@@ -638,7 +601,7 @@
                             var type_ = _types[tt];
                             setTimeout(function () {
                                 _search(pdi.circle.lat, pdi.circle.lng, pdi.circle.radius, type_, function (results, status, type_, pagination) {
-                                    _t.removeClass("loading").addClass("active").removeClass("hasnext");
+                                    _t.removeClass("loading").addClass("active").removeClass("hasnext").find('.fa').removeClass('fa-spin');
                                     if (status != "OK") return;
 
                                     if (_t.hasClass("nomore")) return _t.removeClass("nomore").removeClass("active");
@@ -655,7 +618,7 @@
                             }, 100 * i);
                         }
 
-                    }).addClass("loading");
+                    }).addClass("loading").find('.fa').addClass('fa-spin');
 
                     return false;
 
@@ -663,10 +626,10 @@
                     return _clearMarkers();
                 }
 
-                t.addClass("loading");
+                t.addClass("loading").find('.fa').addClass('fa-spin');
 
                 _search(pdi.circle.lat, pdi.circle.lng, pdi.circle.radius, type, function (results, status, type, pagination) {
-                    t.removeClass("loading").addClass("active").removeClass("hasnext");
+                    t.removeClass("loading").addClass("active").removeClass("hasnext").find('.fa').removeClass('fa-spin');
                     if (status != "OK") return;
                     if (t.hasClass("nomore")) return t.removeClass("nomore").removeClass("active");
                     for (var r = 0; r < results.length; r++) _addMarker(results[r].geometry.location, type, plugin.map, results[r].icon, results[r].name + " " + results[r].vicinity);
@@ -768,40 +731,21 @@
 
                 plugin.actions(evt, id, null);
 
-            }).bind('slider:changed','input[type=range]',function(evt,data){
-                console.log(evt,data);
-                body.find('[data-radius]').data('radius',data.value).text(data.value+' metri');
+            });
+            
+            $("#map-range").on("slide change", function(slideEvt) {
+                console.log(slideEvt.value);
+                if(slideEvt.value.newValue) slideEvt.value = slideEvt.value.newValue;
                 var pdi = plugin.getSelected();
                 if(pdi){
-                    pdi.circle.radius = data.value;
+                    pdi.circle.radius = slideEvt.value;
                     pdi.update();
                     plugin.fitBounds(pdi);
+                    $("#places-available").find('[data-type=clear]').trigger('click');
                     //plugin.actions("update", pdi.id, pdi);
                 }
             });
 
-        });
-        
-        
-        
-        rs.simpleSlider("setValue", currentPage.userSession.flow3.radius);
-        
-        console.log( 'value', currentPage.userSession.flow3.radius ); 
-
-
-        /* Slider Range */
-        $("#map-range").slider({
-            tooltip: 'always',
-            min: 500,
-            max: 5500,
-            step: 500,
-            ticks: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500],
-            ticks_positions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-            ticks_labels: ['500 mt', '1000 mt', '1500 mt', '2000 mt', '2500 mt', '3000 mt', '3500 mt', '4000 mt', '4500 mt', '5000 mt', '5500 mt'],
-            ticks_snap_bounds: 0
-        });
-        $("#map-range").on("slide", function(slideEvt) {
-            console.log(slideEvt.value);
         });
 
     });
