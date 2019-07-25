@@ -8217,6 +8217,11 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: #fff;
 }
 
+.menu-left,
+.modal-header {
+  border-top-right-radius: 15px;
+}
+
 .ico-home {
   background-image: url(/assets/img/ico-home.png);
 }
@@ -8303,6 +8308,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
   -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
   box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+  border-bottom-right-radius: 15px;
 }
 
 .menu-left .logo {
@@ -8347,7 +8353,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .menu-button {
   position: fixed;
-  top: 15%;
+  top: calc(15% + 20px);
   left: 0;
   width: 57px;
   height: 263px;
@@ -8735,7 +8741,6 @@ a.a-box:hover {
 
 .modal-header {
   border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   border: none;
 }
 
