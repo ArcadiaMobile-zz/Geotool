@@ -1,7 +1,11 @@
 <div class="container-fluid bg-top">
-    <div class="row bg-grad">
-        <div class="col-md-12 text-center mb-200">
-            <img class="mt-35" src="assets/img/logo-admove.png" alt="AdMove.com">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img class="main-logo logo-flow" src="assets/img/logo-mondored.png" alt="Mondored.it">
+            <div class="my-35 mb-75">
+                <h3 class="fs-32 text-center f-light l-spacing-theme">Inserisci i dati dell'inserzionista e il raggio d'azione</h3>
+                <p class="fs-18 f-light">e scopri le informazioni essenziali per una campagna di proximity marketing di successo.</p>
+            </div>
         </div>
     </div>
 </div>
@@ -9,50 +13,35 @@
 <div class="container">
     <form id="main" data-toggle="validator" role="form">
         <div class="row mt-35">
-            <div class="col-md-12 mt-200-minus">
-                <h3 class="fs-26 text-uppercase text-center">Inserisci i dati dell'inserzionista e il raggio d'azione</h3>
-                <p class="fs-18 text-center">e scopri le informazioni essenziali per una campagna di proximity marketing di successo.</p>
+            <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-5 col-md-offset-0 col-sm-10 col-sm-offset-1 mt-25">
-                        <div class="panel panel-default shadow">
-                            <div class="panel-heading"><span class="text-uppercase">Inserisci il nome:</span></div>
-                            <div class="panel-body">
-                                <div class="form-group mt-25">
-                                    <div class="input-group input-group-lg">
-                                        <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
-                                        <input type="text" class="form-control b-radius-right-2" name="businessName" required data-error="Campo obbligatorio">
-                                        <label class="placeholder">Nome dell'attività</label>
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
+                    <div class="col-md-5 col-md-offset-0 col-sm-10 col-sm-offset-1 mt-25 mb-45">
+
+                        <p class="text-uppercase fs-18 f-bold title-sep">Inserisci il nome:</p>
+
+                        <div class="form-group mt-50">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="fas fa-store-alt"></i></span>
+                                <input type="text" class="form-control" name="businessName" required data-error="Campo obbligatorio">
+                                <label class="placeholder">Nome dell'attività</label>
                             </div>
+                            <div class="help-block with-errors"></div>
                         </div>
+
                     </div>
-                    <div class="col-md-5 col-md-offset-2 col-sm-10 col-sm-offset-1 mt-25">
-                        <div class="panel panel-default shadow">
-                            <div class="panel-heading"><span class="text-uppercase">Inserisci l'indirizzo:</span></div>
-                            <div class="panel-body">
-                                <div class="form-group mt-25">
-                                    <div class="input-group input-group-lg">
-                                        <span class="input-group-addon"><span class="input-ico ico-location"></span></span>
-                                        <input type="text" class="form-control b-radius-right-2" name="address" required data-error="Campo obbligatorio">
-                                        <label class="placeholder">Indirizzo del punto vendita</label>
-                                    </div>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <!--<div class="form-group mt-50">
-                                    <div class="input-group input-group-lg">
-                                        <span class="input-group-addon"><span class="input-ico ico-range"></span></span>
-                                        <select class="selectpicker" data-width="100%" data-style="select-with-addon" name="circle.radius">
-                                            <option value="500">500 metri</option>
-                                            <option value="1000">1 Km</option>
-                                            <option value="1500">1.5 Km</option>
-                                        </select>
-                                        <label class="placeholder addon active">Raggio di azione</label>
-                                    </div>
-                                </div>-->
+                    <div class="col-md-5 col-md-offset-2 col-sm-10 col-sm-offset-1 mt-25 mb-45">
+
+                        <p class="text-uppercase fs-18 f-bold title-sep">Inserisci l'indirizzo:</p>
+
+                        <div class="form-group mt-50">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                <input type="text" class="form-control" name="address" required data-error="Campo obbligatorio">
+                                <label class="placeholder">Indirizzo del punto vendita</label>
                             </div>
+                            <div class="help-block with-errors"></div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -60,7 +49,7 @@
         <div class="row mb-35">
             <div class="col-xs-12 text-center">
                 <!--<a href="mappa-flusso-3" data-navigo class="btn btn-adm text-uppercase m-30">Scopri gli insight</a>-->
-                <button type="submit" class="btn btn-adm text-uppercase m-30">Scopri gli insight</button>
+                <button type="submit" class="btn btn-mr text-uppercase mt-15 mb-35">Scopri gli insight</button>
             </div>
         </div>
     </form>
@@ -68,14 +57,14 @@
     <div class="modal fade" id="popup3-multi" role="dialog" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog modal-lg mt-50" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark-blue">
+                <div class="modal-header bg-white">
                     <!-- <a href="#" class="a-box pull-left mr-15" data-dismiss="modal"><img src="assets/img/left-arrow.png"></a> -->
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title text-uppercase">Seleziona la tua attività e continua</h4>
+                    <h4 class="modal-title text-center mt-25 fs-24">Seleziona l'attività corretta e continua</h4>
                 </div>
-                <div class="modal-body bg-blue">
+                <div class="modal-body bg-white">
                     <form data-toggle="validator" role="form">
                         <div class="row slogan-list" id="slogan-content">
                             <script id="slogan-list-template" type="text/x-handlebars-template">
@@ -87,25 +76,31 @@
                                 {{/each}}
                             </script>
                         </div>
-                        <div class="row mt-15">
+                        <div class="row mt-50">
                             <div class="col-md-10 col-md-offset-1">
                                 <div class="row">
                                     <div class="col-md-6">
+
+                                        <p class="text-uppercase fs-18 f-bold title-sep">Come si chiama la tua attività?</p>
+
                                         <div class="form-group mt-50">
                                             <div class="input-group input-group-lg">
-                                                <span class="input-group-addon"><span class="input-ico ico-home"></span></span>
-                                                <input type="text" class="form-control b-radius-right-2" name="slogan" readonly="readonly" required data-error="Campo obbligatorio">
-                                                <label class="placeholder sky-blue">Come si chiama la tua attività</label>
+                                                <span class="input-group-addon"><i class="fas fa-store-alt"></i></span>
+                                                <input type="text" class="form-control" name="slogan" readonly="readonly" required data-error="Campo obbligatorio">
+                                                <label class="placeholder">Come si chiama la tua attività</label>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+
+                                        <p class="text-uppercase fs-18 f-bold title-sep">Dove si trova?</p>
+
                                         <div class="form-group mt-50">
                                             <div class="input-group input-group-lg">
-                                                <span class="input-group-addon"><span class="input-ico ico-location"></span></span>
-                                                <input type="text" class="form-control b-radius-right-2" name="address" readonly="readonly" required data-error="Campo obbligatorio">
-                                                <label class="placeholder sky-blue">Dove si trova?</label>
+                                                <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                                                <input type="text" class="form-control" name="address" readonly="readonly" required data-error="Campo obbligatorio">
+                                                <label class="placeholder">Dove si trova?</label>
                                             </div>
                                             <div class="help-block with-errors"></div>
                                         </div>
@@ -115,7 +110,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12 text-center">
-                                <button type="submit" class="btn btn-adm text-uppercase my-15-auto">Vai</button>
+                                <button type="submit" class="btn btn-mr text-uppercase my-15-auto pl-25 pr-25">Vai</button>
                             </div>
                         </div>
                     </form>

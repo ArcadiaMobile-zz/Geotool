@@ -7,7 +7,7 @@
     }
 
     #map {
-        margin-left: 10px;
+        margin-left: 0px;
         height: 400px;
     }
 
@@ -24,7 +24,7 @@
     }
 
     .info h2.title {
-        color: #e89c2a;
+        color: #e02b20;
         padding: 0;
         margin: 5px 0;
         font-size: 16px
@@ -35,14 +35,6 @@
         color: #2e3e40
     }
 
-
-    .modal-header {
-        background-color: #082731;
-    }
-
-    .modal-footer {
-        padding: 15px
-    }
 
     a.type-place {
         position: relative;
@@ -64,7 +56,7 @@
         color: #fff;
         font-size: 30px;
         line-height: 20px;
-        background: #ea9d2b;
+        background: #e02b20;
         border-radius: 10px;
         content: "+"
     }
@@ -98,7 +90,7 @@
 
         .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading {
             background-color: #fff;
-            border: 1px solid #071a21 !important;
+            border: 1px solid #000000 !important;
             border-radius: 3px;
             border-collapse: collapse
         }
@@ -118,7 +110,7 @@
         }
 
         .pdfcontainer * {
-            color: #071a21 !important;
+            color: #000000 !important;
         }
 
         .pdfcontainer .nav-pills {
@@ -311,37 +303,39 @@
 
     <div id="container-map">
         <div id="map" class="with-sidebar"></div>
+        <input id="map-range" data-slider-id='range-slider' type="text" />
         <div id="places-available" data-mcs-theme="minimal-dark">
-            <p class="text-uppercase color-white my-15 fs-15 pdfignore">Seleziona le categorie:</p>
+            <p class="fs-18 my-15 fs-15 pdfignore">Seleziona le categorie:</p>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container pt-15" id="container-pdv">
 
-        <p class="text-uppercase color-white my-15 fs-15">INFORMAZIONI SUL TERRITORIO E I POTENZIALI CLIENTI:</p>
+        <p class="text-uppercase title-sep f-bold fs-15 mb-15 hidden-md">Informazioni sul territorio e potenziali clienti:</p>
 
         <div class="row">
             <script id="business-template" type="text/x-handlebars-template">
-                <div class="col-md-12 col-lg-6">
+                <div class="col-md-5 col-lg-5">
                     <div class="well">
-                        <div class="media">
-                            <div class="media-left media-middle pr-15 br-blue-light-1">
-                                <img class="media-object" style="max-width: 137px; max-height: 76px" src="{{image}}" alt="{{businessName}}">
+                        <div class="media" style="overflow: visible;">
+                            <div class="media-left media-middle">
+                                <!--img class="media-object" style="max-width: 137px; max-height: 76px" src="{{image}}" alt="{{businessName}}"-->
+                                <img class="media-object static-img" src="assets/img/thumb.png" alt="Mondored.it">
                             </div>
-                            <div class="media-body media-middle pl-15">
+                            <div class="media-body media-middle bg-pdv">
 
-                                <h3 class="color-orange fs-18 m-0 mb-10">{{businessName}}</h3>
+                                <h3 class="color-red fs-18 m-0 mb-10">{{businessName}}</h3>
 
                                 <div class="media m-0">
                                     <div class="media-left">
-                                        <span class="pdi-image"><img class="media-object" src="assets/img/ico-pin.png" alt=""></span>
+                                        <i class="fas fa-map-marker-alt color-red"></i>
                                     </div>
                                     <p class="media-body"><span class="pdi-address">{{address}}</span></p>
                                 </div>
 
                                 <div class="media m-0">
                                     <div class="media-left">
-                                        <span class="media-object color-light-blue"><b>T:</b></span>
+                                        <span class="media-object color-red"><b>T:</b></span>
                                     </div>
                                     <p class="media-body"><span class="pdi-phone">{{phoneNumber}}</span></p>
                                 </div>
@@ -352,24 +346,24 @@
                 </div>
             </script>
 
-            <div class="col-md-12 col-lg-6">
+            <div class="col-md-5 col-lg-5">
                 <div class="well pt-0 pb-0">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-12 p-15">
+                                <div class="col-md-12 p-15 bg-data">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Utenti mobile nel tuo territorio</b></span>
-                                        <span class="info-badge pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></span>
+                                        <span class="text-uppercase color-light-gray fs-12 pull-left lh-18 mr-5">Utenti mobile</span>
+                                        <i class="fas fa-question-circle color-red c-help pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></i>
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle" href="#">
+                                        <div class="media-left media-middle hide" href="#">
                                             <img class="media-object" src="assets/img/ico-smartphone.png" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <span class="fs-24" data-insight-PotentialUsers="">26.250</span>
+                                            <span class="fs-24 color-red" data-insight-PotentialUsers="">26.250</span>
                                         </div>
                                     </div>
 
@@ -378,14 +372,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-sm-6 col-xs-12 p-15 br-1 bg-men">
+                                <div class="col-sm-6 col-xs-12 p-15 br-light-1 bg-men">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Uomini</b></span>
+                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-12 lh-18">Uomini</span>
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle" href="#">
+                                        <div class="media-left media-middle hide" href="#">
                                             <img class="media-object" src="assets/img/ico-men.png" alt="">
                                         </div>
                                         <div class="media-body">
@@ -398,11 +392,11 @@
                                 <div class="col-sm-6 col-xs-12 p-15 bg-women">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-light-blue pull-left mr-10 fs-12 lh-18"><b>Donne</b></span>
+                                        <span class="text-uppercase color-red f-light pull-left mr-10 fs-12 lh-18">Donne</span>
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle" href="#">
+                                        <div class="media-left media-middle hide" href="#">
                                             <img class="media-object" src="assets/img/ico-women.png" alt="">
                                         </div>
                                         <div class="media-body">
@@ -417,14 +411,26 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-2 col-lg-2 box-action">
+                <div class="row mb-20 pdfignore">
+                    <div class="col-md-12 col-xs-6 text-center">
+                        <button class="btn btn-mr btn-small btn-back text-uppercase mb-15">Indietro</button>
+                    </div>
+                    <div class="col-md-12 col-xs-6 text-center">
+                        <a class="btn btn-mr btn-small circle text-uppercase pdf mb-15">Salva PDF <span class="circle-btn"><i class="fas fa-print"></i></span></a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <div class="row mb-35 mt-10 pdfignore">
+        <!--div class="row mb-15 pdfignore">
             <div class="col-xs-12 text-center">
-                <button class="btn btn-adm btn-back text-uppercase m-30">Indietro</button>
-                <a class="btn btn-adm text-uppercase pdf"><img src="assets/img/ico-print.png" class="mr-15">Stampa pagina</a>
+                <button class="btn btn-mr btn-small btn-back text-uppercase m-10">Indietro</button>
+                <a class="btn btn-mr btn-small circle text-uppercase pdf m-10">Salva PDF <span class="circle-btn"><i class="fas fa-print"></i></span></a>
             </div>
-        </div>
+        </div-->
 
     </div>
 
@@ -432,6 +438,7 @@
 
 <script src="assets/js/pdf/dist/jspdf.debug.js"></script>
 <script src="assets/js/pdf/html2pdf.js"></script>
+<script src="assets/bootstrap-slider/js/bootstrap-slider.min.js"></script>
 <script>
 
     var currentPage;
@@ -440,10 +447,13 @@
         currentPage = navigationService.currentPage;
 
         function mapSize($target) {
-            var h = (($(window).height() / 4) * 3);
-            if (h <= 480) {
-                return;
-            }
+            var wH = $( window ).height(), wW = $( window ).width(), cH = $("#container-pdv").outerHeight();
+
+            var h = wH - cH;
+
+            if (h <= 400) { h = 400; }
+            if (wW < 992) { h = 480; }
+
             $target.css("height", h);
         };
 
@@ -461,7 +471,7 @@
             modal = null;
 
         // tooltip di bootstrap
-        $("[data-toggle=tooltip]").tooltip();
+        $("[data-toggle=tooltip]").tooltip({container: 'body'});
 
         // carousel del budget
         var carousel_prices = $("#owl-price");
@@ -573,7 +583,7 @@
             };
 
 
-            var panel = $('<div class="panel"><div class="row pdfignore"><div class="col-xs-6 mt-15"><a data-type="clear" title="Disattiva tutte le categorie" class="btn btn-adm clear ctrl">Cancella</a></div> <div class="col-xs-6 mt-15"><a data-type="all" title="Attiva tutte le categorie" class="btn btn-adm light all ctrl">Attiva</a></div></div></div>');
+            var panel = $('<div class="panel"><div class="row pdfignore"><div class="col-xs-6 mt-15 mb-15"><a data-type="clear" title="Disattiva tutte le categorie" class="btn btn-mr btn-white btn-small clear ctrl ml-5">Cancella</a></div> <div class="col-xs-6 mt-15 mb-15"><a data-type="all" title="Attiva tutte le categorie" class="btn btn-mr btn-small light all ctrl mr-5">Attiva</a></div></div></div>');
 
             for (var t in types) panel.prepend('<a data-type="' + t + '" class="text-uppercase type-place" title="Attiva ' + types[t].name + '"><img src="' + _get_path(t) + '" class="mr-10">' + types[t].name + '<span class="status"></span></a>'); //<span class="next" data-toggle="tooltip" data-placement="left" title="Aggiungi i prossimi risultati">+</span>
 
@@ -732,6 +742,21 @@
 
             });
 
+        });
+
+        /* Slider Range */
+        $("#map-range").slider({
+            tooltip: 'always',
+            min: 500,
+            max: 5500,
+            step: 500,
+            ticks: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500],
+            ticks_positions: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            ticks_labels: ['500 mt', '1000 mt', '1500 mt', '2000 mt', '2500 mt', '3000 mt', '3500 mt', '4000 mt', '4500 mt', '5000 mt', '5500 mt'],
+            ticks_snap_bounds: 0
+        });
+        $("#map-range").on("slide", function(slideEvt) {
+            console.log(slideEvt.value);
         });
 
     });
