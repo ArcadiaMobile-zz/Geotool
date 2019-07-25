@@ -6791,6 +6791,7 @@ body {
   font-size: 16px;
 }
 
+.btn-mr,
 h1,
 h2,
 h3,
@@ -6879,7 +6880,7 @@ h6 {
 
 .btn-mr {
   position: relative;
-  font-size: 20px;
+  font-size: 22px;
   padding: 9px 20px;
   border-radius: 25px;
   -webkit-transition: all .3s;
@@ -6892,7 +6893,7 @@ h6 {
 }
 
 .btn-mr.circle {
-  padding: 9px 55px 9px 20px;
+  padding: 9px 60px 9px 20px;
 }
 
 .btn-mr.btn-small {
@@ -6925,17 +6926,17 @@ h6 {
 
 .circle-btn,
 .circle-ico {
+  border-radius: 20px;
   background: #fff;
   color: #e02b20;
 }
 
 .circle-btn {
   position: absolute;
-  width: 38px;
-  height: 38px;
-  border-radius: 19px;
-  line-height: 40px;
-  top: 4px;
+  width: 40px;
+  height: 40px;
+  line-height: 42px;
+  top: 5px;
   right: 5px;
   -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
   -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
@@ -6954,7 +6955,6 @@ h6 {
   display: block;
   width: 40px;
   height: 40px;
-  border-radius: 20px;
   font-size: 20px;
   line-height: 42px;
   border: 1px solid #000;
@@ -7064,6 +7064,10 @@ h6 {
 
 .fs-32 {
   font-size: 32px;
+}
+
+.fs-34 {
+  font-size: 34px;
 }
 
 .fs-52 {
@@ -8021,7 +8025,7 @@ fieldset[disabled] .form-control {
 .form-control {
   -webkit-box-shadow: none;
   box-shadow: none;
-  font-size: 16px!important;
+  font-size: 18px!important;
   padding: 10px!important;
   border: none;
 }
@@ -8705,12 +8709,6 @@ a.a-box:hover {
   color: #ea9d2b;
 }
 
-.close,
-.close:hover,
-.well {
-  color: #000;
-}
-
 .bg-accordion-inset {
   background-color: #082731;
   margin: -8px -20px;
@@ -8755,6 +8753,12 @@ a.a-box:hover {
   border-top-right-radius: 15px;
 }
 
+.close,
+.close:hover {
+  color: #000;
+  font-size: 38px;
+}
+
 .close {
   opacity: .5;
 }
@@ -8767,6 +8771,7 @@ a.a-box:hover {
 .well {
   padding: 10px 15px;
   border: none;
+  color: #000;
   border-radius: 15px;
   -webkit-box-shadow: 0 10px 15px 0 rgba(0,0,0,.15);
   -moz-box-shadow: 0 10px 15px 0 rgba(0,0,0,.15);
@@ -8988,14 +8993,14 @@ a.a-box:hover {
 
 label.placeholder,
 span.placeholder {
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 400;
   padding: 0 9px;
   opacity: 1;
   color: #9d9d9d;
   position: absolute;
   pointer-events: none;
-  top: 14px;
+  top: 12px;
   left: 46px;
   z-index: 3;
   transition: .2s ease all;
@@ -9021,7 +9026,7 @@ div.placeholder.ib {
 
 label.placeholder.active {
   color: #e02b20;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 1;
   top: -23px;
   font-weight: 300;
@@ -9502,13 +9507,13 @@ ol.competitors[data-steps="9"] li {
 .slogan [rel=name] {
   display: block;
   color: #000;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 .slogan [rel=address] {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .slogan.selected,
