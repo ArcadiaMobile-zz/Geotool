@@ -6788,6 +6788,7 @@ body {
   font-family: 'Source Sans Pro',sans-serif;
   letter-spacing: .3px;
   background-color: #fff;
+  font-size: 16px;
 }
 
 h1,
@@ -7461,6 +7462,7 @@ fieldset[disabled] .btn:hover {
   background-image: url(/assets/img/sfondo-inserisci-i-dati.jpg);
   background-position: center bottom;
   background-size: cover;
+  min-height: 500px;
 }
 
 .bg-city-map,
@@ -8294,7 +8296,7 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: 998;
   padding-right: 10px;
   background: #fff;
-  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.1);
   -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
   box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
 }
@@ -12030,6 +12032,10 @@ div[style*="font-family: LABEL_SELECTED"][style] {
   .modal-xl {
     width: auto;
     margin: 30px 10px;
+  }
+
+  .bg-top {
+    min-height: 100px;
   }
 }
 

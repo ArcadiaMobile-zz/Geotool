@@ -13,7 +13,7 @@
 
 a,button{cursor:pointer}
 
-body { font-family: 'Source Sans Pro', sans-serif; letter-spacing: 0.3px; background-color: #ffffff; color: #000000;}
+body { font-family: 'Source Sans Pro', sans-serif; letter-spacing: 0.3px; background-color: #ffffff; color: #000000;font-size: 16px;}
 
 h1, h2, h3, h4, h5, h6 {font-family: 'Raleway', sans-serif;}
 
@@ -206,7 +206,7 @@ small, .small { font-size: 65%; }
 .bg-bubble:after {content:'';position: absolute;top: 0;left: 0;margin-top: -13px;width: 0;height: 0;border-bottom: solid 13px #082731;border-left: solid 0px transparent;border-right: solid 13px transparent;}
 
 /* Background Image */
-.bg-top { background-image: url("../img/sfondo-inserisci-i-dati.jpg"); background-repeat: no-repeat; background-position: center bottom; background-size: cover; }
+.bg-top { background-image: url("../img/sfondo-inserisci-i-dati.jpg"); background-repeat: no-repeat; background-position: center bottom; background-size: cover; min-height: 500px; }
 .bg-city-map { background-image: url("../img/img-city-map.png"); background-repeat: no-repeat; background-position: center; }
 .bg-contacts { height: 312px; background-image: url("../img/bg-contacts.jpg"); background-repeat: no-repeat; background-position: center; }
 
@@ -1393,6 +1393,7 @@ div[style*="font-family: LABEL_SELECTED"],div[style*="font-family: LABEL_SELECTE
 @media (max-width: 1199px) {
     .affix { width: 530px; }
     .modal-xl {width: auto;margin: 30px 10px;}
+    .bg-top {min-height: 100px;}
 }
 /*
 @media (max-width: 991px) {
