@@ -1,10 +1,7 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
@@ -20,14 +17,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t;
+    return { next: verb(0), "throw": verb(1), "return": verb(2) };
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -46,16 +43,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
 };
 moment.prototype.userLocale = function () {
     var lang = (navigator.language || navigator.browserLanguage).slice(0, 2);
@@ -208,7 +202,7 @@ var GeocodeStatus;
     GeocodeStatus[GeocodeStatus["INVALID_REQUEST"] = 4] = "INVALID_REQUEST";
     GeocodeStatus[GeocodeStatus["UNKNOW_ERROR"] = 5] = "UNKNOW_ERROR";
 })(GeocodeStatus || (GeocodeStatus = {}));
-var ServiceAgentContext = /** @class */ (function () {
+var ServiceAgentContext = (function () {
     function ServiceAgentContext(baseUrl) {
         this.baseUrl = baseUrl;
         this.reload();
@@ -263,7 +257,7 @@ var ServiceAgentContext = /** @class */ (function () {
     });
     return ServiceAgentContext;
 }());
-var ServiceAgent = /** @class */ (function () {
+var ServiceAgent = (function () {
     function ServiceAgent(context) {
         this.context = context;
     }
@@ -291,7 +285,6 @@ var ServiceAgent = /** @class */ (function () {
                 setting.contentType = false;
                 setting.processData = false;
             }
-            // Serializzo in JSON se è un oggetto
             else if (typeof body === "object") {
                 body = JSON.stringify(body);
             }
@@ -350,7 +343,7 @@ var ServiceAgent = /** @class */ (function () {
 }());
 ;
 ;
-var AutoServiceAgent = /** @class */ (function (_super) {
+var AutoServiceAgent = (function (_super) {
     __extends(AutoServiceAgent, _super);
     function AutoServiceAgent(context) {
         var operations = [];
@@ -376,7 +369,7 @@ var AutoServiceAgent = /** @class */ (function (_super) {
     }
     return AutoServiceAgent;
 }(ServiceAgent));
-var ServiceAgentFactory = /** @class */ (function () {
+var ServiceAgentFactory = (function () {
     function ServiceAgentFactory() {
     }
     ServiceAgentFactory.get = function (c) {
@@ -384,14 +377,14 @@ var ServiceAgentFactory = /** @class */ (function () {
     };
     return ServiceAgentFactory;
 }());
-var BusinessCategoryServiceAgent = /** @class */ (function (_super) {
+var BusinessCategoryServiceAgent = (function (_super) {
     __extends(BusinessCategoryServiceAgent, _super);
     function BusinessCategoryServiceAgent(context) {
         return _super.call(this, context, { name: "getAll", uri: "/api/BusinessCategory" }) || this;
     }
     return BusinessCategoryServiceAgent;
 }(AutoServiceAgent));
-var CampaignServiceAgent = /** @class */ (function (_super) {
+var CampaignServiceAgent = (function (_super) {
     __extends(CampaignServiceAgent, _super);
     function CampaignServiceAgent(context) {
         var _this = _super.call(this, context, { name: "getAll", uri: "/api/Campaign" }, { name: "get", uri: function (args) { return _this.formatUri("/api/Campaign", args); } }, { name: "moreProducts", uri: function (args) { return _this.formatUri("/api/Campaign/MoreProducts", [], { proposalItemId: args[0], diagnosticData: args[1] || false }); } }, { name: "moreProductsBulk", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/MoreProductsBulk"); }, body: function (args) { return args[0]; } }, { name: "moreCopyItems", uri: function (args) { return _this.formatUri("/api/Campaign/MoreCopyItems", [], { proposalProductItemId: args[0] }); } }, { name: "moreBanners", uri: function (args) { return _this.formatUri("/api/Campaign/MoreBanners", [], { proposalCopyItemId: args[0] }); } }, { name: "evaluate", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/Evaluate"); }, body: function (args) { return args[0]; } }, { name: "evaluateBulk", uri: "/api/Campaign/EvaluateBulk" }, { name: "prepareCampaignGroupDraft", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/PrepareCampaignGroupDraft"); }, body: function (args) { return args[0]; } }, { name: "bulkPrepareCampaign", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/BulkPrepareCampaign"); }, body: function (args) { return args[0]; } }, { name: "handleCampaignPayment", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/HandleCampaignPayment", args); } }, { name: "renameCampaign", method: "POST", uri: function (args) { return _this.formatUri("/api/Campaign/Rename", [args[0]]); }, body: function (args) { return JSON.stringify(args[1]); } }, { name: "getSeo", uri: function (args) { return _this.formatUri("/api/Campaign/Seo", [], { businessName: args[0] }); } }, { name: "getDeliveryDays", method: "GET", uri: function (args) { return _this.formatUri("/api/Campaign/Bulk/" + args[0], undefined, undefined); } }, { name: "getBulkMaxBudget", method: "GET", uri: "/api/Campaign/MaxBudget" }) || this;
@@ -407,7 +400,7 @@ var CampaignServiceAgent = /** @class */ (function (_super) {
     }
     return CampaignServiceAgent;
 }(AutoServiceAgent));
-var InvoiceServiceAgent = /** @class */ (function (_super) {
+var InvoiceServiceAgent = (function (_super) {
     __extends(InvoiceServiceAgent, _super);
     function InvoiceServiceAgent(context) {
         var _this = _super.call(this, context, { name: "prepareForCampaign", method: "POST", uri: function (args) { return _this.formatUri("/api/Invoice/PrepareForCampaign", [args[0]]); }, body: function (args) { return args[1]; } }, { name: "prepareForCampaignGroup", method: "POST", uri: function (args) { return _this.formatUri("/api/Invoice/PrepareForCampaignGroup", [args[0]]); }, body: function (args) { return args[1]; } }, { name: "get", method: "GET", uri: "/api/Invoice" }) || this;
@@ -415,7 +408,7 @@ var InvoiceServiceAgent = /** @class */ (function (_super) {
     }
     return InvoiceServiceAgent;
 }(AutoServiceAgent));
-var SemanticWebServiceAgent = /** @class */ (function (_super) {
+var SemanticWebServiceAgent = (function (_super) {
     __extends(SemanticWebServiceAgent, _super);
     function SemanticWebServiceAgent(context) {
         var _this = _super.call(this, context, { name: "searchLocation", uri: function (args) { return _this.formatUri("/api/SemanticWeb/SearchLocation", args); } }, { name: "search", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Search", args); } }, { name: "getDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }, { name: "getBulkDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetBulkDetails", [args[0], args[1]]); } }, { name: "GeocodeAddress", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GeocodeAddress", args); } }, { name: "Geocode", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]); } }, { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: function (args) { return args[0]; } }) || this;
@@ -429,7 +422,7 @@ var SemanticWebServiceAgent = /** @class */ (function (_super) {
     }
     return SemanticWebServiceAgent;
 }(AutoServiceAgent));
-var GoogleServiceAgent = /** @class */ (function () {
+var GoogleServiceAgent = (function () {
     function GoogleServiceAgent() {
     }
     GoogleServiceAgent.prototype.geocode = function (location) {
@@ -448,14 +441,14 @@ var GoogleServiceAgent = /** @class */ (function () {
     };
     return GoogleServiceAgent;
 }());
-var SecurityServiceAgent = /** @class */ (function (_super) {
+var SecurityServiceAgent = (function (_super) {
     __extends(SecurityServiceAgent, _super);
     function SecurityServiceAgent(context) {
         return _super.call(this, context, { name: "signupAgency", method: "POST", uri: function (args) { return "/api/security/agency"; }, body: function (args) { return args[0]; } }) || this;
     }
     return SecurityServiceAgent;
 }(AutoServiceAgent));
-var AgencyServiceAgent = /** @class */ (function (_super) {
+var AgencyServiceAgent = (function (_super) {
     __extends(AgencyServiceAgent, _super);
     function AgencyServiceAgent(context) {
         var _this = _super.call(this, context, { name: "get", method: "GET", uri: "/api/agency" }, { name: "getAgency", method: "GET", uri: "/api/agency/getAgency" }, { name: "creditBalance", method: "GET", uri: "/api/agency/creditBalance" }, { name: "askCredit", method: "POST", uri: "/api/agency/askCredit", body: function (args) { return args[0]; } }, { name: "updateAgency", method: "PUT", uri: "/api/agency/UpdateAgency", body: function (args) { return args[0]; } }, { name: "getTransactions", method: "GET", uri: function (args) { return _this.formatUri("/api/agency/transactions", undefined, { $top: args[0], $skip: args[1] }); } }) || this;
@@ -463,7 +456,7 @@ var AgencyServiceAgent = /** @class */ (function (_super) {
     }
     return AgencyServiceAgent;
 }(AutoServiceAgent));
-var ReportServiceAgent = /** @class */ (function (_super) {
+var ReportServiceAgent = (function (_super) {
     __extends(ReportServiceAgent, _super);
     function ReportServiceAgent(context) {
         var _this = _super.call(this, context, { name: "groupsSummary", method: "GET", uri: "/api/report/groupssummary" }, { name: "groups", method: "GET", uri: function (args) { return _this.formatUri("/api/report/groups", undefined, { status: args[0], $top: args[1], $skip: args[2] }); } }, { name: "groupsCount", method: "GET", uri: function (args) { return _this.formatUri("/api/report/groups", undefined, { $select: "Id", status: args[0] }); }, responseCallback: function (r) { return r.length; } }, { name: "getCampaignById", method: "GET", uri: function (args) { return _this.formatUri("/api/report/" + args[0], undefined, undefined); } }, { name: "getCampaignGroupById", method: "GET", uri: function (args) { return _this.formatUri("/api/report/group/" + args[0], undefined, undefined); } }, { name: "getCampaignDetailsById", method: "GET", uri: function (args) { return _this.formatUri("/api/report/" + args[0] + "/details", undefined, undefined); } }, { name: "getCampaignDetailsByGroupId", method: "GET", uri: function (args) { return _this.formatUri("/api/report/group/" + args[0] + "/details", undefined, undefined); } }, { name: "campaigns", method: "GET", uri: function (args) { return _this.formatUri("/api/report", undefined, { status: args[0], $top: args[1], $skip: args[2] }); } }, { name: "getCampaignsModeration", method: "GET", uri: "/api/report/moderation" }, { name: "GetReportPowerBI", method: "GET", uri: function (args) { return _this.formatUri("/api/report/group/" + args[0] + "/powerbi", undefined, undefined); } }) || this;
@@ -471,7 +464,7 @@ var ReportServiceAgent = /** @class */ (function (_super) {
     }
     return ReportServiceAgent;
 }(AutoServiceAgent));
-var UserSession = /** @class */ (function () {
+var UserSession = (function () {
     function UserSession() {
         this.pdvs = [];
         this.agencyInfo = new AgencyInfo();
@@ -731,7 +724,7 @@ var UserSession = /** @class */ (function () {
     };
     return UserSession;
 }());
-var Pdv = /** @class */ (function () {
+var Pdv = (function () {
     function Pdv(session) {
         this.session = session;
         /**
@@ -898,8 +891,8 @@ var Pdv = /** @class */ (function () {
     };
     Pdv.prototype.load = function (detail) {
         return __awaiter(this, void 0, void 0, function () {
-            var semanticWebServiceAgent, _a, _b, _c, c, _d, _e;
             var _this = this;
+            var semanticWebServiceAgent, _a, _b, _c, c, _d, _e;
             return __generator(this, function (_f) {
                 switch (_f.label) {
                     case 0:
@@ -962,8 +955,8 @@ var Pdv = /** @class */ (function () {
     Pdv.prototype.loadProducts = function (forceEvaluation) {
         if (forceEvaluation === void 0) { forceEvaluation = false; }
         return __awaiter(this, void 0, void 0, function () {
-            var _a, p, campaignServiceAgent, proposalItem;
             var _this = this;
+            var _a, p, campaignServiceAgent, proposalItem;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -1027,7 +1020,7 @@ var Pdv = /** @class */ (function () {
     };
     return Pdv;
 }());
-var BulkData = /** @class */ (function () {
+var BulkData = (function () {
     function BulkData() {
         this.orderBy = "Level";
     }
@@ -1040,21 +1033,21 @@ var BulkData = /** @class */ (function () {
     });
     return BulkData;
 }());
-var ManualData = /** @class */ (function () {
+var ManualData = (function () {
     function ManualData() {
         this.isSet = false;
         this.customBanners = new Map();
     }
     return ManualData;
 }());
-var ManualPdvData = /** @class */ (function () {
+var ManualPdvData = (function () {
     function ManualPdvData() {
         this.isSet = false;
         this.customBanners = new Map();
     }
     return ManualPdvData;
 }());
-var Product = /** @class */ (function () {
+var Product = (function () {
     function Product(pdv, item) {
         this.pdv = pdv;
         this.item = item;
@@ -1089,7 +1082,7 @@ var Product = /** @class */ (function () {
     });
     return Product;
 }());
-var AgencyInfo = /** @class */ (function () {
+var AgencyInfo = (function () {
     function AgencyInfo() {
     }
     Object.defineProperty(AgencyInfo.prototype, "onlinePayment", {
@@ -1159,12 +1152,12 @@ var AgencyInfo = /** @class */ (function () {
     };
     return AgencyInfo;
 }());
-var Flow3 = /** @class */ (function () {
+var Flow3 = (function () {
     function Flow3() {
     }
     return Flow3;
 }());
-var NavigationService = /** @class */ (function () {
+var NavigationService = (function () {
     function NavigationService(baseUrl) {
         this.baseUrl = baseUrl;
         this._pages = {};
@@ -1358,7 +1351,7 @@ var NavigationService = /** @class */ (function () {
     return NavigationService;
 }());
 /// <reference path="../references.ts" />
-var Page = /** @class */ (function () {
+var Page = (function () {
     function Page(relativeUri) {
         this.relativeUri = relativeUri;
         Handlebars.registerHelper('for', function (from, to, incr, block) {
@@ -1576,7 +1569,7 @@ var RunPolicy;
     RunPolicy[RunPolicy["AskForRetry"] = 1] = "AskForRetry";
     RunPolicy[RunPolicy["RaiseError"] = 2] = "RaiseError";
 })(RunPolicy || (RunPolicy = {}));
-var Sidebar = /** @class */ (function () {
+var Sidebar = (function () {
     function Sidebar() {
         this.carouselPdiTemplate = $('#owl-dashboard .row.item:first').removeClass('hide').remove();
     }
@@ -1665,7 +1658,7 @@ var SidebarMode;
     SidebarMode[SidebarMode["Full"] = 3] = "Full";
 })(SidebarMode || (SidebarMode = {}));
 /// <reference path="../../references.ts" />
-var index = /** @class */ (function (_super) {
+var index = (function (_super) {
     __extends(index, _super);
     function index() {
         return _super.call(this, "index.html") || this;
@@ -1683,7 +1676,7 @@ var index = /** @class */ (function (_super) {
     };
     return index;
 }(Page));
-var sceltacategoria = /** @class */ (function (_super) {
+var sceltacategoria = (function (_super) {
     __extends(sceltacategoria, _super);
     function sceltacategoria() {
         return _super.call(this, "scelta-categoria.html") || this;
@@ -1837,7 +1830,7 @@ var sceltacategoria = /** @class */ (function (_super) {
     return sceltacategoria;
 }(Page));
 /// <reference path="../../references.ts" />
-var prodottoobiettivo = /** @class */ (function (_super) {
+var prodottoobiettivo = (function (_super) {
     __extends(prodottoobiettivo, _super);
     function prodottoobiettivo() {
         return _super.call(this, "prodotto-obiettivo.html") || this;
@@ -1866,7 +1859,7 @@ var prodottoobiettivo = /** @class */ (function (_super) {
     return prodottoobiettivo;
 }(Page));
 /// <reference path="../../references.ts" />
-var map = /** @class */ (function (_super) {
+var map = (function (_super) {
     __extends(map, _super);
     function map() {
         return _super.call(this, "map.html") || this;
@@ -1920,8 +1913,8 @@ var map = /** @class */ (function (_super) {
     */
     map.prototype.addPdiFormSubmit = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var address;
             var _this = this;
+            var address;
             return __generator(this, function (_a) {
                 e.preventDefault();
                 address = $(e.target).find("[name=address]").val();
@@ -2236,7 +2229,7 @@ var map = /** @class */ (function (_super) {
     return map;
 }(Page));
 /// <reference path="../../references.ts" />
-var riepilogopdv = /** @class */ (function (_super) {
+var riepilogopdv = (function (_super) {
     __extends(riepilogopdv, _super);
     function riepilogopdv() {
         return _super.call(this, "riepilogo-pdv.html") || this;
@@ -2256,8 +2249,8 @@ var riepilogopdv = /** @class */ (function (_super) {
             _this.html.find("#credit").modal('show');
         });
         this.html.find("#creditsRequest").click(function (e) { return __awaiter(_this, void 0, void 0, function () {
-            var euroAmount, serviceAgent, button;
             var _this = this;
+            var euroAmount, serviceAgent, button;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -2420,7 +2413,7 @@ var riepilogopdv = /** @class */ (function (_super) {
     return riepilogopdv;
 }(Page));
 /// <reference path="../../references.ts" />
-var selezionascenari = /** @class */ (function (_super) {
+var selezionascenari = (function (_super) {
     __extends(selezionascenari, _super);
     function selezionascenari() {
         return _super.call(this, "seleziona-scenari.html") || this;
@@ -2500,8 +2493,8 @@ var selezionascenari = /** @class */ (function (_super) {
     selezionascenari.prototype.showToneOfVoice = function () {
         var _this = this;
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            var p, product, bannerSize, items;
             var _this = this;
+            var p, product, bannerSize, items;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -2534,7 +2527,7 @@ var selezionascenari = /** @class */ (function (_super) {
     return selezionascenari;
 }(Page));
 /// <reference path="../../references.ts" />
-var campagnaBase = /** @class */ (function (_super) {
+var campagnaBase = (function (_super) {
     __extends(campagnaBase, _super);
     function campagnaBase() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -2643,7 +2636,7 @@ var campagnaBase = /** @class */ (function (_super) {
     };
     return campagnaBase;
 }(Page));
-var personalizzacampagna = /** @class */ (function (_super) {
+var personalizzacampagna = (function (_super) {
     __extends(personalizzacampagna, _super);
     function personalizzacampagna() {
         return _super.call(this, "personalizza-campagna.html") || this;
@@ -2675,8 +2668,8 @@ var personalizzacampagna = /** @class */ (function (_super) {
         // TODO: solo su scenario 1 e 2
         this.html.find("[data-change-graphics]").click(function (e) {
             _this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-                var p, banners, bannerSize, items;
                 var _this = this;
+                var p, banners, bannerSize, items;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -2806,7 +2799,7 @@ var personalizzacampagna = /** @class */ (function (_super) {
     return personalizzacampagna;
 }(campagnaBase));
 /// <reference path="../../references.ts" />
-var riepilogocampagna = /** @class */ (function (_super) {
+var riepilogocampagna = (function (_super) {
     __extends(riepilogocampagna, _super);
     function riepilogocampagna() {
         return _super.call(this, "riepilogo-campagna.html") || this;
@@ -2931,8 +2924,8 @@ var riepilogocampagna = /** @class */ (function (_super) {
         e.preventDefault();
         if (this.html.find("#invoice-form").has('.has-error').length === 0) {
             this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-                var campaignServiceAgent, response, invoiceServiceAgent, paymentResponse;
                 var _this = this;
+                var campaignServiceAgent, response, invoiceServiceAgent, paymentResponse;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -3050,7 +3043,7 @@ var riepilogocampagna = /** @class */ (function (_super) {
     return riepilogocampagna;
 }(campagnaBase));
 /// <reference path="../../references.ts" />
-var pagamentocompletato = /** @class */ (function (_super) {
+var pagamentocompletato = (function (_super) {
     __extends(pagamentocompletato, _super);
     function pagamentocompletato() {
         return _super.call(this, "pagamento-completato.html") || this;
@@ -3104,7 +3097,7 @@ var pagamentocompletato = /** @class */ (function (_super) {
     return pagamentocompletato;
 }(Page));
 /// <reference path="../../references.ts" />
-var personalizzacampagnacreativita = /** @class */ (function (_super) {
+var personalizzacampagnacreativita = (function (_super) {
     __extends(personalizzacampagnacreativita, _super);
     function personalizzacampagnacreativita() {
         return _super.call(this, "personalizza-campagna-creativita.html") || this;
@@ -3125,10 +3118,10 @@ var personalizzacampagnacreativita = /** @class */ (function (_super) {
         this.html.find('#add-graphic').on("cssClassChanged", function () {
             _this.updateBanners();
         });
-        if (this.userSession.advertisementType === AdvertisementType.SOCIALFB) { // facebook
+        if (this.userSession.advertisementType === AdvertisementType.SOCIALFB) {
             this.html.find('p.hide.facebook').removeClass('hide');
         }
-        else if (this.userSession.advertisementType === AdvertisementType.SEARCHGOOGLE) { // google
+        else if (this.userSession.advertisementType === AdvertisementType.SEARCHGOOGLE) {
             this.html.find('p.hide.google').removeClass('hide');
         }
         else {
@@ -3255,7 +3248,7 @@ var personalizzacampagnacreativita = /** @class */ (function (_super) {
 //        super.onNavigatedTo();
 //        this.sidebar.changeMode(SidebarMode.Unavailable);
 //    }
-//}
+//} 
 ///// <reference path="../../references.ts" />
 //class dashboard extends Page {
 //    private reportServiceAgent: ReportServiceAgent;
@@ -3878,9 +3871,9 @@ var personalizzacampagnacreativita = /** @class */ (function (_super) {
 //        pagerTooltips.push('LANDING PAGE PER TABLET');
 //        $('#creativityTitle').html(pagerTooltips[item]);
 //    };
-//}
+//} 
 /// <reference path="../../references.ts" />
-var account = /** @class */ (function (_super) {
+var account = (function (_super) {
     __extends(account, _super);
     function account() {
         return _super.call(this, "account.html") || this;
@@ -4040,7 +4033,6 @@ var account = /** @class */ (function (_super) {
                 // Mostro il td con l'input
                 $($(e).find("td")[2]).show();
             }
-            // altrimenti
             else {
                 // Mostro il td con solamente il testo
                 $($(e).find("td")[1]).show();
@@ -4100,8 +4092,8 @@ var account = /** @class */ (function (_super) {
     account.prototype.loadHistory = function () {
         var _this = this;
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            var pageSizeElement, pageSize, reportServiceAgent, _a, _b;
             var _this = this;
+            var pageSizeElement, pageSize, reportServiceAgent, _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -4134,8 +4126,8 @@ var account = /** @class */ (function (_super) {
     account.prototype.loadTransaction = function () {
         var _this = this;
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            var pageSizeElement, pageSize, agencyServiceAgent, _a, _b;
             var _this = this;
+            var pageSizeElement, pageSize, agencyServiceAgent, _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -4171,7 +4163,7 @@ var account = /** @class */ (function (_super) {
     return account;
 }(Page));
 /// <reference path="../../references.ts" />
-var sceltaflusso = /** @class */ (function (_super) {
+var sceltaflusso = (function (_super) {
     __extends(sceltaflusso, _super);
     function sceltaflusso() {
         return _super.call(this, "scelta-flusso.html") || this;
@@ -4203,7 +4195,7 @@ var sceltaflusso = /** @class */ (function (_super) {
     return sceltaflusso;
 }(Page));
 /// <reference path="../../references.ts" />
-var homeflusso3 = /** @class */ (function (_super) {
+var homeflusso3 = (function (_super) {
     __extends(homeflusso3, _super);
     function homeflusso3() {
         return _super.call(this, "home-flusso-3.html") || this;
@@ -4285,7 +4277,7 @@ var homeflusso3 = /** @class */ (function (_super) {
     return homeflusso3;
 }(Page));
 /// <reference path="../../references.ts" />
-var sceltaprodotto = /** @class */ (function (_super) {
+var sceltaprodotto = (function (_super) {
     __extends(sceltaprodotto, _super);
     function sceltaprodotto() {
         return _super.call(this, "scelta-prodotto.html") || this;
@@ -4315,15 +4307,15 @@ var sceltaprodotto = /** @class */ (function (_super) {
     };
     sceltaprodotto.prototype.selectBestProposal = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var t;
             var _this = this;
+            var t;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         t = this;
                         return [4 /*yield*/, this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-                                var evaluation, bestProposalItem, bestEfficacy;
                                 var _this = this;
+                                var evaluation, bestProposalItem, bestEfficacy;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
                                         case 0: return [4 /*yield*/, this.userSession.pdvs[0].evaluate()];
@@ -4376,7 +4368,7 @@ var sceltaprodotto = /** @class */ (function (_super) {
     return sceltaprodotto;
 }(Page));
 /// <reference path="../../references.ts" />
-var mappaflusso3 = /** @class */ (function (_super) {
+var mappaflusso3 = (function (_super) {
     __extends(mappaflusso3, _super);
     function mappaflusso3() {
         return _super.call(this, "mappa-flusso-3.html") || this;
@@ -4465,7 +4457,7 @@ var mappaflusso3 = /** @class */ (function (_super) {
     return mappaflusso3;
 }(Page));
 /// <reference path="../../references.ts" />
-var campagnacreativitaadhoc = /** @class */ (function (_super) {
+var campagnacreativitaadhoc = (function (_super) {
     __extends(campagnacreativitaadhoc, _super);
     function campagnacreativitaadhoc() {
         return _super.call(this, "campagna-creativita-ad-hoc.html") || this;
@@ -4496,7 +4488,7 @@ var campagnacreativitaadhoc = /** @class */ (function (_super) {
     return campagnacreativitaadhoc;
 }(campagnaBase));
 /// <reference path="../../references.ts" />
-var errore = /** @class */ (function (_super) {
+var errore = (function (_super) {
     __extends(errore, _super);
     function errore() {
         return _super.call(this, "errore.html") || this;
@@ -4603,9 +4595,9 @@ var errore = /** @class */ (function (_super) {
 //    public show(): void {
 //        this.showAlert("Attenzione", "Il budget inserito risulta troppo alto");
 //    }
-//}
+//} 
 /// <reference path="../../references.ts" />
-var bulkcopertura = /** @class */ (function (_super) {
+var bulkcopertura = (function (_super) {
     __extends(bulkcopertura, _super);
     function bulkcopertura() {
         var _this = this;
@@ -4702,7 +4694,7 @@ var bulkcopertura = /** @class */ (function (_super) {
     return bulkcopertura;
 }(Page));
 /// <reference path="../../references.ts" />
-var bulkcreativita = /** @class */ (function (_super) {
+var bulkcreativita = (function (_super) {
     __extends(bulkcreativita, _super);
     function bulkcreativita() {
         return _super.call(this, "bulk-creativita.html") || this;
@@ -4755,7 +4747,7 @@ var bulkcreativita = /** @class */ (function (_super) {
     return bulkcreativita;
 }(campagnaBase));
 /// <reference path="../../references.ts" />
-var bulkpianificazione = /** @class */ (function (_super) {
+var bulkpianificazione = (function (_super) {
     __extends(bulkpianificazione, _super);
     function bulkpianificazione() {
         return _super.call(this, "bulk-pianificazione.html") || this;
@@ -4799,8 +4791,8 @@ var bulkpianificazione = /** @class */ (function (_super) {
         var _this = this;
         e.preventDefault();
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            var formData, data;
             var _this = this;
+            var formData, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -4939,7 +4931,7 @@ var bulkpianificazione = /** @class */ (function (_super) {
     return bulkpianificazione;
 }(Page));
 /// <reference path="../../references.ts" />
-var bulkriepilogo = /** @class */ (function (_super) {
+var bulkriepilogo = (function (_super) {
     __extends(bulkriepilogo, _super);
     function bulkriepilogo() {
         return _super.call(this, "bulk-riepilogo.html") || this;
@@ -5033,8 +5025,8 @@ var bulkriepilogo = /** @class */ (function (_super) {
         var _this = this;
         e.preventDefault();
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            var campaignServiceAgent, campaignGroupId;
             var _this = this;
+            var campaignServiceAgent, campaignGroupId;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -5209,7 +5201,7 @@ var landingUrlAdmove = (isLocalHost || document.location.hostname.toLowerCase() 
 /// <reference path="Navigation/Pages/bulk-creativita.html.ts" />
 /// <reference path="Navigation/Pages/bulk-pianificazione.html.ts" />
 /// <reference path="Navigation/Pages/bulk-riepilogo.html.ts" />
-/// <reference path="config.ts" />
+/// <reference path="config.ts" /> 
 /// <reference path="references.ts" />
 ServiceAgentFactory.context = new ServiceAgentContext(baseUrl);
 var navigationService = new NavigationService("typescript/Navigation/Pages/");
