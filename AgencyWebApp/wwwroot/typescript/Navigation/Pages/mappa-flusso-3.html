@@ -2,19 +2,11 @@
 <style>
 
     #container-map {position: relative;min-height: 400px;}
-    #map {margin-left: 0px;height: 400px;}
+    #map {margin-left: 0px;height: 400px;margin-right:320px}
     .ib {display: inline-block}
     .fl-left {float: left}
     .a-right {text-align: right}
-
-    .info h2.title {
-        color: #e02b20;
-        padding: 0;
-        margin: 5px 0;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
+    .info h2.title {color: #e02b20;padding: 0;margin: 5px 0;font-size: 16px;font-weight: bold;}
     .info p {font-size: 14px;color: #2e3e40}
     a.type-place {position: relative;line-height:40px}
     a.type-place i.fa{font-size:20px;width:40px;line-height:40px;border-radius:50%;background:#fff;color:#e02b20;margin-right:10px;text-align:center}
@@ -23,7 +15,6 @@
     a.type-place.loading i.fa:before{content:"\f013" !important}
     #places-available p {margin-top: 0}
     .btn-mr.btn-small.ctrl{font-size:11px !important}
-
     a.type-place .next {
         position: absolute;
         right: 0;
@@ -41,220 +32,72 @@
         content: "+"
     }
 
-        a.type-place .next:hover {
-            opacity: .7
-        }
+    a.type-place .next:hover {opacity: .7}
+    a.type-place.hasnext.active .next {display: block}
+    a.type-place.loading .next {opacity: .5}
+    /*.map-update {display: none}*/
 
-    a.type-place.hasnext.active .next {
-        display: block
+    .panel {margin-bottom: 0 !important}
+
+    .pdfcontainer {padding: 50px;width: 1200px;background: #fff;position: relative;box-sizing:border-box}
+
+    .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading {
+        background-color: #fff;
+        border: 1px solid #000000 !important;
+        border-radius: 3px;
+        border-collapse: collapse
     }
 
-    a.type-place.loading .next {
-        opacity: .5
-    }
-    /*
-    .map-update {
-        display: none
-    }*/
-
-    .panel {
-        margin-bottom: 0 !important
+    .pdfcontainer .panel-default > .panel-heading {
+        border: 0 !important;
+        background: #eee
     }
 
-    .pdfcontainer {
-        padding: 50px;
-        width: 1200px;
-        background: #fff;
-        position: relative
+    .pdfcontainer #current-templateOut span {
+        font-weight: bold
     }
 
-        .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading {
-            background-color: #fff;
-            border: 1px solid #000000 !important;
-            border-radius: 3px;
-            border-collapse: collapse
-        }
+    .pdfcontainer .charts-advm, .pdfcontainer .charts-smartphone, .pdfcontainer .charts-android {
+        background-color: rgba(0,0,0,.15);
+        border-radius: 100%
+    }
 
-        .pdfcontainer .panel-default > .panel-heading {
-            border: 0 !important;
-            background: #eee
-        }
-
-        .pdfcontainer #current-templateOut span {
-            font-weight: bold
-        }
-
-        .pdfcontainer .charts-advm, .pdfcontainer .charts-smartphone, .pdfcontainer .charts-android {
-            background-color: rgba(0,0,0,.15);
-            border-radius: 100%
-        }
-
-        .pdfcontainer * {
-            color: #000000 !important;
-        }
-
-        .pdfcontainer .nav-pills {
-            border: none
-        }
-
-        .pdfcontainer .not-available span {
-            top: 90%
-        }
-
-        .pdfcontainer #choice-templateOut button {
-            border: none !important;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 0 !important
-        }
-
-            .pdfcontainer #choice-templateOut button span {
-                font-size: 24px !important;
-                position: relative;
-                display: block;
-                text-align: center
-            }
-
-        .pdfcontainer #choice-templateOut span.bs-caret {
-            display: none
-        }
-
-        .pdfcontainer #insights-details-templateOut .col-md-12 {
-            padding: 0 !important
-        }
-
-        .pdfcontainer .mt-50, .pdfcontainer .mt-75 {
-            margin-top: 0
-        }
-
-        .pdfcontainer .nav-justified > li {
-            display: table-cell;
-            width: 1%;
-        }
-
-        .pdfcontainer .col-md-5 {
-            width: 41.666;
-            float: left
-        }
-
-        .pdfcontainer .col-md-offset-1 {
-            margin-left: 8.33333333%;
-        }
-
-        .pdfcontainer .col-md-6 {
-            width: 50%;
-            float: left
-        }
-
-        .pdfcontainer .col-md-12 {
-            width: 100%
-        }
-
-        .pdfcontainer .progress {
-            padding: 1px
-        }
-
-        .pdfcontainer .pdfpage.hide {
-            display: block !important
-        }
-
-        .pdfcontainer .owl-stage[style] {
-            width: auto !important;
-            -webkit-transform: none !important;
-            transform: none !important;
-        }
-
-        .pdfcontainer .owl-item .printnoscroll, .pdfcontainer .owl-item .col-md-12 {
-            padding: 0 !important;
-            margin: 0 !important
-        }
-
-            .pdfcontainer .owl-item .printnoscroll p, .pdfcontainer .owl-item .col-md-12 p {
-                margin: 30px 0;
-                text-align: center
-            }
-
-        .pdfcontainer .owl-item, .pdfcontainer .owl-item[style] {
-            width: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            float: none !important;
-            margin-bottom: 50px !important
-        }
-
-        .pdfcontainer .owl-dots, .pdfcontainer .owl-dots, .pdfcontainer .owl-nav {
-            display: none !important
-        }
-
-        .pdfcontainer .circles-wrp {
-            border: 10px solid rgba(0,0,0,.1);
-            border-radius: 100%
-        }
-
-        .pdfcontainer .nopl {
-            padding-left: 15px !important
-        }
-
-        .pdfcontainer .inizio .col-md-5, .pdfcontainer .inizio .col-md-6 {
-            float: none;
-            clear: both;
-            width: 100%;
-            margin-left: auto;
-            margin-right: auto
-        }
-
-            .pdfcontainer .inizio .col-md-6.pba {
-                margin-top: 300px;
-                text-align: left
-            }
-
-        .pdfcontainer .inizio #group-selectpicker {
-            margin: 0 !important
-        }
-
-        .pdfcontainer p.pdfcenter {
-            text-align: center
-        }
-
-            .pdfcontainer p.pdfcenter span {
-                font-size: 20px !important
-            }
-
-        .pdfcontainer .inizio .col-md-6.pba p {
-            text-align: left !important
-        }
-
-        .pdfcontainer .container {
-            width: 100% !important;
-            padding: 10px !important;
-            margin: 0 !important
-        }
-
-        .pdfcontainer .well {
-            background: #fafafa
-        }
-
-        .pdfcontainer #map.with-sidebar {
-            margin-right: 0 !important
-        }
-
-        .pdfcontainer #places-available {
-            background: rgba(255,255,255,.5);
-            box-shadow: none !important
-        }
-
-            .pdfcontainer #places-available p {
-                display: none
-            }
-
-            .pdfcontainer #places-available .panel {
-                background: transparent;
-                border: none !important
-            }
-
-        .pdfcontainer .type-place img {
-            opacity: 1 !important
-        }
+    .pdfcontainer * {color: #000000 !important;}
+    .pdfcontainer .nav-pills {border: none}
+    .pdfcontainer .not-available span {top: 90%}
+    .pdfcontainer #choice-templateOut button {border: none !important;font-weight: bold;text-transform: uppercase;padding: 0 !important}
+    .pdfcontainer #choice-templateOut button span {font-size: 24px !important;position: relative;display: block;text-align: center}
+    .pdfcontainer #choice-templateOut span.bs-caret {display: none}
+    .pdfcontainer #insights-details-templateOut .col-md-12 {padding: 0 !important}
+    .pdfcontainer .mt-50, .pdfcontainer .mt-75 {margin-top: 0}
+    .pdfcontainer .nav-justified > li {display: table-cell;width: 1%;}
+    .pdfcontainer .col-md-5 {width: 41.666;float: left}
+    .pdfcontainer .col-md-offset-1 {margin-left: 8.33333333%;}
+    .pdfcontainer .col-md-6 { width: 50%;float: left}
+    .pdfcontainer .col-md-12 {width: 100%}
+    .pdfcontainer .progress {padding: 1px}
+    .pdfcontainer .pdfpage.hide {display: block !important}
+    .pdfcontainer .owl-stage[style] { width: auto !important;-webkit-transform: none !important;transform: none !important;}
+    .pdfcontainer .owl-item .printnoscroll, .pdfcontainer .owl-item .col-md-12 {padding: 0 !important;margin: 0 !important}
+    .pdfcontainer .owl-item .printnoscroll p, .pdfcontainer .owl-item .col-md-12 p {margin: 30px 0;text-align: center}
+    .pdfcontainer .owl-item, .pdfcontainer .owl-item[style] {width: 100% !important;padding: 0 !important;margin: 0 !important;float: none !important;margin-bottom: 50px !important}
+    .pdfcontainer .owl-dots, .pdfcontainer .owl-dots, .pdfcontainer .owl-nav {display: none !important}
+    .pdfcontainer .circles-wrp {border: 10px solid rgba(0,0,0,.1);border-radius: 100%}
+    .pdfcontainer .nopl {padding-left: 15px !important}
+    .pdfcontainer .inizio .col-md-5, .pdfcontainer .inizio .col-md-6 {float: none;clear: both;width: 100%;margin-left: auto;margin-right: auto}
+    .pdfcontainer .inizio .col-md-6.pba {margin-top: 300px;text-align: left}
+    .pdfcontainer .inizio #group-selectpicker {margin: 0 !important}
+    .pdfcontainer p.pdfcenter { text-align: center}
+    .pdfcontainer p.pdfcenter span {font-size: 20px !important}
+    .pdfcontainer .inizio .col-md-6.pba p {text-align: left !important}
+    .pdfcontainer .container {width: 100% !important;padding: 10px !important;margin: 0 !important}
+    .pdfcontainer .well {background: #fafafa}
+    .pdfcontainer #map.with-sidebar { margin-right: 0 !important}
+    .pdfcontainer #places-available {background: rgba(255,255,255,.5);box-shadow: none !important}
+    .pdfcontainer #places-available p {display: none}
+    .pdfcontainer #places-available .panel {background: transparent;border: none !important}
+    .pdfcontainer .type-place img {opacity: 1 !important}
+    .pdfcontainer .col-md-5.col-lg-5{width:50%;box-sizing:border-box}
     
     div[style*="font-family: LABEL_SELECTED"], div[style*="font-family: LABEL_SELECTED"][style]{background:#fff;color:#fff}
     
@@ -262,7 +105,23 @@
     .gm-style-iw.gm-style-iw-c .gm-ui-hover-effect img,.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect img[style]{width: auto !important;height:auto !important;margin:0 !important}
 
     #places-available{width:320px}
-    #range-slider{left: 50%;width: 50%;margin-left: -30%;}
+    #range-slider{left: 50%; width: 500px; margin-left: -415px;}
+    #range-slider .slider-tick {width: 20px; height: 20px;opacity:1}
+    .slider-tick-label-container{display:none}
+    .gm-style .gm-style-iw-c{padding:0 !important}
+    
+    #mr-logo{display:none}
+    .pdfcontainer #mr-logo{display:block}
+    
+    @media print {
+        @page {size: landscape}
+        #map{margin-right:0;height:40%}
+        .pdfignore{display:none}
+        .well{border:1px solid rgba(0,0,0,.5)}
+        .col-md-5.col-lg-5{width:100%;box-sizing:border-box}
+        #mr-logo{display:block;text-align:center;margin-bottom:10px;margin-top:0}
+      
+    }
 
 </style>
 
@@ -286,10 +145,13 @@
 <div class="pdfpage">
 
     <div id="container-map">
+        <div id="mr-logo"><img class="logo mCS_img_loaded" src="assets/img/logo.png" alt="AdMove.com"></div>
         <div id="map" class="with-sidebar"></div>
-        <input id="map-range" data-slider-id='range-slider' type="text" data-slider-value="1000" />
-        <div id="places-available" data-mcs-theme="minimal-dark">
-            <p class="fs-24 pdfignore">Attività sul territorio:</p>
+        <div class="pdfignore">
+            <input id="map-range" data-slider-id='range-slider' type="text" data-slider-value="1000" />
+            <div id="places-available" data-mcs-theme="minimal-dark">
+                <p class="fs-24 pdfignore">Attività sul territorio:</p>
+            </div>
         </div>
     </div>
 
@@ -414,6 +276,13 @@
 <script src="assets/js/pdf/html2pdf.js"></script>
 <script src="assets/bootstrap-slider/js/bootstrap-slider.min.js"></script>
 <script>
+
+    Number.prototype.format = function(n, x, s, c, suffix) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+            num = this.toFixed(Math.max(0, ~~n));
+        
+        return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || '.')) + (suffix || '');
+    };
 
     var currentPage;
     $(document).ready(function () {
@@ -666,14 +535,16 @@
 
             function updateInsights(pdi) {
                 if (!pdi.insights.data || $.isEmptyObject(pdi.insights.data)) pdi.insights.data = { PotentialUsers: "-", MaleStats: "-", FemaleStats: "-", PublicOfficesNumber: 0, PrivatesNumber: 0, PublicTransportNumber: 0, Ranking: [3, 6, 7] };
-                $("[data-insight-PotentialUsers]").text(pdi.insights.data.PotentialUsers);
-                $("[data-insight-MaleStats]").text(pdi.insights.data.MaleStats);
-                $("[data-insight-FemaleStats]").text(pdi.insights.data.FemaleStats);
+                $("[data-insight-PotentialUsers]").text(parseInt(pdi.insights.data.PotentialUsers).format());
+                $("[data-insight-MaleStats]").text(parseInt(pdi.insights.data.MaleStats).format());
+                $("[data-insight-FemaleStats]").text(parseInt(pdi.insights.data.FemaleStats).format());
+                
+                console.log('insights: ',pdi.insights);
             }
 
             // inizializzo il plugin
             // la funzione di callback è sempre richiamata per ogni genere di evento propagato
-            plugin.init("map", { lat: 45.4637307, lng: 9.1910625, zoom: 15 }, function (evt, pdi) { // callback eventi
+            plugin.init("map", { lat: 45.4637307, lng: 9.1910625, zoom: 11 }, function (evt, pdi) { // callback eventi
                 if (!service) {
                     service = new google.maps.places.PlacesService(plugin.map);
                 }
@@ -722,7 +593,6 @@
             pdi.circle = { radius: currentPage.userSession.flow3.radius };
             plugin.actions("add", false, pdi);
 
-
             // imposto un listener per i bottoni dei punti (quello di aggiunta e quelli della finestra del punto)
             // le azioni saranno dirottate verso la callback dell'inizializzazione
             body.on("click", "a[data-maps]:not(.disable)", function (evt) {
@@ -734,14 +604,16 @@
             });
             
             $("#map-range").on("slide change", function(slideEvt) {
-                console.log(slideEvt.value);
+                //console.log(slideEvt.value);
+                if(!slideEvt || !slideEvt.value) return false;
                 if(slideEvt.value.newValue) slideEvt.value = slideEvt.value.newValue;
                 var pdi = plugin.getSelected();
                 if(pdi){
                     pdi.circle.radius = slideEvt.value;
                     pdi.update();
                     plugin.fitBounds(pdi);
-                    $("#places-available").find('[data-type=clear]').trigger('click');
+                    //$("#places-available").find('[data-type=clear]').trigger('click');
+                    //$("#places-available").find('[data-type=clear]').trigger('click');
                     //plugin.actions("update", pdi.id, pdi);
                 }
             });

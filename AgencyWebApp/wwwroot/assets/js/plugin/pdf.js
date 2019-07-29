@@ -1,6 +1,6 @@
 {
 
-    version: 1.03,
+    version: 1.04,
     
     clone: function(originalContent){
             
@@ -85,7 +85,8 @@
             
             //container.prepend('<div class="pdfpage" style="text-align:center;"><div style="padding:0 0 40px 0;margin:0px 50px 0 50px;border-bottom:1px solid #ddd"><img src="assets/img/logo-1.png"><p style="margin:30px 0;font-size:30px">REPORT</p></div></div>');
             
-            if(init) $('#inizio').clone().css('margin-top','350px').appendTo(container.find('.pdfpage:first'));
+            //if(init) 
+            //$('#mr-logo').clone().show().css('margin-top','50px').appendTo(container.find('.pdfpage:first'));
             
             
             
@@ -103,7 +104,7 @@
                 
                 page.appendTo('body').data('index',i).find('.pdfignore').remove();
                 
-                //page.append('<div style="position:absolute;right:20px;top:20px;font-size:16px">'+dates+'</div>');
+                page.find('#mr-logo').show();
 
                 //CMS.circle(page,0);
                 
@@ -144,7 +145,7 @@
                             
                         }
  
-                        pdf.save('admove.pdf');
+                        pdf.save('mondored.pdf');
                         
                         t.removeClass('disabled');
                         preloader.close();

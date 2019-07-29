@@ -58,7 +58,7 @@ a.list-group-item, button.list-group-item {color: #000000;}
 /* Button small circle-btn */
 .btn-small .circle-btn {width: 32px; height: 32px; line-height: 32px; top: 3px; right: 3px;}
 
-.circle-ico {display: block; text-align: center; width: 40px; height: 40px; border-radius: 20px; font-size: 20px; line-height: 42px; background: #fff; color: #e02b20; border: 1px solid #000000;}
+.circle-ico {display: block; text-align: center; width: 40px; height: 40px; border-radius: 20px; font-size: 20px; line-height: 40px; background: #fff; color: #e02b20; border: 1px solid #000000;}
 
 /* Slider range */
 #range-slider {position: absolute; bottom: 25px; left: 90px; width: calc(100% - 370px);}

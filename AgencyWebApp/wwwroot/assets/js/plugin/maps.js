@@ -124,6 +124,7 @@
                         radius: radius,
                         title: title,
                         zIndex: (5 - i),
+                        clickable: t.editable,
                         draggable: t.editable
                     };
                     
@@ -134,7 +135,7 @@
                         t._setElementListener(circle,[{event:'mouseover',options:{fillOpacity:.4}},{event:'mouseout',options:{fillOpacity:.2}},{event:'click',callback:function(evt){
                             t.scope.actions('select',t.id);
                         }}]);*/
-                        t._setElementListener(circle,[{event:'mouseover',options:{fillOpacity:.4},callback:function(evt){
+                        /*t._setElementListener(circle,[{event:'mouseover',options:{fillOpacity:.4},callback:function(evt){
                             options.map.getDiv().setAttribute('title',circle.get('title'));
                         }},{event:'mouseout',options:{fillOpacity:.2},callback:function(evt){
                             options.map.getDiv().removeAttribute('title');
@@ -153,7 +154,7 @@
                                 if (!t.selected) t.scope.actions('select', t.id);
                                 t.setUpdated(false).setResettable().scope.actions('dragend', t.id);
                             }}]);
-                        }
+                        } */
                     }
                     
                     t.circles.push(circle);
@@ -253,12 +254,13 @@
                   zIndex:10,
                   map: t.scope.map,
                   title: t.title,
-                  clickable:false
+                  clickable:true
                 });
 
-                t._setElementListener(t.markerOver,[{event:'click',callback:function(){
+                t._setElementListener(t.marker,[{event:'click',callback:function(){
                     t.scope.actions('select',t.id);
                     t.scope.fitBounds(t);
+                    console.log('click');
                 }},{event:'mouseover',callback:function(){
                 
                     t._setMarkerIcon({fillOpacity:.7,label:'LABEL_SELECTED'});
@@ -357,7 +359,7 @@
             if(opt) for(var o in opt) icon[o] = opt[o];
             if(this.selected || (opt && opt.label)) label = 'LABEL_SELECTED';
 
-            this.marker.setLabel({text:'.',fontFamily:label});
+            this.marker.setLabel({text:"-",fontFamily:label,color:'white'});
             this.marker.setIcon(icon);          
                         
         },
@@ -527,7 +529,7 @@
     },
     
     opt: {    
-        zoom: 11,        
+        zoom: 9,        
         lat:  45.4637307,        
         lng:  9.1910625    
     },
@@ -876,6 +878,8 @@
         
         }
         
+        t.fitBounds();
+        
         t.callback(evt, pdi, data);
     
     },
@@ -914,6 +918,13 @@
         if(n == 0) return t.restoreMap(); 
         
         t.map.fitBounds(bounds);
+        
+        t.map.setZoom(t.map.getZoom()+1);
+        
+        setTimeout(function(){
+            google.maps.event.trigger(t.map, 'resize');
+        },1000);
+        
         
     },
 
