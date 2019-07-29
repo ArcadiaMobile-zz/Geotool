@@ -715,10 +715,10 @@
             var pdi = currentPage.userSession.pdvs[0].mapItem;
             pdi.duplicable = false;
             pdi.cancelable = false;
-            pdi.resettable = true;
+            pdi.resettable = false;
             pdi.mouseDrag = false;
             pdi.selected = true;
-            pdi.editable = true;
+            pdi.editable = false;
             pdi.circle = { radius: currentPage.userSession.flow3.radius };
             plugin.actions("add", false, pdi);
 

@@ -23,9 +23,9 @@ if (!isLocalHost) {
 // Definizioni delle chiavi per ogni host
 const clientIds: { [hostname: string]: SiteConfiguration | undefined } = {
     "localhost": {
-        clientId: "6759ca85-3e16-4f75-b91d-0eedcc98b948",//"5ed992e4-c93d-4a26-a889-6702c1760dd5", //"6759ca85-3e16-4f75-b91d-0eedcc98b948",
+        clientId: "711c5e4a-0241-45c7-984a-5d6f1b80fe59",
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
-        policy: "B2C_1_AgencyDevSignIn"
+        policy: "B2C_1_GeoSignIn"
     },
     "admove-agenzie-app-dev.azurewebsites.net": {
         clientId: "5ed992e4-c93d-4a26-a889-6702c1760dd5",
@@ -62,7 +62,7 @@ if (!config) {
     console.log(encodeURIComponent(""));
     console.log(encodeURIComponent(redirect));
 
-    getLoginUrl = (r: string = "") => `https://login.microsoftonline.com/admovecom.onmicrosoft.com/oauth2/v2.0/authorize?p=${config.policy}&client_id=${config.clientId}&nonce=defaultNonce&redirect_uri=${encodeURIComponent(redirect)}&scope=openid&response_type=id_token&prompt=login&state=${encodeURIComponent(r)}`;
+    getLoginUrl = (r: string = "") => `https://login.microsoftonline.com/GeotoolTenant.onmicrosoft.com/oauth2/v2.0/authorize?p=${config.policy}&client_id=${config.clientId}&nonce=defaultNonce&redirect_uri=${encodeURIComponent(redirect)}&scope=openid&response_type=id_token&prompt=login&state=${encodeURIComponent(r)}`;
  }
 
 const landingUrlAdmove: string = (isLocalHost || document.location!.hostname.toLowerCase() == "admove-agenzie-app-dev.azurewebsites.net") ? 'https://ads-dev.admove.com/' : 'https://ads.admove.com/';
