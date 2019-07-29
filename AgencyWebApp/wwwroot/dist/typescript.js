@@ -5087,25 +5087,10 @@ var clientIds = {
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_GeoSignIn"
     },
-    "admove-agenzie-app-dev.azurewebsites.net": {
-        clientId: "5ed992e4-c93d-4a26-a889-6702c1760dd5",
+    "getooltest.azurewebsites.net": {
+        clientId: "711c5e4a-0241-45c7-984a-5d6f1b80fe59",
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
-        policy: "B2C_1_AgencyDevSignIn"
-    },
-    "admove-agenzie-app-staging.azurewebsites.net": {
-        clientId: "5a16b955-6a69-419e-87c8-285ce2e3ea3c",
-        baseUrl: "https://arcadia-api-staging.azurewebsites.net",
-        policy: "B2C_1_AgencyDevSignIn"
-    },
-    "admove-agenzie-app.azurewebsites.net": {
-        clientId: "171c5f1a-59a9-4c65-8abe-2ed067d2288f",
-        baseUrl: "https://arcadia-api.azurewebsites.net",
-        policy: "B2C_1_AgencySignIn"
-    },
-    "agency.admove.com": {
-        clientId: "171c5f1a-59a9-4c65-8abe-2ed067d2288f",
-        baseUrl: "https://arcadia-api.azurewebsites.net",
-        policy: "B2C_1_AgencySignIn"
+        policy: "B2C_1_GeoSignIn"
     }
 };
 var redirect = document.location.protocol + "//" + document.location.host;
