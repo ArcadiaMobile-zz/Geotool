@@ -919,7 +919,7 @@
         
         t.map.fitBounds(bounds);
         
-        t.map.setZoom(t.map.getZoom()+1);
+        t.map.setZoom(t.map.getZoom()-0);
         
         setTimeout(function(){
             google.maps.event.trigger(t.map, 'resize');

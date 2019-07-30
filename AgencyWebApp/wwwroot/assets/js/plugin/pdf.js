@@ -1,6 +1,6 @@
 {
 
-    version: 1.04,
+    version: 1.05,
     
     clone: function(originalContent){
             
@@ -64,15 +64,58 @@
     
         var p = this, pdf = null;
     
-        $('body').on('click','a.pdf',function(){
+        c.on('click','a.pdf',function(){
 
             var t = $(this), rel = t.data('rel') || 'body', init = t.data('init') || false;
             
-            $('body').css('overflow','hidden');
+            c.css('overflow','hidden');
             
             if(t.hasClass('disabled')) return false;
             
             t.addClass('disabled');
+            
+            var preloader = CMS.preloader({type:'simple',duration:0});
+            preloader.append();
+            
+            html2canvas(c.find('.pdfpage').get(0), {
+                useCORS: true,
+                onrendered: function(canvas) {
+                    var img = canvas.toDataURL("image/jpeg,1.0");
+                    console.log(img);
+                    var i = new Image();
+                    
+                    i.onload = function(){
+                    
+                        console.log(i.width,i.height);
+                        /*
+                        var pdf = new jsPDF('p', 'pt', 'a4', true);
+                        var pageWidth = 595.28, pageHeight = 841.89, k = pageWidth/pageHeight; // a4
+                        pdf.addImage(img, 'JPEG', 0, 0, pageWidth, i.height/k,'a',"FAST");
+                        pdf.save('mondored.pdf');
+                        */
+                        var a = document.createElement('a');
+                        // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+                        a.href = img.replace("image/jpeg", "image/octet-stream");
+                        a.download = 'mondored_screenshot.jpg';
+                        a.target = '_blank';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        t.removeClass('disabled');
+                        preloader.close();
+                        c.css('overflow','auto');
+                    
+                    };
+                    
+                    i.src = img;
+                    
+                }
+            });
+            
+            return false;
+            
+            /*
             
             var preloader = CMS.preloader({type:'simple',duration:0});
             preloader.append();
@@ -159,7 +202,7 @@
                 
                 },3000);
             
-            });
+            });*/
         
         });
     
