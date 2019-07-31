@@ -527,6 +527,7 @@
 
                 if (plugin.getSelected().id === res.id) {
                     // aggiorno tutti i dati di insights
+                    console.log("prima chiamata updateInsight");
                     updateInsights(pdi);
                 }
 
@@ -546,23 +547,11 @@
                 console.log('insights: ',pdi.insights);
             }
             function updateInsightsRadius(aux) {
-                if (aux.PotentialUsers <= 1000) {
-                    //$(".bg-men").css('display', 'none');
-                    //$(".bg-women").css('display', 'none');
+                if (!aux) {
                     $("[data-insight-PotentialUsers]").text("-");
                     $("[data-insight-MaleStats]").text("-");
                     $("[data-insight-FemaleStats]").text("-");
-                }
-                else if ((aux.PotentialUsers > 1000) && (aux.MaleStats < 1000 || aux.FemaleStats < 1000)) {
-                    //$(".bg-men").css('display', 'none');
-                    //$(".bg-women").css('display', 'none');
-                    $("[data-insight-PotentialUsers]").text(parseInt(pdi.insights.data.PotentialUsers).format());
-                    $("[data-insight-MaleStats]").text("-");
-                    $("[data-insight-FemaleStats]").text("-");
-                }
-                else {
-                    $(".bg-men").css('display', 'block');
-                    $(".bg-women").css('display', 'block');
+                } else {
                     $("[data-insight-PotentialUsers]").text(parseInt(aux.PotentialUsers).format());
                     $("[data-insight-MaleStats]").text(parseInt(aux.MaleStats).format());
                     $("[data-insight-FemaleStats]").text(parseInt(aux.FemaleStats).format());
@@ -604,6 +593,8 @@
 
                     // aggiorno tutti i dati di insights
                     updateInsights(pdi);
+                    var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);
+                    updateInsightsRadius(aux);                    
                 } else if (evt == "dragend") {
                     currentPage.pdiMoved(pdi.id, { lat: pdi.circle.lat, lng: pdi.circle.lng });
                     _clearMarkers();
@@ -640,9 +631,7 @@
                     pdi.update();
                     plugin.fitBounds(pdi);
                     $("#places-available").find('.active').trigger('click').trigger('click');
-                    console.log("dovrei aggiornare gli insight-->" + pdi.circle.radius);
                     var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);
-                    console.log("Insight radius-->" + aux);
                     updateInsightsRadius(aux);
                     //plugin.actions("update", pdi.id, pdi);
                 }
