@@ -5120,7 +5120,7 @@ if (!isLocalHost) {
     dev.fakeSemanticWeb = false;
     dev.fakeCampaign = false;
     dev.fakeGeocodeAddress = false;
-    dev.fakeInsight = false;
+    dev.fakeInsight = true;
 }
 // Definizioni delle chiavi per ogni host
 var clientIds = {
