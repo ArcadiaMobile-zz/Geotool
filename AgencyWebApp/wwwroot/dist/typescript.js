@@ -418,12 +418,15 @@ var InvoiceServiceAgent = /** @class */ (function (_super) {
 var SemanticWebServiceAgent = /** @class */ (function (_super) {
     __extends(SemanticWebServiceAgent, _super);
     function SemanticWebServiceAgent(context) {
-        var _this = _super.call(this, context, { name: "searchLocation", uri: function (args) { return _this.formatUri("/api/SemanticWeb/SearchLocation", args); } }, { name: "search", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Search", args); } }, { name: "getDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }, { name: "getBulkDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetBulkDetails", [args[0], args[1]]); } }, { name: "GeocodeAddress", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GeocodeAddress", args); } }, { name: "Geocode", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]); } }, { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: function (args) { return args[0]; } }) || this;
+        var _this = _super.call(this, context, { name: "searchLocation", uri: function (args) { return _this.formatUri("/api/SemanticWeb/SearchLocation", args); } }, { name: "search", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Search", args); } }, { name: "getDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }, { name: "getBulkDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetBulkDetails", [args[0], args[1]]); } }, { name: "GeocodeAddress", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GeocodeAddress", args); } }, { name: "Geocode", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]); } }, { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: function (args) { return args[0]; } }, { name: "getInsightRadius", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }) || this;
         if (dev.fakeSemanticWeb) {
             _this.getDetails = function () { return Promise.resolve(JSON.parse('{"Url":"https://maps.google.com/?cid=9154458214224756504","Website":"http://illorenzaccio.wordpress.com/","PhoneNumber":"030 220457","PotentialUsers":50547,"MaleStats":26819.957859411254,"MaleStatsPercentage":0.53,"MaleStatsAverageAge":29.0,"FemaleStats":23727.466440728695,"FemaleStatsPercentage":0.47,"FemaleStatsAverageAge":39.0,"BugdetMinValue":10,"BugdetMaxValue":60,"PublicOfficesNumber":43,"PrivatesNumber":13,"PublicTransportNumber":14,"Radius":3000,"Tracing":null,"Population":610,"Address":"Via Cipro, 78, 25124 Brescia BS","Geometry":{"location":{"lat":45.523879499999993,"lng":10.2103229}},"ID":"ChIJxXJsdHZ2gUcRGP8FUj4rC38","Name":"Il Lorenzaccio","Categories":[{"Category":"RS0100","Description":"Ristorante","Score":100.0,"Competitors":20},{"Category":"RS0101","Description":"Ristorante di carne","Score":0.0,"Competitors":20},{"Category":"RS0102","Description":"Ristorante di pesce","Score":0.0,"Competitors":17},{"Category":"RS0103","Description":"Trattoria","Score":0.0,"Competitors":20}]}')); };
         }
         if (dev.fakeGeocodeAddress) {
             _this.GeocodeAddress = function () { return Promise.resolve(JSON.parse('{ "PlaceId": "ChIJV6OfdBXBhkcRvXTuKvwoTZo", "StreetNumber": "41", "Address": "Corso Sempione", "City": "Milano","Province": "MI", "Region": "Lombardia","Country": "Italy", "PostalCode": "20145", "Location":{"lat": 45.4811075,"lng": 9.1644886}, "FormattedAddress": "Corso Sempione, 41, 20145 Milano MI, Italy"}')); };
+        }
+        if (dev.fakeInsight) {
+            _this.getInsightRadius = function () { return Promise.resolve(JSON.parse('{"Insights":[{"Radius":500,"PotentialUsers":500,"MaleStats":300,"FemaleStats":200},{"Radius":1000,"PotentialUsers":1000,"MaleStats":0,"FemaleStats":1000},{"Radius":1500,"PotentialUsers":1500,"MaleStats":500,"FemaleStats":1000},{"Radius":2000,"PotentialUsers":2000,"MaleStats":1500,"FemaleStats":500},{"Radius":2500,"PotentialUsers":2500,"MaleStats":1500,"FemaleStats":1000},{"Radius":3000,"PotentialUsers":48000,"MaleStats":24819.957859411254,"FemaleStats":23728.466440728695},{"Radius":3500,"PotentialUsers":50500,"MaleStats":26819.957859411254,"FemaleStats":23727.466440728695},{"Radius":4000,"PotentialUsers":85000,"MaleStats":40819.957859411254,"FemaleStats":40727.466440728695},{"Radius":4500,"PotentialUsers":95000,"MaleStats":28819.957859411254,"FemaleStats":43727.466440728695},{"Radius":5000,"PotentialUsers":150000,"MaleStats":126819.957859411254,"FemaleStats":23727.466440728695}]}')); };
         }
         return _this;
     }
@@ -583,6 +586,13 @@ var UserSession = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(UserSession.prototype, "getinsightRadiusValues", {
+        get: function () {
+            return this.insightRadiusValues;
+        },
+        enumerable: true,
+        configurable: true
+    });
     // Method
     UserSession.prototype.clear = function () {
         //this.isFlow2 = false;
@@ -724,6 +734,19 @@ var UserSession = /** @class */ (function () {
                     case 0:
                         campaignServiceAgent = ServiceAgentFactory.get(CampaignServiceAgent);
                         return [4 /*yield*/, campaignServiceAgent.moreProductsBulk(request)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    UserSession.prototype.InsightRadiusAsync = function (request) {
+        return __awaiter(this, void 0, void 0, function () {
+            var semanticWebServiceAgent;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);
+                        return [4 /*yield*/, semanticWebServiceAgent.getInsightRadius(request)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -4248,15 +4271,15 @@ var homeflusso3 = /** @class */ (function (_super) {
             this.userSession.flow3.address = this.html.find("[name=address]").val();
             this.userSession.flow3.radius = parseInt("1000");
             this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-                var semanticWebServiceAgent, result;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
+                var semanticWebServiceAgent, result, _a;
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
                             semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);
                             return [4 /*yield*/, semanticWebServiceAgent.searchLocation(this.userSession.flow3.address || "", this.userSession.businessName)];
                         case 1:
-                            result = _a.sent();
-                            if (!(result.Results.length != 0)) return [3 /*break*/, 5];
+                            result = _b.sent();
+                            if (!(result.Results.length != 0)) return [3 /*break*/, 6];
                             if (!(result.Results.length > 1)) return [3 /*break*/, 2];
                             this.renderTemplateScript("slogan-list-template", result.Results);
                             this.html.find(".slogan").each(function (i, e) {
@@ -4266,17 +4289,21 @@ var homeflusso3 = /** @class */ (function (_super) {
                             this.html.find(".slogan").first().trigger('click');
                             // Mostro la modale
                             this.html.find("#popup3-multi").modal("show");
-                            return [3 /*break*/, 4];
+                            return [3 /*break*/, 5];
                         case 2: return [4 /*yield*/, this.userSession.addPdv(result.Results[0])];
                         case 3:
-                            _a.sent();
+                            _b.sent();
+                            _a = this.userSession;
+                            return [4 /*yield*/, this.userSession.InsightRadiusAsync(result.Results[0].Geometry.location)];
+                        case 4:
+                            _a.insightRadiusValues = _b.sent();
                             this.navigo.navigate("mappa-flusso-3");
-                            _a.label = 4;
-                        case 4: return [3 /*break*/, 6];
-                        case 5:
+                            _b.label = 5;
+                        case 5: return [3 /*break*/, 7];
+                        case 6:
                             this.showAlert("Non trovato", "Nessuna insegna trovata");
-                            _a.label = 6;
-                        case 6: return [2 /*return*/];
+                            _b.label = 7;
+                        case 7: return [2 /*return*/];
                     }
                 });
             }); });
@@ -4461,6 +4488,19 @@ var mappaflusso3 = /** @class */ (function (_super) {
                 }
             });
         }); });
+    };
+    mappaflusso3.prototype.readinsightRadiusValues = function (radius) {
+        var insightradius = this.userSession.getinsightRadiusValues;
+        var result = undefined;
+        if (insightradius) {
+            for (var i = 0; i < insightradius.Insights.length; i++) {
+                if (insightradius.Insights[i].Radius === radius) {
+                    result = insightradius.Insights[i];
+                    break;
+                }
+            }
+        }
+        return result;
     };
     return mappaflusso3;
 }(Page));
@@ -5071,6 +5111,7 @@ var dev = {
     fakeSemanticWeb: false,
     fakeCampaign: false,
     fakeGeocodeAddress: false,
+    fakeInsight: true
 };
 var isLocalHost = (document.location.href.indexOf("localhost") > 0);
 // Per evitare dimenticanze
@@ -5079,6 +5120,7 @@ if (!isLocalHost) {
     dev.fakeSemanticWeb = false;
     dev.fakeCampaign = false;
     dev.fakeGeocodeAddress = false;
+    dev.fakeInsight = true;
 }
 // Definizioni delle chiavi per ogni host
 var clientIds = {
@@ -5102,10 +5144,6 @@ if (!config) {
 }
 else {
     baseUrl = config.baseUrl;
-    console.log(config.policy);
-    console.log(config.clientId);
-    console.log(encodeURIComponent(""));
-    console.log(encodeURIComponent(redirect));
     getLoginUrl = function (r) {
         if (r === void 0) { r = ""; }
         return "https://login.microsoftonline.com/GeotoolTenant.onmicrosoft.com/oauth2/v2.0/authorize?p=" + config.policy + "&client_id=" + config.clientId + "&nonce=defaultNonce&redirect_uri=" + encodeURIComponent(redirect) + "&scope=openid&response_type=id_token&prompt=login&state=" + encodeURIComponent(r);

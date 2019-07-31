@@ -41,7 +41,10 @@
 
     public gender: GenderType = GenderType.BOTH;
 
-    public workDays: number = 2;
+    public workDays: number = 2; 
+
+    public insightRadiusValues: BaseRadiusInsigntResult;
+
 
     constructor() {
     }
@@ -114,6 +117,10 @@
 
     public get getCustomName(): string {
         return this.originalBusinessName;
+    }
+
+    public get getinsightRadiusValues(): BaseRadiusInsigntResult {
+        return this.insightRadiusValues;
     }
 
     // Method
@@ -235,6 +242,10 @@
         let campaignServiceAgent = ServiceAgentFactory.get(CampaignServiceAgent);
 
         return await campaignServiceAgent.moreProductsBulk(request);
+    }
+    public async InsightRadiusAsync(request: LocationCoordinates): Promise<BaseRadiusInsigntResult> {
+        let semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);
+        return await semanticWebServiceAgent.getInsightRadius(request);
     }
 }
 

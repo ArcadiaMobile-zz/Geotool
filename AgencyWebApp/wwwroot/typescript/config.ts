@@ -8,7 +8,8 @@ let dev = {
     preset: <"none" | "single" | "multi"> "multi",
     fakeSemanticWeb: false,
     fakeCampaign: false,
-    fakeGeocodeAddress:false,
+    fakeGeocodeAddress: false,
+    fakeInsight:true
 };
 
 const isLocalHost = (document.location!.href.indexOf("localhost") > 0);
@@ -17,7 +18,8 @@ if (!isLocalHost) {
     dev.preset = "none";
     dev.fakeSemanticWeb = false;
     dev.fakeCampaign = false;
-    dev.fakeGeocodeAddress = false
+    dev.fakeGeocodeAddress = false;
+    dev.fakeInsight= true
 }
 
 // Definizioni delle chiavi per ogni host
@@ -42,11 +44,6 @@ if (!config) {
     console.error("No configuration for " + document.location!.host);
 } else {
     baseUrl = config.baseUrl;
-    console.log(config.policy);
-    console.log(config.clientId);
-    console.log(encodeURIComponent(""));
-    console.log(encodeURIComponent(redirect));
-
     getLoginUrl = (r: string = "") => `https://login.microsoftonline.com/GeotoolTenant.onmicrosoft.com/oauth2/v2.0/authorize?p=${config.policy}&client_id=${config.clientId}&nonce=defaultNonce&redirect_uri=${encodeURIComponent(redirect)}&scope=openid&response_type=id_token&prompt=login&state=${encodeURIComponent(r)}`;
  }
 

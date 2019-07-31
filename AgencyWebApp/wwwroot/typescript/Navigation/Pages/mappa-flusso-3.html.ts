@@ -60,4 +60,17 @@ class mappaflusso3 extends Page {
             if (this.onUpdatePdv) this.onUpdatePdv(pdv!.mapItem);
         });
     }
+    public readinsightRadiusValues(radius: number): RadiusInsight | undefined {
+        let insightradius = this.userSession.getinsightRadiusValues;
+        let result = undefined;
+        if (insightradius) {
+            for (let i = 0; i < insightradius.Insights.length; i++) {
+                if (insightradius.Insights[i].Radius === radius) {
+                    result = insightradius.Insights[i];
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }
