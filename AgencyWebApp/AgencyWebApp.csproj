@@ -10,6 +10,7 @@
     <Content Remove="wwwroot\typescript\Models\Campaign\MoreProductsBulkRequest.ts" />
     <Content Remove="wwwroot\typescript\Models\Report\ReportCampaignsModerationBinding.ts" />
     <Content Remove="wwwroot\typescript\Models\Report\ReportPowerBI.ts" />
+    <Content Remove="wwwroot\typescript\Models\SemanticWeb\BaseRadiusInsigntResult.ts" />
     <Content Remove="wwwroot\typescript\Models\SemanticWeb\BulkImportBindingResult.ts" />
     <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_configurazione.html.ts" />
     <Content Remove="wwwroot\typescript\Navigation\Pages\bulk_copertura.html.ts" />
@@ -44,6 +45,7 @@
     <TypeScriptCompile Include="wwwroot\typescript\Models\Report\ReportCampaignsModerationBinding.ts" />
     <TypeScriptCompile Include="wwwroot\typescript\Models\Report\ReportPowerBI.ts" />
     <TypeScriptCompile Include="wwwroot\typescript\Models\SemanticWeb\BaseGeocodeLocationBindingResult.ts" />
+    <TypeScriptCompile Include="wwwroot\typescript\Models\SemanticWeb\BaseRadiusInsigntResult.ts" />
     <TypeScriptCompile Include="wwwroot\typescript\Models\SemanticWeb\BulkImportBindingResult.ts" />
     <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-configurazione.html.ts" />
     <TypeScriptCompile Include="wwwroot\typescript\Navigation\Pages\bulk-copertura.html.ts" />

@@ -62,6 +62,7 @@ class homeflusso3 extends Page {
                         this.html.find("#popup3-multi").modal("show");
                     } else {
                         await this.userSession.addPdv(result.Results[0]);
+                        this.userSession.insightRadiusValues = await this.userSession.InsightRadiusAsync(result.Results[0].Geometry.location);
                         this.navigo.navigate("mappa-flusso-3");
                     }
                 } else {
