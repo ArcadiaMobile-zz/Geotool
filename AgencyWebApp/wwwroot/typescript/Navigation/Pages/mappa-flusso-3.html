@@ -1,7 +1,6 @@
-<link rel="stylesheet" type="text/css" href="assets/css/simpleslider.css">
 <style>
 
-    #container-map {position: relative;min-height: 400px;}
+    #container-map {position: relative;min-height: 420px;}
     #map {margin-left: 0px;height: 400px;margin-right:320px}
     .ib {display: inline-block}
     .fl-left {float: left}
@@ -13,7 +12,8 @@
     a.type-place:hover i.fa,a.type-place.active i.fa{background:#e02b20;color:#fff}
     a.type-place.loading{opacity:.6}
     a.type-place.loading i.fa:before{content:"\f013" !important}
-    #places-available p {margin-top: 0}
+    #places-available{padding-top:5px;padding-bottom:0}
+    #places-available p {margin:0}
     .btn-mr.btn-small.ctrl{font-size:11px !important}
     a.type-place .next {
         position: absolute;
@@ -35,70 +35,10 @@
     a.type-place .next:hover {opacity: .7}
     a.type-place.hasnext.active .next {display: block}
     a.type-place.loading .next {opacity: .5}
-    /*.map-update {display: none}*/
 
     .panel {margin-bottom: 0 !important}
 
-    .pdfcontainer {padding: 50px;width: 1200px;background: #fff;position: relative;box-sizing:border-box}
-
-    .pdfcontainer .bg-dark-blue, .pdfcontainer .bg-bubble, .pdfcontainer .panel, .pdfcontainer .panel-default > .panel-heading {
-        background-color: #fff;
-        border: 1px solid #000000 !important;
-        border-radius: 3px;
-        border-collapse: collapse
-    }
-
-    .pdfcontainer .panel-default > .panel-heading {
-        border: 0 !important;
-        background: #eee
-    }
-
-    .pdfcontainer #current-templateOut span {
-        font-weight: bold
-    }
-
-    .pdfcontainer .charts-advm, .pdfcontainer .charts-smartphone, .pdfcontainer .charts-android {
-        background-color: rgba(0,0,0,.15);
-        border-radius: 100%
-    }
-
-    .pdfcontainer * {color: #000000 !important;}
-    .pdfcontainer .nav-pills {border: none}
-    .pdfcontainer .not-available span {top: 90%}
-    .pdfcontainer #choice-templateOut button {border: none !important;font-weight: bold;text-transform: uppercase;padding: 0 !important}
-    .pdfcontainer #choice-templateOut button span {font-size: 24px !important;position: relative;display: block;text-align: center}
-    .pdfcontainer #choice-templateOut span.bs-caret {display: none}
-    .pdfcontainer #insights-details-templateOut .col-md-12 {padding: 0 !important}
-    .pdfcontainer .mt-50, .pdfcontainer .mt-75 {margin-top: 0}
-    .pdfcontainer .nav-justified > li {display: table-cell;width: 1%;}
-    .pdfcontainer .col-md-5 {width: 41.666;float: left}
-    .pdfcontainer .col-md-offset-1 {margin-left: 8.33333333%;}
-    .pdfcontainer .col-md-6 { width: 50%;float: left}
-    .pdfcontainer .col-md-12 {width: 100%}
-    .pdfcontainer .progress {padding: 1px}
-    .pdfcontainer .pdfpage.hide {display: block !important}
-    .pdfcontainer .owl-stage[style] { width: auto !important;-webkit-transform: none !important;transform: none !important;}
-    .pdfcontainer .owl-item .printnoscroll, .pdfcontainer .owl-item .col-md-12 {padding: 0 !important;margin: 0 !important}
-    .pdfcontainer .owl-item .printnoscroll p, .pdfcontainer .owl-item .col-md-12 p {margin: 30px 0;text-align: center}
-    .pdfcontainer .owl-item, .pdfcontainer .owl-item[style] {width: 100% !important;padding: 0 !important;margin: 0 !important;float: none !important;margin-bottom: 50px !important}
-    .pdfcontainer .owl-dots, .pdfcontainer .owl-dots, .pdfcontainer .owl-nav {display: none !important}
-    .pdfcontainer .circles-wrp {border: 10px solid rgba(0,0,0,.1);border-radius: 100%}
-    .pdfcontainer .nopl {padding-left: 15px !important}
-    .pdfcontainer .inizio .col-md-5, .pdfcontainer .inizio .col-md-6 {float: none;clear: both;width: 100%;margin-left: auto;margin-right: auto}
-    .pdfcontainer .inizio .col-md-6.pba {margin-top: 300px;text-align: left}
-    .pdfcontainer .inizio #group-selectpicker {margin: 0 !important}
-    .pdfcontainer p.pdfcenter { text-align: center}
-    .pdfcontainer p.pdfcenter span {font-size: 20px !important}
-    .pdfcontainer .inizio .col-md-6.pba p {text-align: left !important}
-    .pdfcontainer .container {width: 100% !important;padding: 10px !important;margin: 0 !important}
-    .pdfcontainer .well {background: #fafafa}
-    .pdfcontainer #map.with-sidebar { margin-right: 0 !important}
-    .pdfcontainer #places-available {background: rgba(255,255,255,.5);box-shadow: none !important}
-    .pdfcontainer #places-available p {display: none}
-    .pdfcontainer #places-available .panel {background: transparent;border: none !important}
-    .pdfcontainer .type-place img {opacity: 1 !important}
-    .pdfcontainer .col-md-5.col-lg-5{width:50%;box-sizing:border-box}
-    
+    .well{min-height:100px}
     div[style*="font-family: LABEL_SELECTED"], div[style*="font-family: LABEL_SELECTED"][style]{background:#fff;color:#fff}
     
     .gm-style-iw.gm-style-iw-c .gm-ui-hover-effect,.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect[style]{margin:10px 10px 0 0 !important;}
@@ -113,6 +53,7 @@
     #mr-logo{display:none}
     .pdfcontainer #mr-logo{display:block}
     
+    
     @media print {
         @page {size: portrait}
         #map{margin-right:0;height:40%}
@@ -120,7 +61,9 @@
         .well{border:1px solid #ccc}
         .col-md-5.col-lg-5{width:100%;float:none;clear:both;box-sizing:border-box;margin:0 !important;padding:0 !important;margin-bottom:10px}
         #mr-logo{display:block;text-align:center;margin-bottom:10px;margin-top:0}
-      
+        .col-md-12.p-15.bg-data *,
+        .col-sm-6.col-xs-12.p-15 *{display:inline-block !important;width:auto !important;line-height:30px}
+        .col-md-12.p-15,.col-sm-6.col-xs-12.p-15{padding-top:0;padding-bottom:0}
     }
 
 </style>
@@ -162,10 +105,10 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="well">
                         <div class="media" style="overflow: visible;">
-                            <div class="media-left media-middle">
-                                <img class="media-object static-img" src="assets/img/thumb.png" alt="Mondored.it">
+                            <div class="media-left media-middle" style="background:#f1f1f1;border-radius:10px;padding:0 10px;">
+                                <img class="media-object static-img" src="assets/img/logo.png" alt="Mondored.it" style="height:40px;margin:0">
                             </div>
-                            <div class="media-body media-middle bg-pdv">
+                            <div class="media-body media-middle bg-pdv" style="padding-left:10px">
 
                                 <h3 class="color-red fs-18 m-0 mb-10"><b data-insegna>{{businessName}}</b></h3>
 
@@ -173,7 +116,7 @@
                                     <div class="media-left">
                                         <i class="fas fa-map-marker-alt color-red"></i>
                                     </div>
-                                    <p class="media-body"><span class="pdi-address">{{address}}</span></p>
+                                    <p class="media-body"><span class="pdi-address fs-13">{{address}}</span></p>
                                 </div>
 
                                 <div class="media m-0">
@@ -197,14 +140,11 @@
                                 <div class="col-md-12 p-15 bg-data">
 
                                     <div class="clearfix">
-                                        <span class="text-uppercase color-light-gray fs-14 pull-left lh-18 mr-5">Media mobile users daily</span>
+                                        <span class="text-uppercase color-light-gray fs-13 pull-left lh-18 mr-5">Media mobile users daily</span>
                                         <!--i class="fas fa-question-circle color-red c-help pull-left" data-toggle="tooltip" data-placement="top" title="Questi sono gli utenti mobile raggiungibili per una campagna efficace. L'area può essere diversa da quella mostrata."></i-->
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle hide" href="#">
-                                            <img class="media-object" src="assets/img/ico-smartphone.png" alt="">
-                                        </div>
                                         <div class="media-body">
                                             <span class="fs-26 color-red" data-insight-PotentialUsers="">26.250</span>
                                         </div>
@@ -222,9 +162,6 @@
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle hide" href="#">
-                                            <img class="media-object" src="assets/img/ico-men.png" alt="">
-                                        </div>
                                         <div class="media-body">
                                             <span class="fs-26" data-insight-MaleStats="">49.210</span>
                                         </div>
@@ -239,9 +176,6 @@
                                     </div>
 
                                     <div class="media">
-                                        <div class="media-left media-middle hide" href="#">
-                                            <img class="media-object" src="assets/img/ico-women.png" alt="">
-                                        </div>
                                         <div class="media-body">
                                             <span class="fs-26" data-insight-FemaleStats="">23.515</span>
                                         </div>
