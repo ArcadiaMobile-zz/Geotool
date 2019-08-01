@@ -9,7 +9,7 @@ let dev = {
     fakeSemanticWeb: false,
     fakeCampaign: false,
     fakeGeocodeAddress: false,
-    fakeInsight:true
+    fakeInsight:false
 };
 
 const isLocalHost = (document.location!.href.indexOf("localhost") > 0);
@@ -19,7 +19,7 @@ if (!isLocalHost) {
     dev.fakeSemanticWeb = false;
     dev.fakeCampaign = false;
     dev.fakeGeocodeAddress = false;
-    dev.fakeInsight= true
+    dev.fakeInsight= false
 }
 
 // Definizioni delle chiavi per ogni host

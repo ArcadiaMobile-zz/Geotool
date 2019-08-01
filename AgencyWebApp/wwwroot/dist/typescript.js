@@ -418,7 +418,7 @@ var InvoiceServiceAgent = /** @class */ (function (_super) {
 var SemanticWebServiceAgent = /** @class */ (function (_super) {
     __extends(SemanticWebServiceAgent, _super);
     function SemanticWebServiceAgent(context) {
-        var _this = _super.call(this, context, { name: "searchLocation", uri: function (args) { return _this.formatUri("/api/SemanticWeb/SearchLocation", args); } }, { name: "search", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Search", args); } }, { name: "getDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }, { name: "getBulkDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetBulkDetails", [args[0], args[1]]); } }, { name: "GeocodeAddress", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GeocodeAddress", args); } }, { name: "Geocode", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]); } }, { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: function (args) { return args[0]; } }, { name: "getInsightRadius", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }) || this;
+        var _this = _super.call(this, context, { name: "searchLocation", uri: function (args) { return _this.formatUri("/api/SemanticWeb/SearchLocation", args); } }, { name: "search", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Search", args); } }, { name: "getDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }); } }, { name: "getBulkDetails", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetBulkDetails", [args[0], args[1]]); } }, { name: "GeocodeAddress", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GeocodeAddress", args); } }, { name: "Geocode", uri: function (args) { return _this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]); } }, { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: function (args) { return args[0]; } }, { name: "getInsightRadius", uri: function (args) { return _this.formatUri("/api/SemanticWeb/GetInsightRadius", args); } }) || this;
         if (dev.fakeSemanticWeb) {
             _this.getDetails = function () { return Promise.resolve(JSON.parse('{"Url":"https://maps.google.com/?cid=9154458214224756504","Website":"http://illorenzaccio.wordpress.com/","PhoneNumber":"030 220457","PotentialUsers":50547,"MaleStats":26819.957859411254,"MaleStatsPercentage":0.53,"MaleStatsAverageAge":29.0,"FemaleStats":23727.466440728695,"FemaleStatsPercentage":0.47,"FemaleStatsAverageAge":39.0,"BugdetMinValue":10,"BugdetMaxValue":60,"PublicOfficesNumber":43,"PrivatesNumber":13,"PublicTransportNumber":14,"Radius":3000,"Tracing":null,"Population":610,"Address":"Via Cipro, 78, 25124 Brescia BS","Geometry":{"location":{"lat":45.523879499999993,"lng":10.2103229}},"ID":"ChIJxXJsdHZ2gUcRGP8FUj4rC38","Name":"Il Lorenzaccio","Categories":[{"Category":"RS0100","Description":"Ristorante","Score":100.0,"Competitors":20},{"Category":"RS0101","Description":"Ristorante di carne","Score":0.0,"Competitors":20},{"Category":"RS0102","Description":"Ristorante di pesce","Score":0.0,"Competitors":17},{"Category":"RS0103","Description":"Trattoria","Score":0.0,"Competitors":20}]}')); };
         }
@@ -746,7 +746,7 @@ var UserSession = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);
-                        return [4 /*yield*/, semanticWebServiceAgent.getInsightRadius(request)];
+                        return [4 /*yield*/, semanticWebServiceAgent.getInsightRadius(request.lat, request.lng)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -5111,7 +5111,7 @@ var dev = {
     fakeSemanticWeb: false,
     fakeCampaign: false,
     fakeGeocodeAddress: false,
-    fakeInsight: true
+    fakeInsight: false
 };
 var isLocalHost = (document.location.href.indexOf("localhost") > 0);
 // Per evitare dimenticanze
@@ -5120,7 +5120,7 @@ if (!isLocalHost) {
     dev.fakeSemanticWeb = false;
     dev.fakeCampaign = false;
     dev.fakeGeocodeAddress = false;
-    dev.fakeInsight = true;
+    dev.fakeInsight = false;
 }
 // Definizioni delle chiavi per ogni host
 var clientIds = {
