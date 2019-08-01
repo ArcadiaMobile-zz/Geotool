@@ -91,7 +91,7 @@
         <div id="mr-logo"><img class="logo mCS_img_loaded" src="assets/img/logo.png" alt="AdMove.com"></div>
         <div id="map" class="with-sidebar"></div>
         <div class="pdfignore">
-            <input id="map-range" data-slider-id='range-slider' type="text" data-slider-value="1000" />
+            <input id="map-range" data-slider-id='range-slider' type="text">
             <div id="places-available" data-mcs-theme="minimal-dark">
                 <p class="fs-24 pdfignore">Attività sul territorio:</p>
             </div>
@@ -146,7 +146,7 @@
 
                                     <div class="media">
                                         <div class="media-body">
-                                            <span class="fs-26 color-red" data-insight-PotentialUsers="">26.250</span>
+                                            <span class="fs-24 color-red" data-insight-PotentialUsers="">-</span>
                                         </div>
                                     </div>
 
@@ -163,7 +163,7 @@
 
                                     <div class="media">
                                         <div class="media-body">
-                                            <span class="fs-26" data-insight-MaleStats="">49.210</span>
+                                            <span class="fs-24" data-insight-MaleStats="">-</span>
                                         </div>
                                     </div>
 
@@ -177,7 +177,7 @@
 
                                     <div class="media">
                                         <div class="media-body">
-                                            <span class="fs-26" data-insight-FemaleStats="">23.515</span>
+                                            <span class="fs-24" data-insight-FemaleStats="">-</span>
                                         </div>
                                     </div>
 
@@ -274,12 +274,18 @@
         /* Slider Range */
         $("#map-range").slider({
             tooltip: 'always',
-            min: 500,
+            /*min: 500,
             max: 5000,
             step: 500,
             ticks: [500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000],
-            ticks_positions: [0, 11, 22, 33, 44, 55, 66, 77, 88, 100],
-            //ticks_labels: ['500 mt', '1000 mt', '1500 mt', '2000 mt', '2500 mt', '3000 mt', '3500 mt', '4000 mt', '4500 mt', '5000 mt'],
+            ticks_positions: [0, 11, 22, 33, 44, 55, 66, 77, 88, 100],*/
+            min: 1500,
+            max: 4500,
+            value: 1500,
+            step: 500,
+            lock_to_ticks:true,
+            ticks: [1500, 2500, 3500, 4500],
+            ticks_positions: [0, 33, 66, 100],
             ticks_snap_bounds: 0,
             formatter: function(value) {
         		return value + ' mt';
