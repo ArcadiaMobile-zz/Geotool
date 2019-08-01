@@ -96,7 +96,7 @@
                         var a = document.createElement('a');
                         // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
                         a.href = img.replace("image/jpeg", "image/octet-stream");
-                        a.download = 'mondored_screenshot.jpg';
+                        a.download = c.find('[data-insegna]').text()+'.jpg';
                         a.target = '_blank';
                         document.body.appendChild(a);
                         a.click();
