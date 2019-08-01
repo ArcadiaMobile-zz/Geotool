@@ -245,7 +245,7 @@
     }
     public async InsightRadiusAsync(request: LocationCoordinates): Promise<BaseRadiusInsigntResult> {
         let semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);
-        return await semanticWebServiceAgent.getInsightRadius(request);
+        return await semanticWebServiceAgent.getInsightRadius(request.lat, request.lng);
     }
 }
 

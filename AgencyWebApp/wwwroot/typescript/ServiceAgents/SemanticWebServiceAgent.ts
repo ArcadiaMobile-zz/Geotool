@@ -6,7 +6,7 @@
     GeocodeAddress(address: string): Promise<AddressComponentBinding>;
     Geocode(proposalBulkId: string, placeId: string, address: string): Promise<AddressComponentBinding>;
     GeocodeLocationFile(data: FormData): Promise<BulkImportBindingResults>;
-    getInsightRadius(location: LocationCoordinates): Promise<BaseRadiusInsigntResult>;
+    getInsightRadius(lat: number, lng: number): Promise<BaseRadiusInsigntResult>;
 }
 
 class SemanticWebServiceAgent extends AutoServiceAgent<SemanticWebServiceAgent> {
@@ -19,7 +19,7 @@ class SemanticWebServiceAgent extends AutoServiceAgent<SemanticWebServiceAgent> 
             { name: "GeocodeAddress", uri: args => this.formatUri("/api/SemanticWeb/GeocodeAddress", args) },
             { name: "Geocode", uri: args => this.formatUri("/api/SemanticWeb/Geocode", [args[0], args[1], args[2]]) },
             { name: "GeocodeLocationFile", method: "POST", uri: "/api/SemanticWeb/Geocode/File", body: args => args[0] },
-            { name: "getInsightRadius", uri: args => this.formatUri("/api/SemanticWeb/GetDetails", [args[0], args[1]], { latitude: args[2].latitude, longitude: args[2].longitude, isBulkUpload: args[3], proposalBulkId: args[4] }) },
+            { name: "getInsightRadius", uri: args => this.formatUri("/api/SemanticWeb/GetInsightRadius", args)},
         );
 
         if (dev.fakeSemanticWeb) {
