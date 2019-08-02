@@ -209,6 +209,7 @@
 <script src="assets/js/pdf/dist/jspdf.debug.js"></script>
 <script src="assets/js/pdf/html2pdf.js"></script>
 <script src="assets/bootstrap-slider/js/bootstrap-slider.min.js"></script>
+<script src="assets/js/markerwithlabel.js"></script>
 <script>
 
     Number.prototype.format = function(n, x, s, c, suffix) {
@@ -316,8 +317,9 @@
             }, _get_type = function (t) {
                 if (types[t] && types[t].types) return types[t].types;
                 return [t];
-            }, _get_path = function (t) {
+            }, _get_path = function (t,i) {
                 if (t == "cafe") t = "bar";
+                if (i === true) return types[t].ico; 
                 if (types[t]) return "../assets/img/maps/place/" + types[t].path;
                 return "404_" + t;
             }, _set_zoom = function (radius) {
@@ -355,7 +357,7 @@
 
             }, _addMarker = function (latLng, type, map, icon, title) {
 
-                var marker = new google.maps.Marker({
+                /*var marker = new google.maps.Marker({
                     position: latLng,
                     icon: {
                         url: _get_path(type),
@@ -364,7 +366,15 @@
                     },
                     title: title,
                     map: map
-                });
+                });*/
+                var marker = new MarkerWithLabel({
+                    position: latLng,
+                    icon: ' ',
+                    map: map,
+                    title: title,
+                    labelContent: '<i class="'+_get_path(type,true)+'" style="width:30px;line-height:30px;border-radius:50%;background:#fff;color:#e02b20;text-align:center;font-size:14px"></i>',
+                    labelAnchor: new google.maps.Point(15, 15)
+                 });
                 //console.log("DONE MARK");
                 if (!_markers[type]) _markers[type] = [];
                 _markers[type].push(marker);
