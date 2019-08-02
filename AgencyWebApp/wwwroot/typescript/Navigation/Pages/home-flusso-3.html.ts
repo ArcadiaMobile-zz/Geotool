@@ -41,7 +41,7 @@ class homeflusso3 extends Page {
             this.userSession.clear();
             this.userSession.businessName = this.userSession.searchText = this.html.find("[name=businessName]").val();
             this.userSession.flow3.address = this.html.find("[name=address]").val();
-            this.userSession.flow3.radius = parseInt("1000");
+            this.userSession.flow3.radius = parseInt("1500");
 
             this.runAsync(async () => {
                 let semanticWebServiceAgent = ServiceAgentFactory.get(SemanticWebServiceAgent);

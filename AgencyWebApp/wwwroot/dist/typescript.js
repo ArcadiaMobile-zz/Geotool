@@ -4269,7 +4269,7 @@ var homeflusso3 = /** @class */ (function (_super) {
             this.userSession.clear();
             this.userSession.businessName = this.userSession.searchText = this.html.find("[name=businessName]").val();
             this.userSession.flow3.address = this.html.find("[name=address]").val();
-            this.userSession.flow3.radius = parseInt("1000");
+            this.userSession.flow3.radius = parseInt("1500");
             this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
                 var semanticWebServiceAgent, result, _a;
                 return __generator(this, function (_b) {
@@ -5129,7 +5129,7 @@ var clientIds = {
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_MondoSignIn"
     },
-    "ituoidintorni.it": {
+    "www.ituoidintorni.it": {
         clientId: "711c5e4a-0241-45c7-984a-5d6f1b80fe59",
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_MondoSignIn"

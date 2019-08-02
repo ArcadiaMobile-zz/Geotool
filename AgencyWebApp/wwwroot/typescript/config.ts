@@ -29,7 +29,7 @@ const clientIds: { [hostname: string]: SiteConfiguration | undefined } = {
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_MondoSignIn"
     },
-    "ituoidintorni.it": {
+    "www.ituoidintorni.it": {
         clientId: "711c5e4a-0241-45c7-984a-5d6f1b80fe59",
         baseUrl: "https://arcadia-api-dev.azurewebsites.net",
         policy: "B2C_1_MondoSignIn"

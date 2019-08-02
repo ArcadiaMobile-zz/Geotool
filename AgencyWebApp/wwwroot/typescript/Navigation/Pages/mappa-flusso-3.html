@@ -467,8 +467,7 @@
 
                 if (plugin.getSelected().id === res.id) {
                     // aggiorno tutti i dati di insights
-                    console.log("prima chiamata updateInsight");
-                    updateInsights(pdi);
+                    updateInsights(pdi); 
                 }
 
                 try {
@@ -484,7 +483,7 @@
                 $("[data-insight-MaleStats]").text(parseInt(pdi.insights.data.MaleStats).format());
                 $("[data-insight-FemaleStats]").text(parseInt(pdi.insights.data.FemaleStats).format());
                 
-                console.log('insights: ',pdi.insights);
+                //console.log('insights: ',pdi.insights);
             }
             function updateInsightsRadius(aux) {
                 if (!aux) {
@@ -517,7 +516,9 @@
                     }, 100);
                 } else if (evt == "updated") { // punto aggiornato/ripristinato. invio richiesta
                     // chiamata di aggiornamento dei dati di insights
-                    updateInsights(pdi);
+                    updateInsights(pdi);                    
+                    var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);
+                    updateInsightsRadius(aux);  
                     setTimeout(function () {
                         plugin.map.setZoom(_set_zoom(pdi.circle.radius));
                     }, 100);
@@ -533,7 +534,7 @@
 
                     // aggiorno tutti i dati di insights
                     updateInsights(pdi);
-                    var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);
+                    var aux = currentPage.readinsightRadiusValues(1500);
                     updateInsightsRadius(aux);                    
                 } else if (evt == "dragend") {
                     currentPage.pdiMoved(pdi.id, { lat: pdi.circle.lat, lng: pdi.circle.lng });
@@ -571,7 +572,7 @@
                     pdi.update();
                     plugin.fitBounds(pdi);
                     $("#places-available").find('.active').trigger('click').trigger('click');
-                    var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);
+                    var aux = currentPage.readinsightRadiusValues(pdi.circle.radius);                   
                     updateInsightsRadius(aux);
                     //plugin.actions("update", pdi.id, pdi);
                 }
