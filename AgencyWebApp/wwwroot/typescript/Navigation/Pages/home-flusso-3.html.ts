@@ -30,6 +30,7 @@ class homeflusso3 extends Page {
         let item: BaseLocationBindingResult = this.html.find(".slogan.selected").data("item");
         this.runAsync(async () => {           
             await this.userSession.addPdv(item);
+            this.userSession.insightRadiusValues = await this.userSession.InsightRadiusAsync(item.Geometry.location);
             this.navigo.navigate("mappa-flusso-3");
         });
     }

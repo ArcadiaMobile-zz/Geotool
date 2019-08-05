@@ -4252,11 +4252,16 @@ var homeflusso3 = /** @class */ (function (_super) {
         this.html.find("#popup3-multi").modal("hide");
         var item = this.html.find(".slogan.selected").data("item");
         this.runAsync(function () { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0: return [4 /*yield*/, this.userSession.addPdv(item)];
                     case 1:
-                        _a.sent();
+                        _b.sent();
+                        _a = this.userSession;
+                        return [4 /*yield*/, this.userSession.InsightRadiusAsync(item.Geometry.location)];
+                    case 2:
+                        _a.insightRadiusValues = _b.sent();
                         this.navigo.navigate("mappa-flusso-3");
                         return [2 /*return*/];
                 }
