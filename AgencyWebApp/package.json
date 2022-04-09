@@ -5,7 +5,7 @@
     "jquery.cookie": "1.4.1",
     "jwt-decode": "2.2.0",
     "linq4js": "2.1.9",
-    "moment": "2.23.0",
+    "moment": "2.29.2",
     "navigo": "4.7.0",
     "powerbi-client": "^2.5.0",
     "powerbi-models": "^1.0.3"
